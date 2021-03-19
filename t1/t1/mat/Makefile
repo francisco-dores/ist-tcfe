@@ -1,4 +1,4 @@
-octave.log: rc.m
+octave.log: MeshMethod.m
 	octave $< > $@
 
 clean:
