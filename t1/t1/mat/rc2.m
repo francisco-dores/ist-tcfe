@@ -53,7 +53,7 @@ I = AI*b
 
 
 
-%%Plots
+%%Plot
 
 hf = figure ();
 plot (t*1000, vi, "g");
