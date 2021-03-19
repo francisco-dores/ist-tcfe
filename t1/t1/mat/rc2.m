@@ -15,8 +15,11 @@ syms R5
 syms R6
 syms R7
 syms Va
+syms Vb
 syms V0
+syms Kb
 syms Kc
+syms Ic
 syms Id
 syms I1
 syms I2
@@ -34,6 +37,7 @@ R6 = 2.01920057699;
 R7 = 1.02918842978;
 Va = 5.1256272592;
 V0 = 0;
+Kb = 7.28538907285;
 Kc = 8.0919603219;
 Id = 1.011814928;
 
@@ -56,13 +60,22 @@ I = AI*b;
 
 %%Show Solution
 
-%%format long
 output_precision(10)
 
 I1 = I(1)
 I2 = I(2)
 I3 = I(3)
 I4 = I(4)
+
+printf("\n\n")
+
+Vb = -I1*R3
+Ib = Kb*Vb
+
+printf("\n")
+
+Ic = I2
+Vc = Kc*Ic
 
 printf("\n\n")
 
