@@ -1,7 +1,7 @@
 close all
 clear all
 
-%%-----------------> MESH METHOD <-------------------
+
 %%Variable Values
 R1 = 1.02597459645e3;
 R2 = 2.02178008702e3;
@@ -24,8 +24,8 @@ G5=1/R5;
 G6=1/R6;
 G7=1/R7;
 
-printf("\n\n")
 
+%%-----------------> MESH METHOD <-------------------
 
 %%Coeficients matrix
 A = [R1+R3+R4, -R4, -R3, 0; -R4, R4+R6+R7-Kc, 0, 0; R3*Kb, 0, 1-Kb*R3, 0; 0, 0, 0, 1];
@@ -33,46 +33,19 @@ A = [R1+R3+R4, -R4, -R3, 0; -R4, R4+R6+R7-Kc, 0, 0; R3*Kb, 0, 1-Kb*R3, 0; 0, 0, 
 %%Solution Matrix
 b = [-Va; -V0; 0; Id];
 
-%%Inverting Matrix A
-AI = inv(A);
-
-printf("\n")
-
 %%Computing currents vector
-I = AI*b;
+I = inv(A)*b;
 
 
 %%Show Solution
 
 output_precision(10)
 
-I1 = I(1)
-I2 = I(2)
-I3 = I(3)
-I4 = I(4)
+I1 = I(1);
+I2 = I(2);
+I3 = I(3);
+I4 = I(4);
 
-printf("\n\n")
-
-V7=R4*(I2-I1);
-V6= -I2*R6;
-
-V1=Va
-V2= Va+R1*I1
-V3= V2+R2*I3
-V4= V7+R5*(I4-I3)
-V5= V6-R7*I2
-V6= -I2*R6
-V7=R4*(I2-I1)
-
-Vb = -I1*R3
-Ib = Kb*Vb
-
-printf("\n")
-
-Ic = I2
-Vc = Kc*Ic
-
-printf("\n\n")
 
 %%-----------------> NODE METHOD <-------------------
 
@@ -85,33 +58,4 @@ C=[1,0,0,0,0,0,0; ...
    0,G3,0,G5,0,-G6,-G3-G4-G5];
 d=[Va;0;0;-Id;0;0;Id];
 
-V=inv(C)*d
-
-printf("\n\n")
-
-Vb = V(2)-V(7)
-
-printf("\n")
-
-Vc = V(7)-V(5)
-
-%%Plot
-
-hf = figure ();
-plot (t*1000, vi, "g");
-hold on;
-plot (t*1000, vo, "b");
-
-xlabel ("t[ms]");
-ylabel ("vi(t), vo(t) [V]");
-print (hf, "forced.eps", "-depsc");
-
-
-
-
-
-
-
-
-
-
+V=inv(C)*d;

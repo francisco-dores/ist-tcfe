@@ -1,4 +1,4 @@
-octave.log: MeshMethod.m
+octave.log: TheoreticalAnalysis.m
 	octave $< > $@
 
 clean:
