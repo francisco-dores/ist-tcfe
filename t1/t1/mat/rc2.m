@@ -1,6 +1,8 @@
 close all
 clear all
 
+%%-----------------> MESH METHOD <-------------------
+
 %%Variable Identification
 
 pkg load symbolic
@@ -23,34 +25,46 @@ syms I4
 
 
 %%Variable Values
-R1 = 1.02597459645
-R2 = 2.02178008702
-R3 = 3.03144887426
-R4 = 4.13109833342
-R5 = 3.09601431108
-R6 = 2.01920057699
-R7 = 1.02918842978
-Va = 5.1256272592
-V0 = 0
-Kc = 8.0919603219
-Id = 1.011814928
+R1 = 1.02597459645;
+R2 = 2.02178008702;
+R3 = 3.03144887426;
+R4 = 4.13109833342;
+R5 = 3.09601431108;
+R6 = 2.01920057699;
+R7 = 1.02918842978;
+Va = 5.1256272592;
+V0 = 0;
+Kc = 8.0919603219;
+Id = 1.011814928;
 
 printf("\n\n")
 
 %%Coeficients matrix
-A = [R1+R3+R4, -R4, -R3, 0; -R4, R4+R6+R7-Kc, 0, 0; R1+R3, R6+R7-Kc, 0, -R3; 0, 0, 0, 1]
+A = [R1+R3+R4, -R4, -R3, 0; -R4, R4+R6+R7-Kc, 0, 0; R1+R3, R6+R7-Kc, 0, -R3; 0, 0, 0, 1];
 
 %%Solution Matrix
-b = [-Va; -V0; -Va-V0; Id]
+b = [-Va; -V0; -Va-V0; Id];
 
 %%Inverting Matrix A
-AI = inv(A)
+AI = inv(A);
 
-printf("\n\n")
+printf("\n")
 
 %%Computing currents vector
-I = AI*b
+I = AI*b;
 
+
+%%Show Solution
+
+%%format long
+output_precision(10)
+
+I1 = I(1)
+I2 = I(2)
+I3 = I(3)
+I4 = I(4)
+
+printf("\n\n")
 
 
 %%Plot
