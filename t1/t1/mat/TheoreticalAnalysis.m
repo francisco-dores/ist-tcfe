@@ -46,6 +46,16 @@ I2 = I(2);
 I3 = I(3);
 I4 = I(4);
 
+Ib=I3;
+IR1=-I1;
+IR2=I3;
+IR3=I3-I1;
+IR4=I2-I1;
+IR5=I3-I4;
+IR6=I2;
+IR7=I2;
+
+
 
 %%-----------------> NODE METHOD <-------------------
 
@@ -59,3 +69,8 @@ C=[1,0,0,0,0,0,0; ...
 d=[Va;0;0;-Id;0;0;Id];
 
 V=inv(C)*d;
+
+printf('op_TAB\n');
+printf('I_b = %f\nI_d = %f\nI_{R1} = %f\nI_{R2} = %f\nI_{R3} = %f\nI_{R4} = %f\nI_{R5} = %f\nI_{R6} = %f\nI_{R7} = %f\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
+printf('V_1 = %f\nV_2 = %f\nV_3 = %f\nV_4 = %f\nV_5 = %f\nV_6 = %f\nV_7 = %f\n', V(1),V(2),V(3),V(4),V(5),V(6),V(7));
+printf('op_END');

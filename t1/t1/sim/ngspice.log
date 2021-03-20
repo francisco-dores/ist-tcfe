@@ -27,4 +27,4 @@ hvc#branch = 3.334892e-05
 va#branch = -2.16123e-04
 vo#branch = 9.784660e-04
 op_END
-Note: No ".plot", ".print", or ".fourier" lines; no simulations run
+ngspice-31 done
