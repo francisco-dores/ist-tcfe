@@ -2,8 +2,22 @@
 \label{sec:analysis}
 
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
-theoretically, in terms of its time and frequency responses.
+theoretically. This analysis was made with two different methods: the \textbf{Mesh Method} and the \textbf{Node Method}, both based on circuit analysis basic principles:
+\begin{itemize}
+\item \textbf{Kirchoff Voltage Law (KVL):} This law states that the algebraic sum of all the voltages around any closed loop in a circuit is equal to zero. This means, that the sum of all the potential differences in a closed loop must be zero. This law is directly related with the Energy Conservation principle: if we circulate the loop in one direction, we will end up just where we have started. Therefore, there cannot be any potential difference between the start and the end node, since they are the same node and energy cannot be lost. Notice, that for this assumption to be true, polarities and signs of the elements must be taken in account:$$\sum_{i=1}^{n}V_{i}=0$$
+\item \textbf{Kirchoff Current Law (KCL):} This law states that the algebraic sum of all the currents entering a node is equal to algbraic sum of all the currents leaving that same node. This law is also known as the Charge Conservation law: when a current enters a node it as no other option besides leaving the node, since that cannot be any current loss: $$\sum_{i=1}^{n}I_{i}=0$$
+  \item \textbf{Ohm's Law:} Ohm's Law states that the current passing through a conductor is propotional to the voltage drop between the two terminals of that conductor: $$V = RI,$$ where $R$ represents the proportionality constant (resistance). 
+  
+\end{itemize}
 
+
+\subsection{Mesh Method}
+This method consists on assigning currents to the circuit meshes and solving the circuit to find the values of each mesh current, using KVL at each individual mesh that is not connected to any (independent???) current source and Ohm's Law
+
+\subsection{Node Method}
+
+
+\subsection{Theoretical Analysis Results}
 \begin{table} [H]
   \centering
   \begin{tabular}{|l|r|}
