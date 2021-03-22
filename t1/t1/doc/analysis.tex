@@ -33,6 +33,8 @@ $$
 \end{cases}
 $$
 
+We can now present this same system in matrix form:
+
 $$
 \begin{bmatrix}
   R_{1}+R_{3}+R_{4} & -R_{4} & -R_{3} & 0 \\
@@ -57,6 +59,53 @@ $$
 
 \subsection{Node Method}
 \label{subsec:Node Method}
+
+$$
+\begin{cases}
+  \text{Node 1: } V_{1} = V_{a}\\
+  \text{Node 2: } G_{1}(V_{1}-V_{2})+G_{2}(V_{3}-V_{2})-G_{3}(V_{2}-V_{7}) = 0\\
+  \text{Node 3: } -G_{2}(V_{3}-V_{2})+I_{b} = 0\\
+  \text{Node 4: } G_{5}(V_{7}-V_{4})+I_{d}-I_{b} = 0\\
+  \text{Node 5: } V_{c}=V_{7}-V_{5}\\
+  \text{Node 6: } G_{6}(V_{0}-V_{6})-G_{7}(V_{6}-V_{5}) = 0\\
+  \text{Node 7: } G_{4}(V_{7}-V_{0})+G_{5}(V_{7}-V_{4})+I_{x}-G_{3}(V_{2}-V_{7}) = 0\\
+  \\
+  \text{Current x: } I_{x} = I_{d}-I_{c}\\
+  \text{Current c: } I_{c} = G_{7}(V_{6}-V_{5})\\
+  \text{Voltage b: } V_{b} = V_{2}-V_{7}
+\end{cases}
+$$
+
+$$
+\begin{bmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0\\
+  G_{1} & -G_{1}-G_{2}-G_{3} & G_{2} & 0 & 0 & 0 & G_{3}\\
+  0 & G_{2}+K_{b} & -G_{2} & 0 & 0 & 0 & -K_{b}\\
+  0 & -K_{b} & 0 & -G_{5} & 0 & 0 & G_{5}+K_{b}\\
+  0 & 0 & 0 & 0 & -1 & K_{c}G_{6} & 1\\
+  0 & 0 & 0 & 0 & G_{7} & -G_{6}-G_{7} & 0\\
+  0 & G_{3} & 0 & G_{5} & 0 & -G_{6} & -G_{3}-G_{4}-G_{5}
+\end{bmatrix}
+=
+\begin{bmatrix}
+  V_{1}\\
+  V_{2}\\
+  V_{3}\\
+  V_{4}\\
+  V_{5}\\
+  V_{6}\\
+  V_{7}
+\end{bmatrix}
+\begin{bmatrix}
+  V_{a}\\
+  0\\
+  0\\
+  -I_{d}\\
+  0\\
+  0\\
+  I_{d}
+\end{bmatrix}
+$$
 
 
 \subsection{Theoretical Analysis Results}
