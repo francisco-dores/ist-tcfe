@@ -3,64 +3,21 @@
 
 \subsection{Operating Point Analysis}
 
-Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis. Compared to the theoretical analysis results, one notices the
-following differences: describe and explain the differences.
-
-\begin{table}[h]
+\par Table~\ref{tab:op_sim} shows the simulated operating point results for the circuit
+under analysis.
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../sim/op_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
+  \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
     and expressed in Ampere; other variables are of type {\it voltage} and expressed in
     Volt.}
-  \label{tab:op}
+  \label{tab:op_sim}
 \end{table}
 
-\lipsum[1-1]
-
-
-\subsection{Transient Analysis}
-
-Figure~\ref{fig:trans} shows the simulated transient analysis results for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-
-\lipsum[1-1]
-
-
-
-\subsection{Frequency Analysis}
-
-\subsubsection{Magnitude Response}
-
-Figure~\ref{fig:acm} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-\lipsum[1-1]
-
-\subsubsection{Phase Response}
-
-Figure~\ref{fig:acp} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-
-\lipsum[1-1]
-
-\subsubsection{Input Impedance}
-
-Figure~\ref{fig:zim} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-
-\lipsum[1-1]
-
+\par  As we can see, the simulation results are similar to the ones we obtained in the section \ref{sec:analysis}, concerning both the numerical values and the directions. Note that, unlike the table \ref{tab:op_analysis}, in the simulation results we present an extra voltage at node 8, $V_8$, that is a "dummy" node used to compute the dependent voltage source.
 
 

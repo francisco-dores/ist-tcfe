@@ -1,22 +1,28 @@
 \section{Introduction}
 \label{sec:introduction}
 
-% state the learning objective 
-The objective of this laboratory assignment is to study a circuit containing a
-sinusoidal voltage source $V_I$ connected to a resistor $R$ and a capacitor $C$
-in series. The circuit can be seen if Figure~\ref{fig:rc}.
+The laboratory assignment presented has of its purpose the study of a circuit
+structured in four elementary meshes, through which exist seven resistors $R_i$,
+a voltage source $V_a$, a current controlled voltage source $V_c$, a current
+source $I_d$ and a voltage controlled current source $I_b$. The circuit can
+be seen in Figure-\ref{fig:circuit}.
 
 \lipsum[1-1]
 
-In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
-presented. In Section~\ref{sec:simulation}, the circuit is analysed by
-simulation, and the results are compared to the theoretical results obtained in
-Section~\ref{sec:analysis}. The conclusions of this study are outlined in
-Section~\ref{sec:conclusion}.
+Throughout the report it is presented a theoretical analysis, a simulation of the
+circuit and its analysis and a comparison of results. \par
+In Section~\ref{sec:analysis}, the are applied both mesh and nods methods, to do
+a theoretical analysis of the circuit, using the Octave maths tool.
+In Section~\ref{sec:simulation}, it is executed an analysis of the circuit using
+the Ngspice tool to simulate it. Lastly, in Section~\ref{sec:conclusion}, it is
+performed a comparison between the results from both the theoretical analysis
+and the simulation, from Section~\ref{sec:analysis} and Section~\ref{sec:simulation},
+respectively.
+
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{rc.pdf}
-\caption{Voltage driven serial RC circuit.}
-\label{fig:rc}
+\includegraphics[width=0.7\linewidth]{circuit.pdf}
+\caption{Circuit.}
+\label{fig:circuit}
 \end{figure}
 

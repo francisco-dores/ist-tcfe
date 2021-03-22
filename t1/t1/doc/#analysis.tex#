@@ -2,7 +2,7 @@
 \label{sec:analysis}
 
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
-theoretically, in terms of its time and frequency responses.
+theoretically, in terms of how to solve it
 
 \begin{table} [H]
   \centering

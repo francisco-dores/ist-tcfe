@@ -71,6 +71,6 @@ d=[Va;0;0;-Id;0;0;Id];
 V=inv(C)*d;
 
 printf('op_TAB\n');
-printf('$I_b$ = %f\n$I_d$ = %f\n$I_{R1}$ = %f\n$I_{R2}$ = %f\n$I_{R3}$ = %f\n$I_{R4}$ = %f\n$I_{R5}$ = %f\n$I_{R6}$ = %f\n$I_{R7}$ = %f\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
+printf('$I_b$ = %e\n$I_d$ = %e\n$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
 printf('$V_1$ = %f\n$V_2$ = %f\n$V_3$ = %f\n$V_4$ = %f\n$V_5$ = %f\n$V_6$ = %f\n$V_7$ = %f\n', V(1),V(2),V(3),V(4),V(5),V(6),V(7));
 printf('op_END');
