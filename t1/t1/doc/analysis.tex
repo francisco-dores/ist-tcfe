@@ -13,7 +13,7 @@ theoretically. This analysis was made with two different methods: the \textbf{Me
 
 \subsection{Mesh Method}
 \label{subsec:Mesh Method}\par
-This method consists on assigning currents to the circuit meshes and solving the circuit to find the values of each mesh current, using KVL at each individual mesh that is not connected to any (independent???) current source and Ohm's Law. In doing so one ends up with a set of independent equations. In this point, there will be more unknows than equations. So, it is necessary to find more equations in order to have a solvable system. This last equations can be found in the relations between the current sources and the currents assigned to the loops. Finally, one can solve the system obtained by using its matricial form. The procedure for this particular circuit is shown bellow:\par
+This method consists on assigning currents to the circuit meshes and solving the circuit to find the values of each mesh current, using KVL at each individual mesh that is not connected to any current source and Ohm's Law. In doing so one ends up with a set of independent equations. At this point, there will be more unknows than equations, because some meshes contain current sources. So, it is necessary to find more equations in order to have a solvable system. This last equations can be found in the relations between the current sources and the currents assigned to the loops. Finally, one can solve the system obtained by using its matricial form. The procedure for this particular circuit is shown bellow:\par
 Assuming the currents representend in Figure \ref{fig:MeshMethod}:
 
 \begin{figure}[h] \centering
@@ -59,7 +59,7 @@ Solving the system above, one can determine the current in each mesh, and from t
 
 \subsection{Node Method}
 \label{subsec:Node Method}\par
-The Node Method consists on applying KCL in nodes not connected to voltage sources. In doing so, one can find a set of linnearly independent equations that represent the circuit. However, the number of unknows will be greater then the number of equations. In order to find more equations, one can find relations between the currents imposed by the current sources and the currents in each branch. Beyond, this relations it is also necessary to use Ohm's Law.\par
+The Node Method consists on applying KCL in nodes not connected to voltage sources. In doing so, one can find a set of linnearly independent equations that represent the circuit. However, the number of unknows will be greater then the number of equations, because some nodes are connected to voltage sources. In order to find more equations, one can find relations between the currents imposed by the current sources and the currents in each branch. Beyond, this relations it is also necessary to use Ohm's Law.\par
 The identification of the directions of the currents is shown bellow in Figure \ref{fig:NodeMethod}:
 
 
@@ -74,8 +74,8 @@ $$
 \begin{cases}
   \text{Node 1: } V_{1} = V_{a}\\
   \text{Node 2: } G_{1}(V_{1}-V_{2})+G_{2}(V_{3}-V_{2})-G_{3}(V_{2}-V_{7}) = 0\\
-  \text{Node 3: } -G_{2}(V_{3}-V_{2})+I_{b} = 0\\
-  \text{Node 4: } G_{5}(V_{7}-V_{4})+I_{d}-I_{b} = 0\\
+  \text{Node 3: } -G_{2}(V_{3}-V_{2})+K_bV_{b} = 0\\
+  \text{Node 4: } G_{5}(V_{7}-V_{4})+I_{d}-K_bV_{b} = 0\\
   \text{Node 5: } V_{c}=V_{7}-V_{5}\\
   \text{Node 6: } G_{6}(V_{0}-V_{6})-G_{7}(V_{6}-V_{5}) = 0\\
   \text{Node 7: } G_{4}(V_{7}-V_{0})+G_{5}(V_{7}-V_{4})+I_{x}-G_{3}(V_{2}-V_{7}) = 0\\
