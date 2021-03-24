@@ -13,10 +13,10 @@ theoretically. This analysis was made with two different methods: the \textbf{Me
 
 \subsection{Mesh Method}
 \label{subsec:Mesh Method}\par
-This method consists on assigning currents to the circuit meshes and solving the circuit to find the values of each mesh current, using KVL at each individual mesh that is not connected to any current source and Ohm's Law. In doing so, one ends up with a set of independent equations. At this point, there will be more unknows than equations, because some meshes contain current sources. So, it is necessary to find more equations in order to have a solvable system. This last equations can be found in the relations between the current sources and the currents assigned to the loops. Finally, one can solve the system obtained by using its matricial form. The procedure for this particular circuit is shown bellow:\par
+This method consists on assigning currents to the circuit meshes and solving the circuit to find the values of each mesh current, using KVL at each individual mesh that is not connected to any current source and Ohm's Law. In doing so, one ends up with a set of independent equations. At this point, there will be more unknows than equations, because some meshes contain current sources. So, it is necessary to find more equations in order to have a solvable system. This last equations can be found in the relations between the current sources and the currents assigned to the loops ($I_{3}=I_{b}$ and $I_{4}=I_{d}$). Finally, one can solve the system obtained by using its matricial form. The procedure for this particular circuit is shown bellow:\par
 Assuming the currents representend in Figure \ref{fig:MeshMethod}:
 
-\begin{figure}[h] \centering
+\begin{figure}[H] \centering
   \includegraphics[width=0.7\linewidth]{MeshMethod.pdf}
   \caption{Mesh Currents Identification}
   \label{fig:MeshMethod}
@@ -54,16 +54,29 @@ $$
   I_{d}
 \end{bmatrix}
 $$
-Solving the system above, one can determine the current in each mesh, and from there compute each of the currents and voltages in the circuit.
-
+Solving the system above, one can determine the current in each mesh, and from there compute each of the currents and voltages in the circuit.\par
+In order to do this, in the next expression it is presented how to compute the current in each
+resistor from the mesh method's currents.
+$$
+\begin{cases}
+	I_{R_{1}} = -I_{1}\\
+	I_{R_{2}} = I_{3}\\
+	I_{R_{3}} = I_{3}-I_{1}\\
+	I_{R_{4}} = I_{2}-I_{1}\\
+	I_{R_{5}} = I_{3}-I_{4}\\
+	I_{R_{6}} = I_{2}\\
+	I_{R_{7}} = I_{2}
+\end{cases}
+$$
 
 \subsection{Node Method}
 \label{subsec:Node Method}\par
-The Node Method consists on applying KCL in nodes not connected to voltage sources. In doing so, one can find a set of linnearly independent equations that represent the circuit. However, the number of unknows will be greater then the number of equations, because some nodes are connected to voltage sources, where the current values is at start, unknown. In order to find more equations, one can find relations between the currents imposed by the current sources and the currents in each branch. Beyond, this relations it is also necessary to use Ohm's Law.\par
+The Node Method consists on applying KCL in nodes not connected to voltage sources. In doing so, one can find a set of linnearly independent equations that represent the circuit. However, the number of unknows will be greater then the number of equations, because some nodes are connected to voltage sources, where the current values is at start, unknown. In order to find more equations, one can find relations between the currents imposed by the current sources and the currents in each branch (applying KCL to node 5, one gets $I_{x} = I_{d}-I_{c}$). Beyond, this
+relations it is also necessary to use Ohm's Law.\par
 The identification of the directions of the currents is shown bellow in Figure \ref{fig:NodeMethod}:
 
 
-\begin{figure}[h] \centering
+\begin{figure}[H] \centering
   \includegraphics[width=0.7\linewidth]{NodeMethod.pdf}
   \caption{Currents Direction Identification}
   \label{fig:NodeMethod}
@@ -81,7 +94,7 @@ $$
   \text{Node 7: } G_{4}(V_{7}-V_{0})+G_{5}(V_{7}-V_{4})+I_{x}-G_{3}(V_{2}-V_{7}) = 0\\
   \\
   \text{Current x: } I_{x} = I_{d}-I_{c}\\
-  \text{Current c: } I_{c} = G_{6}(0-V_{6})\\
+  \text{Ohm's Law: } I_{c} = G_{6}(0-V_{6})\\
   \text{Voltage b: } V_{b} = V_{2}-V_{7}
 \end{cases}
 $$
@@ -133,9 +146,8 @@ In this subsection it is presented the results obtained from solving the matrix 
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/op_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
+  \caption{Current in each resitor, expressed in Ampere, and nodal voltages, expressed in Volts}
   \label{tab:op_analysis}
 \end{table}
 
+\newpage
