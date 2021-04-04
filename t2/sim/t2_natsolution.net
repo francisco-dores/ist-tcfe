@@ -36,12 +36,12 @@ Gib 6 3 2 5 7.28538907285mS
 C 6 8 1.011814928uF
 
 .ic v(6)=2 v(8)=3
-.tran/OP 0.02m 20m uic
+tran/OP 0.02ms 20ms uic
 
 
 .control
 
-op
+.op
 echo "op_TAB"
 print all
 echo "op_END"
