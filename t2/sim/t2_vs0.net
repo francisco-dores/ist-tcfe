@@ -1,4 +1,4 @@
-Simulacao t<0
+Simulation t<0
 
 *
 * NGSPICE simulation script
@@ -18,13 +18,13 @@ R6 0 4 2.01920057699kOhm
 R7 7 8 1.02918842978kOhm
 
 * supply voltage
-Vs 1 0 5.1256272592V
+Vs 1 0 0V
 
 * add a voltage source with value 0V to sence de control current
 Vo 4 7 0V
 
-* capacitor
-C 6 8 1.011814928uF
+*voltage substituting the capacitor
+Vx 6 8 8.61856072253
 
 * current-controlled dependent voltage source
 Hvd 5 8 Vo 8.0919603219kOhm

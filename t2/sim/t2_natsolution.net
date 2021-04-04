@@ -1,0 +1,68 @@
+Simulation - Natural Solution
+
+*
+* NGSPICE simulation script
+* BJT amp with feedback
+*
+
+* forces current values to be saved
+.options savecurrents
+
+* Passive Elements - Resistors
+R1 1 2 1.02597459645kOhm
+R2 3 2 2.02178008702kOhm
+R3 2 5 3.03144887426kOhm
+R4 5 0 4.13109833342kOhm
+R5 5 6 3.09601431108kOhm
+R6 0 4 2.01920057699kOhm
+R7 7 8 1.02918842978kOhm
+
+* supply voltage
+Vs 1 0 0V
+
+* add a voltage source with value 0V to sence de control current
+Vo 4 7 0V
+
+* current-controlled dependent voltage source
+Hvd 5 8 Vo 8.0919603219kOhm
+
+* voltage-controlled dependent current source
+Gib 6 3 2 5 7.28538907285mS
+
+* capacitor
+C 6 8 1.011814928uF
+
+.ic v(6)=5.63581571238 v(8)=-2.98274501015
+
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 20e-3
+
+hardcopy trans.ps v(6)
+echo trans_FIG
+
+quit
+.endc
+
+.end
