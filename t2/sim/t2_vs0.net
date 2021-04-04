@@ -24,7 +24,7 @@ Vs 1 0 0V
 Vo 4 7 0V
 
 *voltage substituting the capacitor
-Vx 6 8 
+Vx 6 8 8.61856072253
 
 * current-controlled dependent voltage source
 Hvd 5 8 Vo 8.0919603219kOhm

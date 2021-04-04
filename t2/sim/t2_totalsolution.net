@@ -19,6 +19,7 @@ R7 7 8 1.02918842978kOhm
 
 * supply voltage
 Vs 1 0 0V
+Vs 1 0 0.0 ac 1.0 sin(0 .1 100k)
 
 * add a voltage source with value 0V to sence de control current
 Vo 4 7 0V
@@ -33,7 +34,6 @@ Gib 6 3 2 5 7.28538907285mS
 C 6 8 1.011814928uF
 
 .ic v(6)=5.63581571238 v(8)=-2.98274501015
-
 
 .control
 
@@ -61,6 +61,18 @@ tran 1e-5 20e-3
 
 hardcopy trans.ps v(6)
 echo trans_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+
+ac dec 10 10 100MEG
+
+hardcopy acm.ps db(v(coll)) v(base)
+echo acm_FIG
+hardcopy acp.ps v(base)
+echo acp_FIG
+
 
 quit
 .endc
