@@ -1,4 +1,4 @@
-Simulation t<0
+Simulation - Natural Solution
 
 *
 * NGSPICE simulation script
@@ -18,13 +18,13 @@ R6 0 4 2.01920057699kOhm
 R7 7 8 1.02918842978kOhm
 
 * supply voltage
-Vs 1 0 5.1256272592V
+Vs 1 0 0V
 
 * add a voltage source with value 0V to sence de control current
 Vo 4 7 0V
 
-* capacitor
-C 6 8 1.011814928uF
+*voltage substituting the capacitor
+Vx 6 8 -1
 
 * current-controlled dependent voltage source
 Hvd 5 8 Vo 8.0919603219kOhm
@@ -33,12 +33,17 @@ Hvd 5 8 Vo 8.0919603219kOhm
 Gib 6 3 2 5 7.28538907285mS
 
 
-.control
-op
+.tran/OP 0.02m 20m uic
+.ic v(6)=2 v(8)=3
 
+.control
+
+op
 echo "op_TAB"
 print all
 echo "op_END"
+
+plot v(6)
 
 quit
 .endc

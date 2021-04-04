@@ -1,4 +1,4 @@
-Simulacao t<0
+Simulation t<0
 
 *
 * NGSPICE simulation script
@@ -7,9 +7,6 @@ Simulacao t<0
 
 * forces current values to be saved
 .options savecurrents
-
-*definition of output digit number
-.options numdgt=11
 
 * Passive Elements - Resistors
 R1 1 2 1.02597459645kOhm
