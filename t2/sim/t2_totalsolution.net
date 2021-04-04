@@ -19,6 +19,7 @@ R7 7 8 1.02918842978kOhm
 
 * supply voltage
 Vs 1 0 0V
+Vs 1 0 0.0 ac 1.0 sin(0 .1 100k)
 
 * add a voltage source with value 0V to sence de control current
 Vo 4 7 0V
@@ -32,20 +33,10 @@ Gib 6 3 2 5 7.28538907285mS
 * capacitor
 C 6 8 1.011814928uF
 
-<<<<<<< HEAD
-.ic v(6)=2 v(8)=3
-tran/OP 0.02ms 20ms uic
-=======
 .ic v(6)=5.63581571238 v(8)=-2.98274501015
->>>>>>> 104bac09f7145ea61068f0ed639e8d73a848d9dd
-
 
 .control
 
-<<<<<<< HEAD
-.op
-echo "op_TAB"
-=======
 *makes plots in color
 set hcopypscolor=0
 set color0=white
@@ -59,7 +50,6 @@ set color6=rgb:4/0/0
 op
 
 echo  "op_TAB"
->>>>>>> 104bac09f7145ea61068f0ed639e8d73a848d9dd
 print all
 echo  "op_END"
 
@@ -71,6 +61,18 @@ tran 1e-5 20e-3
 
 hardcopy trans.ps v(6)
 echo trans_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+
+ac dec 10 10 100MEG
+
+hardcopy acm.ps db(v(coll)) v(base)
+echo acm_FIG
+hardcopy acp.ps v(base)
+echo acp_FIG
+
 
 quit
 .endc
