@@ -32,20 +32,12 @@ Gib 6 3 2 5 7.28538907285mS
 * capacitor
 C 6 8 1.011814928uF
 
-<<<<<<< HEAD
-.ic v(6)=2 v(8)=3
-tran/OP 0.02ms 20ms uic
-=======
-.ic v(6)=5.63581571238 v(8)=-2.98274501015
->>>>>>> 104bac09f7145ea61068f0ed639e8d73a848d9dd
 
+.ic v(6)=8.618561e+00 v(8)=-5.32907e-15
 
 .control
 
-<<<<<<< HEAD
-.op
-echo "op_TAB"
-=======
+
 *makes plots in color
 set hcopypscolor=0
 set color0=white
@@ -59,7 +51,6 @@ set color6=rgb:4/0/0
 op
 
 echo  "op_TAB"
->>>>>>> 104bac09f7145ea61068f0ed639e8d73a848d9dd
 print all
 echo  "op_END"
 
@@ -68,6 +59,7 @@ echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
 tran 1e-5 20e-3
+
 
 hardcopy trans.ps v(6)
 echo trans_FIG
