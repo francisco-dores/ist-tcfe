@@ -23,8 +23,8 @@ Vs 1 0 0V
 * add a voltage source with value 0V to sence de control current
 Vo 4 7 0V
 
-*voltage substituting the capacitor
-Vx 6 8 -1
+* voltage substituting the capacitor
+* Vx 6 8 -1
 
 * current-controlled dependent voltage source
 Hvd 5 8 Vo 8.0919603219kOhm
@@ -32,9 +32,12 @@ Hvd 5 8 Vo 8.0919603219kOhm
 * voltage-controlled dependent current source
 Gib 6 3 2 5 7.28538907285mS
 
+* capacitor
+C 6 8 1.011814928uF
 
+.ic V(6)=2 v(8)=3
 .tran/OP 0.02m 20m uic
-.ic v(6)=2 v(8)=3
+
 
 .control
 
