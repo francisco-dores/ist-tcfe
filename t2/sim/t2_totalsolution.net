@@ -1,4 +1,4 @@
-Simulation - Natural Solution
+Simulation - Total Response
 
 *
 * NGSPICE simulation script
@@ -18,7 +18,7 @@ R6 0 4 2.01920057699kOhm
 R7 7 8 1.02918842978kOhm
 
 * supply voltage
-Vs 1 0 0.0 ac 1.0 sin(0 .1 1k)
+Vs 1 0 0.0 ac 1.0 sin(0 1 1k)
 
 * add a voltage source with value 0V to sence de control current
 Vo 4 7 0V
@@ -32,7 +32,7 @@ Gib 6 3 2 5 7.28538907285mS
 * capacitor
 C 6 8 1.011814928uF
 
-.ic v(6)=5.63581571238 v(8)=-2.98274501015
+.ic v(6)=8.618561e+00 v(8)=-5.32907e-15
 
 .control
 
@@ -65,13 +65,13 @@ echo "********************************************"
 echo  "Frequency analysis"
 echo "********************************************"
 
-ac dec 10 0.1 1MEG
+ac dec 100 0.1 1MEG
 
-hardcopy acm_db.ps db(v(1)) db(v(6)) db(v(6)-v(8))
-echo acm_db_FIG
+hardcopy db.ps db(v(1)) db(v(6)) db(v(6)-v(8))
+echo b_FIG
 
-hardcopy acp_ph.ps ph(v(1))*180/pi ph(v(6))*180/pi ph(v(6)-v(8))*180/pi
-echo acp_ph_FIG
+hardcopy ph.ps ph(v(1))*180/pi ph(v(6))*180/pi ph(v(6)-v(8))*180/pi
+echo ph_FIG
 
 quit
 .endc
