@@ -20,7 +20,7 @@ R7 7 8 1.02918842978kOhm
 * supply voltage
 Vs 1 0 5.1256272592V
 
-* add a voltage source with value 0V to sence de control current
+* add a voltage source with value 0V to sence the control current
 Vo 4 7 0V
 
 * capacitor

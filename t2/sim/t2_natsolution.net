@@ -35,7 +35,7 @@ Gib 6 3 2 5 7.28538907285mS
 * capacitor
 C 6 8 1.011814928uF
 
-.ic V(6)=2 v(8)=3
+.ic v(6)=2 v(8)=3
 .tran/OP 0.02m 20m uic
 
 
