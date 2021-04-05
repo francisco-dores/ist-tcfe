@@ -1,6 +1,7 @@
 close all
 clear all
 
+format long
 
 %%Variable Values
 R1 = 1.02597459645e3; 
@@ -25,7 +26,7 @@ G6=1/R6;
 G7=1/R7;
 
 
-%%-----------------> NODE METHOD <-------------------
+%%-----------------> NODE METHOD to calculate voltages t<0 <-------------------
 
 C=[1,0,0,0,0,0,0; ...
    G1,-G1-G2-G3,G2,G3,0,0,0; ...
@@ -55,20 +56,18 @@ printf('op_TAB\n');
 printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6,V7,V8);
 
 
-%%-----------------> NODE METHOD <-------------------
-Vs=0;
+%%-----------------> Calculate equivalent resistor <-------------------
+
 Vx=V6-V8;
 
-format long
-
-C=[1,0,0,0,0,0,0; ...
-   G1,-G1-G2-G3,G2,G3,0,0,0; ...
-   0,G2+Kb,-G2,-Kb,0,0,0; ...
-   0,0,0,1,0,Kd*G6,-1; ...
-   0,0,0,0,1,0,-1; ...
-   0,0,0,0,0,-G6-G7,G7; ...
-   G1,-G1,0,-G4,0,-G6,0];
-   
+%C=[1,0,0,0,0,0,0; ...
+%   G1,-G1-G2-G3,G2,G3,0,0,0; ...
+%   0,G2+Kb,-G2,-Kb,0,0,0; ...
+%   0,0,0,1,0,Kd*G6,-1; ...
+%   0,0,0,0,1,0,-1; ...
+%   0,0,0,0,0,-G6-G7,G7; ...
+%   G1,-G1,0,-G4,0,-G6,0];
+Vs=0;  
 C=[1,0,0,0,0,0,0; ...
    G1,-G1-G2-G3,G2,G3,0,0,0; ...
    0,G2+Kb,-G2,-Kb,0,0,0; ...
@@ -93,15 +92,31 @@ V8=V(7);
 
 
 Ix=G5*(V5-V6)-Kb*(V2-V5);
-Ix=-G7*(V7-V8)+Kd*G6*V7
-Req=Vx/Ix
+%Ix=-G7*(V7-V8)+Kd*G6*V7;
+Req=Vx/Ix;
 
 
 %printf('$I_b$ = %e\n$I_d$ = %e\n$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
 
 
 printf('op_TAB\n');
-printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %e\n$V_4$ = %e\n$V_5$ = %e\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6,V7,V8);
+printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6,V7,V8);
 printf('op_END');
+
+%%-----------------> Calculate forced solution <-------------------
+
+w=2*pi*1000; %certo?
+Zc=1/(jwC);
+t=0:1e-6:20e-3;
+
+CGain=Zc/(Zc+Req)*exp(-pi/2*j);
+Gain=abs(CGain);
+Phase=angle(CGain);
+
+vc=Gain*cos(w*t+Phase);
+
+
+
+
 
 
