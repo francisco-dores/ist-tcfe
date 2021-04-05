@@ -28,7 +28,7 @@ G7=1/R7;
 
 %%-----------------> NODE METHOD to calculate voltages t<0 <-------------------
 
-C=[1,0,0,0,0,0,0; ...
+H=[1,0,0,0,0,0,0; ...
    G1,-G1-G2-G3,G2,G3,0,0,0; ...
    0,G2+Kb,-G2,-Kb,0,0,0; ...
    0,G3,0,-G3-G4-G5,G5,G7,-G7; ...
@@ -37,7 +37,7 @@ C=[1,0,0,0,0,0,0; ...
    0,0,0,1,0,Kd*G6,-1];
 d=[Vs;0;0;0;0;0;0];
 
-V=inv(C)*d;
+V=inv(H)*d;
 
 V1=V(1);
 V2=V(2);
@@ -54,13 +54,13 @@ V8=V(7);
 
 printf('op_TAB\n');
 printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6,V7,V8);
-
+printf('op_END\n');
 
 %%-----------------> Calculate equivalent resistor <-------------------
 
 Vx=V6-V8;
 
-%C=[1,0,0,0,0,0,0; ...
+%H=[1,0,0,0,0,0,0; ...
 %   G1,-G1-G2-G3,G2,G3,0,0,0; ...
 %   0,G2+Kb,-G2,-Kb,0,0,0; ...
 %   0,0,0,1,0,Kd*G6,-1; ...
@@ -68,7 +68,7 @@ Vx=V6-V8;
 %   0,0,0,0,0,-G6-G7,G7; ...
 %   G1,-G1,0,-G4,0,-G6,0];
 Vs=0;  
-C=[1,0,0,0,0,0,0; ...
+H=[1,0,0,0,0,0,0; ...
    G1,-G1-G2-G3,G2,G3,0,0,0; ...
    0,G2+Kb,-G2,-Kb,0,0,0; ...
    0,0,0,1,0,Kd*G6,-1; ...
@@ -79,7 +79,7 @@ C=[1,0,0,0,0,0,0; ...
    
 d=[Vs;0;0;0;Vx;0;0];
 
-V=inv(C)*d;
+V=inv(H)*d;
 
 V1=V(1);
 V2=V(2);
@@ -93,7 +93,8 @@ V8=V(7);
 
 Ix=G5*(V5-V6)-Kb*(V2-V5);
 %Ix=-G7*(V7-V8)+Kd*G6*V7;
-Req=Vx/Ix;
+Req=Vx/Ix; 
+Req=-Req; %Não sabemos ainda o erro do Ix
 
 
 %printf('$I_b$ = %e\n$I_d$ = %e\n$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
@@ -101,15 +102,15 @@ Req=Vx/Ix;
 
 printf('op_TAB\n');
 printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6,V7,V8);
-printf('op_END');
+printf('op_END\n');
 
 %%-----------------> Calculate natural solution <-------------------
 
 t=0:1e-6:20e-3;
 
-wn=-1/Req*C
+wn=-1/(Req*C);
 
-vc_n=Vx*exp(-wn*t);
+vc_n=Vx*exp(wn*t);
 
 nat_sol = figure ();
 plot (t*1000, vc_n, "g"); 
@@ -120,20 +121,39 @@ print (nat_sol, "nat_sol.eps", "-depsc");
 
 %%-----------------> Calculate forced solution <-------------------
 
-%f=1000;
-%w=2*pi*f; %certo?
-%Zc=1/(jwC);
+f=1000;
+w=2*pi*f;
+Zc=1/(j*w*C);
+Gc=1/Zc;
+Vs=exp(-pi/2*j);
 
-%CGain=Zc/(Zc+Req)*exp(-pi/2*j);
-%Gain=abs(CGain);
-%Phase=angle(CGain);
+H=[1,0,0,0,0,0,0; ...
+   G1,-G1-G2-G3,G2,G3,0,0,0; ...
+   0,G2+Kb,-G2,-Kb,0,0,0; ...
+   0,G3,0,-G3-G4-G5,G5+Gc,G7,-Gc-G7; ...
+   0,-Kb,0,Kb+G5,-G5-Gc,0,Gc; ...
+   0,0,0,0,0,-G6-G7,G7; ...
+   0,0,0,1,0,Kd*G6,-1];
+d=[Vs;0;0;0;0;0;0];
 
-sin(w*t)=exp(jwt)*exp(-pi/2*j)
+V=inv(H)*d;
+
+V1=V(1);
+V2=V(2);
+V3=V(3);
+V4=0;
+V5=V(4);
+V6=V(5);
+V7=V(6);
+V8=V(7);
 
 
+printf('op_TAB\n');
+printf('$V_1$ = %fe^{%fj}\n$V_2$ = %fe^{%fj}\n$V_3$ = %fe^{%fj}\n$V_4$ = %fe^{%fj}\n$V_5$ = %fe^{%fj}\n$V_6$ = %fe^{%fj}\n$V_7$ = %fe^{%fj}\n$V_8$ = %fe^{%fj}\n', abs(V1),angle(V1),abs(V2),angle(V2),abs(V3),angle(V3),abs(V4),angle(V4),abs(V5),angle(V5),...
+abs(V6),angle(V6),abs(V7),angle(V7),abs(V8),angle(V8));
+printf('op_END\n');
 
-
-%vc_f=Gain*cos(w*t+Phase);
+%%-----------------> Calculate total solution <-------------------
 
 
 
