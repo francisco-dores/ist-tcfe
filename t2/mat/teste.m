@@ -107,5 +107,3 @@ printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %e\n$V_4$ = %e\n$V_5$ = %e\n$V_6$ 
 printf('op_END');
 
 
-
-printf('op_END');
