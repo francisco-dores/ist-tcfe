@@ -8,67 +8,54 @@ pkg load symbolic
 syms t
 syms R
 syms C
-syms vi(t)
-syms vo(t)
+syms vs(t)
+syms vc(t)
+syms vc_n(t) %natural solution
 syms i(t)
-
-i(t)=C*diff(vo,t)
-
-printf("\n\nKVL equation:\n");
-
-vi(t) = R*i(t)+vo(t)
-
-syms vo_n(t) %natural solution
-syms vo_f(t) %forced solution
-
-printf("\n\nSolution is of the form");
-
-v(t) = vo_n(t) + vo_f(t)
-
-printf("\n\nNatural solution:\n");
 syms A
 syms wn
 
-vi(t) = 0 %no excitation
-i_n(t) = C*diff(vo_n, t)
-
-
-printf("\n\n Natural solution is of the form");
-vo_n(t) = A*exp(wn*t)
-
-R*i_n(t)+vo_n(t) == 0
-
-R*C*wn*vo_n(t)+vo_n(t) == 0
-
-R*C*wn+1==0
-
-solve(ans, wn)
-
-
-%%EXAMPLE NUMERIC COMPUTATIONS
 
 R=1e3 %Ohm
 C=100e-9 %F
+A = V6-V8
 
-f = 1000 %Hz
-w = 2*pi*f; %rad/s
+i(t)=C*diff(vc,t)
 
-%time axis: 0 to 10ms with 1us steps
-t=0:1e-6:10e-3; %s
+printf("\n\nKVL equation:\n");
 
-Zc = 1/(j*w*C)
-Cgain = Zc/(R+Zc)
-Gain = abs(Cgain)
-Phase = angle(Cgain)
+vs(t) = R*i(t)+vc(t)
 
-vi = 1*cos(w*t);
-vo = Gain*cos(w*t+Phase);
+printf("\n\nSolution is of the form:\n");
+
+vc(t) = vc_n(t) + vc_f(t)
+
+printf("\n\nNatural solution:\n");
+
+vs(t) = 0 %no excitation
+i_n(t) = C*diff(vc_n, t)
+
+
+printf("\n\n Natural solution is of the form:\n");
+vc_n(t) = A*exp(wn*t)
+
+R*i_n(t)+vc_n(t) == 0
+
+R*C*wn*vc_n(t)+vc_n(t) == 0
+
+R*C*wn+1==0
+
+wn=-1/R*C
+
+
+%time axis: 0 to 20ms with 1us steps
+t=0:1e-6:20e-3; %s
 
 hf = figure ();
-plot (t*1000, vi, "g");
+plot (t*1000, vs, "g");
 hold on;
-plot (t*1000, vo, "b");
+plot (t*1000, vcn, "b");
 
 xlabel ("t[ms]");
-ylabel ("vi(t), vo(t) [V]");
+ylabel ("vs(t), vcn(t) [V]");
 print (hf, "forced.eps", "-depsc");
