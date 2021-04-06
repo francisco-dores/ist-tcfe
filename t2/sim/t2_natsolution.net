@@ -8,7 +8,7 @@ Simulation - Natural Solution
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/ngspice_3.cir
+.include ../mat/ngspice_nat.cir
 
 .control
 

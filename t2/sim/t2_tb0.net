@@ -8,7 +8,7 @@ Simulation t<0
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/ngspice_1.cir
+.include ../mat/ngspice_tb0.cir
 
 .op
 .end

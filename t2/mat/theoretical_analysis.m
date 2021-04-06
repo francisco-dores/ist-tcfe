@@ -5,20 +5,20 @@ pkg load symbolic
 
 format long
 
-valores=dlmread("../data.txt");
+values=dlmread("../data.txt");
 
 %%Variable Values
-R1 = valores(3,4)*1000;
-R2 = valores(4,3)*1000;
-R3 = valores(5,3)*1000;
-R4 = valores(6,3)*1000;
-R5 = valores(7,3)*1000;
-R6 = valores(8,3)*1000;
-R7 = valores(9,3)*1000;
-Vs = valores(10,3);
-C = valores(11,3)*0.000001;
-Kb = valores(12,3)*0.001;
-Kd = valores(13,3)*1000; 
+R1 = values(3,4)*1000;
+R2 = values(4,3)*1000;
+R3 = values(5,3)*1000;
+R4 = values(6,3)*1000;
+R5 = values(7,3)*1000;
+R6 = values(8,3)*1000;
+R7 = values(9,3)*1000;
+Vs = values(10,3);
+C = values(11,3)*0.000001;
+Kb = values(12,3)*0.001;
+Kd = values(13,3)*1000; 
 
 G1=1/R1;
 G2=1/R2;
@@ -264,20 +264,20 @@ print (phase_ang, "phase_ang.eps", "-depsc");
 
 %%-----------------> EXPORT TO NGSPICE <-------------------
 
-file=fopen("ngspice_1.cir","w");
-fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 %f\nVo 4 7 0\nC 6 8 %fu\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.END\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), valores(10,3), valores(11,3), valores(13,3), valores(12,3));
+file=fopen("ngspice_tb0.cir","w");
+fprintf(file,".OP\nR1 1 2 %.11fk\nR2 3 2 %.11fk\nR3 2 5 %.11fk\nR4 5 0 %.11fk\nR5 5 6 %.11fk\nR6 0 4 %.11fk\nR7 7 8  %.11fk\nVs 1 0 %.11f\nVo 4 7 0\nC 6 8 %.11fu\nHvd 5 8 Vo %.11fk\nGib 6 3 2 5 %.11fm\n.END\n", values(3,4), values(4,3), values(5,3), values(6,3), values(7,3), values(8,3), values(9,3), values(10,3), values(11,3), values(13,3), values(12,3));
 fclose(file);
 
-file=fopen("ngspice_2.cir","w");
-fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 0\nVo 4 7 0\nVx 6 8 %f\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.END\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), Vx, valores(13,3), valores(12,3));
+file=fopen("ngspice_vs0.cir","w");
+fprintf(file,".OP\nR1 1 2 %.11fk\nR2 3 2 %.11fk\nR3 2 5 %.11fk\nR4 5 0 %.11fk\nR5 5 6 %.11fk\nR6 0 4 %.11fk\nR7 7 8  %.11fk\nVs 1 0 0\nVo 4 7 0\nVx 6 8 %.11f\nHvd 5 8 Vo %.11fk\nGib 6 3 2 5 %.11fm\n.END\n", values(3,4), values(4,3), values(5,3), values(6,3), values(7,3), values(8,3), values(9,3), Vx, values(13,3), values(12,3));
 fclose(file);
 
-file=fopen("ngspice_3.cir","w");
-fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 0\nVo 4 7 0\nC 6 8 %fu\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.END\n.ic v(6)=%f v(8)=%f\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), valores(11,3), valores(13,3), valores(12,3), V61, V81);
+file=fopen("ngspice_nat.cir","w");
+fprintf(file,".OP\nR1 1 2 %.11fk\nR2 3 2 %.11fk\nR3 2 5 %.11fk\nR4 5 0 %.11fk\nR5 5 6 %.11fk\nR6 0 4 %.11fk\nR7 7 8  %.11fk\nVs 1 0 0\nVo 4 7 0\nC 6 8 %.11fu\nHvd 5 8 Vo %.11fk\nGib 6 3 2 5 %.11fm\n.END\n.ic v(6)=%.11f v(8)=%e\n", values(3,4), values(4,3), values(5,3), values(6,3), values(7,3), values(8,3), values(9,3), values(11,3), values(13,3), values(12,3), V61, V81);
 fclose(file);
 
-file=fopen("ngspice_4.cir","w");
-fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 0.0 ac 1.0 sin(0 1 1k)\nVo 4 7 0\nC 6 8 %fu\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.ic v(6)=%f v(8)=%f\n.END\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), valores(11,3), valores(13,3), valores(12,3), V61, V81);
+file=fopen("ngspice_tot.cir","w");
+fprintf(file,".OP\nR1 1 2 %.11fk\nR2 3 2 %.11fk\nR3 2 5 %.11fk\nR4 5 0 %.11fk\nR5 5 6 %.11fk\nR6 0 4 %.11fk\nR7 7 8  %.11fk\nVs 1 0 0.0 ac 1.0 sin(0 1 1k)\nVo 4 7 0\nC 6 8 %.11fu\nHvd 5 8 Vo %.11fk\nGib 6 3 2 5 %.11fm\n.ic v(6)=%.11f v(8)=%e\n.END\n", values(3,4), values(4,3), values(5,3), values(6,3), values(7,3), values(8,3), values(9,3), values(11,3), values(13,3), values(12,3), V61, V81);
 fclose(file);
 
 

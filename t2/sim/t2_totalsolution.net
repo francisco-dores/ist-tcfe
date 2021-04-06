@@ -8,7 +8,7 @@ Simulation - Total Response
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/ngspice_4.cir
+.include ../mat/ngspice_tot.cir
 
 .control
 

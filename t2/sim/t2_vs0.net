@@ -8,7 +8,7 @@ Simulation vs=0
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/ngspice_2.cir
+.include ../mat/ngspice_vs0.cir
 
 .control
 op
