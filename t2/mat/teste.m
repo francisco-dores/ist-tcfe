@@ -136,6 +136,33 @@ sin(w*t)=exp(jwt)*exp(-pi/2*j)
 %vc_f=Gain*cos(w*t+Phase);
 
 
+magn_vc=
+
+
+%vc=1./(sqrt(1./(1+w.^2.*Req.^2.*C^2)))
+
+freq_db = figure ();
+%plot (log10(w/2/pi), 20*log10(abs(Vs)), "g");   %confirmar Vc????
+%hold on;
+%plot (log10(w/2/pi), 20*log10(abs(Vc)), "g");
+%hold on;
+plot (log10(w), 20*log10(abs(vc)), "g");
+xlabel ("log_10(f) [Hz]");
+ylabel ("Magnitude v_s(f), v_c(f), v_6(f) [dB]");
+print (freq_db, "freq_db.eps", "-depsc");
+
+
+freq_ph = figure ();
+plot (log10(w/2/pi), (ph(Vs)+pi/2)*180/pi, "g");   %confirmar Vc???? ph???
+hold on;
+plot (log10(w/2/pi), (ph(Vc)+pi/2)*180/pi, "g");
+hold on;
+plot (log10(w/2/pi), (ph(V6)+pi/2)*180/pi, "g");
+xlabel ("log_10(f) [Hz]");
+ylabel ("Phase v_s(f), v_c(f), v_6(f) [degrees]");
+print (freq_ph, "freq_ph.eps", "-depsc");
+
+
 
 
 

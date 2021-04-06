@@ -140,7 +140,7 @@ d=[Vs;0;0;0;0;0;0];
 
 V=inv(H)*d;
 
-V1=V(1);
+V1=V(1);  
 V2=V(2);
 V3=V(3);
 V4=0;
@@ -192,31 +192,73 @@ print (tot_sol, "tot_sol.eps", "-depsc");
 
 %%-----------------> Frequency Response <-------------------
 
-w=0.1*2*pi:100:1e6*2*pi;
+f=logspace(-1,6); %Hz
 
-%v6=(w.*C).*sqrt(1./(Req.^2.+w.^2.*C.^2));
-%v6=1./(sqrt(1./(1+w.^2.*Req.^2.*C^2)))
+for i=1:length(f)
+	
+w=2*pi*f(i);
+Zc=1/(j*w*C);
+Gc=1/Zc;
+Vs=exp(-pi/2*j);
+
+
+H=[1,0,0,0,0,0,0; ...
+   G1,-G1-G2-G3,G2,G3,0,0,0; ...
+   0,G2+Kb,-G2,-Kb,0,0,0; ...
+   0,G3,0,-G3-G4-G5,G5+Gc,G7,-Gc-G7; ...
+   0,-Kb,0,Kb+G5,-G5-Gc,0,Gc; ...
+   0,0,0,0,0,-G6-G7,G7; ...
+   0,0,0,1,0,Kd*G6,-1];
+d=[Vs;0;0;0;0;0;0];
+
+V=inv(H)*d;
+
+V6(i)=V(5);
+V8(i)=V(7);
+
+%disp(i);
+end
+
+plot(f,V6);
+
+disp(length(f))
+disp(length(V6))
+disp(length(Vs))
+
+Vs=ones(1,length(f))*Vs;
+
+T6=V6./Vs;
+Tc=(V6-V8)./Vs;
+Ts=Vs./Vs;
+magn6=abs(T6);
+magnc=abs(Tc);
+magns=abs(Ts);
+phase6=angle(T6);
+phasec=angle(Tc);
+phases=angle(Ts);
 
 freq_db = figure ();
-%plot (log10(w/2/pi), 20*log10(abs(Vs)), "g");   %confirmar Vc????
-%hold on;
-%plot (log10(w/2/pi), 20*log10(abs(Vc)), "g");
-%hold on;
-plot (log10(w/2/pi), 20*log10(abs(v6)), "g");
+plot (log10(f), 20*log10(magns), "r"); 
+hold on;
+plot (log10(f), 20*log10(magnc), "y");
+hold on;
+plot (log10(f), 20*log10(magn6), "b");
 xlabel ("log_10(f) [Hz]");
 ylabel ("Magnitude v_s(f), v_c(f), v_6(f) [dB]");
 print (freq_db, "freq_db.eps", "-depsc");
 
-
-freq_ph = figure ();
-plot (log10(w/2/pi), (ph(Vs)+pi/2)*180/pi, "g");   %confirmar Vc???? ph???
+phase_ang = figure ()
+plot (log10(f), phases*180/pi, "r"); 
 hold on;
-plot (log10(w/2/pi), (ph(Vc)+pi/2)*180/pi, "g");
+plot (log10(f), phasec*180/pi, "y");
 hold on;
-plot (log10(w/2/pi), (ph(V6)+pi/2)*180/pi, "g");
+plot (log10(f), phase6*180/pi, "b");
 xlabel ("log_10(f) [Hz]");
 ylabel ("Phase v_s(f), v_c(f), v_6(f) [degrees]");
-print (freq_ph, "freq_ph.eps", "-depsc");
+print (phase_ang, "phase_ang.eps", "-depsc");
+
+
+
 
 
 
