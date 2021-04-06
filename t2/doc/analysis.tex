@@ -4,8 +4,157 @@
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
 theoretically, in terms of its time and frequency responses.
 
-\section{Node Analysis for t<0}
+\subsection{Node Analysis for t<0}
 
+In this section the circuit is analysed for t<0, according to the Figure~\ref{fig:nodes}, using the Node Method.\par
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.7\linewidth]{MeshMethod.pdf}
+  \caption{Mesh Currents Identification}
+  \label{fig:MeshMethod}
+\end{figure}
+
+The system solved is shown below:\par
+
+$$
+\begin{bmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  G_{1} & -G_{1}-G_{2}-G_{3} & G_{2} & G_{3} & 0 & 0 & 0 \\
+  0 & G_{2}+K_{b} & -G_{2} & -K_{b} & 0 & 0 & 0 \\
+  0 & G_{3} & 0 & -G_{3}-G_{4}-G_{5} & G_{5} & G_{7} & -G_{7} \\
+  0 & -K_{b} & 0 & K_{b}+G_{5} & -G_{5} & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & -G_{6}-G_{7} & G_{7} \\
+  0 & 0 & 0 & 1 & 0 & K_{d}*G_{6} & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+  V_{1}\\
+  V_{2}\\
+  V_{3}\\
+  V_{5}\\
+  V_{6}\\
+  V_{7}\\
+  V_{8}
+\end{bmatrix}
+\begin{bmatrix}
+  V_{s}\\
+  0\\
+  0\\
+  0\\
+  0\\
+  0\\
+  0
+\end{bmatrix}
+$$
+
+The nodal voltages and the branch currents found by Octave to the system above
+are displayed in Table~\ref{tab:volt1} and Table~\ref{tab:curr1}, respectively.\par
+
+\begin{minipage}
+\centering
+\begin{table} [b]
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/volt_tb0}
+  \end{tabular}
+  \caption{Nodal voltages, expressed in Volts, when t<0}
+  \label{tab:volt1}
+\end{table}
+\end{minipage}
+\begin{minipage}
+\begin{table} [b]
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Ampere [A]} \\ \hline
+    \input{../mat/curr_tb0}
+  \end{tabular}
+  \caption{Currents, expressed in Ampere, when t<0}
+  \label{tab:curr1}
+\end{table}
+\end{minipage}
+
+The results obtained show the behaviour of the circuit before $V_s$ is oscilating.
+
+\subsection{Node Analysis for $V_s$=0}
+
+Throughout this section, it is computed the equivalent resistance, $R_{eq}$, from
+the capacitor terminals. To achieve that, we make $V_{s}=0$ and replace the capacitor
+with the voltage source $V_{x}=V_{6}-V_{8}$, where $V_6$ and $V_8$ are the voltages
+in nodes 6 and 8, respectively.\par
+The matricial form of the system solved is shown below:\par
+
+$$
+\begin{bmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  G_{1} & -G_{1}-G_{2}-G_{3} & G_{2} & G_{3} & 0 & 0 & 0 \\
+  0 & G_{2}+K_{b} & -G_{2} & -K_{b} & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 & 0 & K_{d}*G_{6} & -1 \\
+  0 & 0 & 0 & 0 & 1 & 0 & -1 \\
+  0 & 0 & 0 & 0 & 0 & -G_{6}-G_{7} & G_{7} \\
+  G_{4} & G_{3} & 0 & -G_{3}-G_{4} & 0 & G_{6}+G_{7} & -G_{7}
+\end{bmatrix}
+=
+\begin{bmatrix}
+  V_{1}\\
+  V_{2}\\
+  V_{3}\\
+  V_{5}\\
+  V_{6}\\
+  V_{7}\\
+  V_{8}
+\end{bmatrix}
+\begin{bmatrix}
+  V_{s}\\
+  0\\
+  0\\
+  0\\
+  V_{x}\\
+  0\\
+  0
+\end{bmatrix}
+$$
+
+In Table~\ref{tab:volt2}, the results from the matricial system are presented.\par
+
+\begin{table} [H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/volt_vs0}
+  \end{tabular}
+  \caption{Nodal voltages, expressed in Volts, when $V_s$=0}
+  \label{tab:volt2}
+\end{table}
+
+By creating a Thèvenin equivalent circuit, as seen from the voltage source's
+terminals ($V_x$) and solving this matricial system, one can compute the current
+$I_x$ passing on the voltage source $V_x$, using the formula:\par
+
+\begin{equation}
+  I_x = G_5 * (V_5 - V_6) - K_b * (V_2 - V_5).
+  \label{eq:Ix}
+\end{equation}
+
+In doing so, one can compute the equivalent resistance, $R_{eq}$, by dividing the
+voltage $V_x$ over the current $I_x$.
+
+\begin{equation}
+  R_{eq} = \frac{V_x}{I_x}.
+  \label{eq:R_eq}
+\end{equation}
+
+\begin{table} [H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/r_eq}
+  \end{tabular}
+  \caption{Equivalent resistance, voltage $V_x$ and current $I_x$, when $V_s$=0}
+  \label{tab:req}
+\end{table}
 
 
 

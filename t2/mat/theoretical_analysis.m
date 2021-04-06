@@ -53,9 +53,46 @@ V8=V(7);
 
 %printf('$I_b$ = %e\n$I_d$ = %e\n$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
 
-printf('op_TAB\n');
-printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6_b,V7,V8);
-printf('op_END\n');
+%printf('op_TAB\n');
+%printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6_b,V7,V8);
+%printf('op_END\n');
+
+I1=G1*(V1-V2);
+I2=G2*(V3-V2);
+I3=G3*(V2-V5);
+I4=G4*V5;
+I5=G5*(V5-V6_b);
+I6=-G6*V7;
+I7=I6;
+Ib=I2;
+Ic=I5-Ib;
+I_vd=I6+Ic;
+I_vs=I4-I6;
+
+tab=fopen("volt_tb0.tex", "w");
+fprintf(tab, "'$V_1$ & %.11f \\\\ \hline \n", V1);
+fprintf(tab, "'$V_2$ & %.11f \\\\ \hline \n", V2);
+fprintf(tab, "'$V_3$ & %.11f \\\\ \hline \n", V3);
+fprintf(tab, "'$V_4$ & %.11f \\\\ \hline \n", V4);
+fprintf(tab, "'$V_5$ & %.11f \\\\ \hline \n", V5);
+fprintf(tab, "'$V_6$ & %.11f \\\\ \hline \n", V6_b);
+fprintf(tab, "'$V_7$ & %.11f \\\\ \hline \n", V7);
+fprintf(tab, "'$V_8$ & %.11f \\\\ \hline \n", V8);
+fclose(tab);
+
+tab=fopen("curr_tb0.tex", "w");
+fprintf(tab, "'$I_1$ & %.11f \\\\ \hline \n", I1);
+fprintf(tab, "'$I_2$ & %.11f \\\\ \hline \n", I2);
+fprintf(tab, "'$I_3$ & %.11f \\\\ \hline \n", I3);
+fprintf(tab, "'$I_4$ & %.11f \\\\ \hline \n", I4);
+fprintf(tab, "'$I_5$ & %.11f \\\\ \hline \n", I5);
+fprintf(tab, "'$I_6$ & %.11f \\\\ \hline \n", I6);
+fprintf(tab, "'$I_7$ & %.11f \\\\ \hline \n", I7);
+fprintf(tab, "'$I_b$ & %.11f \\\\ \hline \n", Ib);
+fprintf(tab, "'$I_c$ & %.11f \\\\ \hline \n", Ic);
+fprintf(tab, "'$I_{V_d}$ & %.11f \\\\ \hline \n", I_vd);
+fprintf(tab, "'$I_{V_s}$ & %.11f \\\\ \hline \n", I_vs);
+fclose(tab);
 
 
 %%-----------------> Calculate equivalent resistor <-------------------
@@ -96,6 +133,23 @@ printf('op_TAB\n');
 %printf('$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',IR1,IR2,IR3,IR4,IR5,IR6,IR7);
 printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6_0,V7,V8);
 printf('op_END\n');
+
+tab=fopen("volt_vs0.tex", "w");
+fprintf(tab, "'$V_1$ & %.11f \\\\ \hline \n", V1);
+fprintf(tab, "'$V_2$ & %.11f \\\\ \hline \n", V2);
+fprintf(tab, "'$V_3$ & %.11f \\\\ \hline \n", V3);
+fprintf(tab, "'$V_4$ & %.11f \\\\ \hline \n", V4);
+fprintf(tab, "'$V_5$ & %.11f \\\\ \hline \n", V5);
+fprintf(tab, "'$V_6$ & %.11f \\\\ \hline \n", V6_0);
+fprintf(tab, "'$V_7$ & %.11f \\\\ \hline \n", V7);
+fprintf(tab, "'$V_8$ & %.11f \\\\ \hline \n", V8);
+fclose(tab);
+
+tab=fopen("r_eq.tex", "w");
+fprintf(tab, "'$I_x$ & %.11f A \\\\ \hline \n", Ix);
+fprintf(tab, "'$V_x$ & %.11f V \\\\ \hline \n", Vx);
+fprintf(tab, "'$R_{eq}$ & %.11f Ohm \\\\ \hline \n", Req);
+fclose(tab);
 
 
 %%-----------------> Calculate natural solution <-------------------
