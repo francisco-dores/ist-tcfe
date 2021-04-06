@@ -108,9 +108,11 @@ printf('op_END\n');
 
 t=0:1e-6:20e-3;
 
+Vx=V6_0-V8;
+
 wn=-1/(Req*C);
 
-v6_n=Vx*exp(wn*t);
+v6_n=V6_0*exp(wn*t);
 
 nat_sol = figure ();
 plot (t*1000, v6_n, "g"); 
@@ -156,14 +158,14 @@ printf('op_END\n');
 %%-----------------> Calculate total solution <-------------------
 
 
-v6_n=Vx*exp(wn*t);
+v6_n=V6_0*exp(wn*t);
 
 Gain=abs(V6_a);
 Phase=angle(V6_a);
 
-v6_f=Gain*cos(w*t+Phase);
+v6_forc=Gain*cos(w*t+Phase);
 
-v6=v6_n+v6_f;
+v6=v6_n+v6_forc;
 
 vs=sin(w*t);
 
@@ -171,6 +173,7 @@ tb=-5e-3:1e-6:0;
 
 V6_b=ones(1,length(tb))*V6_b;
 Vs=ones(1,length(tb))*Vs;
+
 
 tot_sol = figure ();
 plot (t*1000, v6, "g");  
@@ -186,6 +189,47 @@ xlabel ("t [ms]");
 ylabel ("Voltage [V]");
 legend("v6","vs");
 print (tot_sol, "tot_sol.eps", "-depsc");
+
+
+
+%%-----------------> Frequency Response <-------------------
+
+w=0.1*2*pi:100:1e6*2*pi;
+
+%v6=(w.*C).*sqrt(1./(Req.^2.+w.^2.*C.^2));
+%v6=1./(sqrt(1./(1+w.^2.*Req.^2.*C^2)))
+
+freq_db = figure ();
+%plot (log10(w/2/pi), 20*log10(abs(Vs)), "g");   %confirmar Vc????
+%hold on;
+%plot (log10(w/2/pi), 20*log10(abs(Vc)), "g");
+%hold on;
+plot (log10(w/2/pi), 20*log10(abs(v6)), "g");
+xlabel ("log_10(f) [Hz]");
+ylabel ("Magnitude v_s(f), v_c(f), v_6(f) [dB]");
+print (freq_db, "freq_db.eps", "-depsc");
+
+
+freq_ph = figure ();
+plot (log10(w/2/pi), (ph(Vs)+pi/2)*180/pi, "g");   %confirmar Vc???? ph???
+hold on;
+plot (log10(w/2/pi), (ph(Vc)+pi/2)*180/pi, "g");
+hold on;
+plot (log10(w/2/pi), (ph(V6)+pi/2)*180/pi, "g");
+xlabel ("log_10(f) [Hz]");
+ylabel ("Phase v_s(f), v_c(f), v_6(f) [degrees]");
+print (freq_ph, "freq_ph.eps", "-depsc");
+
+
+
+
+
+
+
+
+
+
+
 
 
 
