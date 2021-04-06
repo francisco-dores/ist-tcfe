@@ -28,6 +28,7 @@ G5=1/R5;
 G6=1/R6;
 G7=1/R7;
 
+
 %%-----------------> NODE METHOD to calculate voltages t<0 <-------------------
 
 H=[1,0,0,0,0,0,0; ...
@@ -50,25 +51,17 @@ V6_b=V(5);
 V7=V(6);
 V8=V(7);
 
-
 %printf('$I_b$ = %e\n$I_d$ = %e\n$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
-
 
 printf('op_TAB\n');
 printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6_b,V7,V8);
 printf('op_END\n');
 
+
 %%-----------------> Calculate equivalent resistor <-------------------
 
 Vx=V6_b-V8;
 
-%H=[1,0,0,0,0,0,0; ...
-%   G1,-G1-G2-G3,G2,G3,0,0,0; ...
-%   0,G2+Kb,-G2,-Kb,0,0,0; ...
-%   0,0,0,1,0,Kd*G6,-1; ...
-%   0,0,0,0,1,0,-1; ...
-%   0,0,0,0,0,-G6-G7,G7; ...
-%   G1,-G1,0,-G4,0,-G6,0];
 Vs=0;  
 H=[1,0,0,0,0,0,0; ...
    G1,-G1-G2-G3,G2,G3,0,0,0; ...
@@ -77,7 +70,6 @@ H=[1,0,0,0,0,0,0; ...
    0,0,0,0,1,0,-1; ...
    0,0,0,0,0,-G6-G7,G7; ...
    G4,G3,0,-G3-G4,0,G6+G7,-G7];   
-
    
 d=[Vs;0;0;0;Vx;0;0];
 
@@ -100,13 +92,11 @@ Ix=G5*(V5-V6_0)-Kb*(V2-V5);
 Req=Vx/Ix; 
 Req=-Req; %Não sabemos ainda o erro do Ix
 
-
-%printf('$I_b$ = %e\n$I_d$ = %e\n$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',Ib,Id,IR1,IR2,IR3,IR4,IR5,IR6,IR7);
-
-
 printf('op_TAB\n');
+%printf('$I_{R1}$ = %e\n$I_{R2}$ = %e\n$I_{R3}$ = %e\n$I_{R4}$ = %e\n$I_{R5}$ = %e\n$I_{R6}$ = %e\n$I_{R7}$ = %e\n',IR1,IR2,IR3,IR4,IR5,IR6,IR7);
 printf('$V_1$ = %.11f\n$V_2$ = %.11f\n$V_3$ = %.11f\n$V_4$ = %.11f\n$V_5$ = %.11f\n$V_6$ = %.11f\n$V_7$ = %.11f\n$V_8$ = %.11f\n', V1,V2,V3,V4,V5,V6_0,V7,V8);
 printf('op_END\n');
+
 
 %%-----------------> Calculate natural solution <-------------------
 
@@ -119,19 +109,20 @@ wn=-1/(Req*C);
 v6_n=Vx*exp(wn*t);
 
 nat_sol = figure ();
-plot (t*1000, v6_n, "g"); 
+plot (t*1000, v6_n, "r"); 
 xlabel ("t [ms]");
-ylabel ("V_(6n) [V]");
+ylabel ("V_{6n} [V]");
+title ("Natural Solution");
 print (nat_sol, "nat_sol.eps", "-depsc");
 
 
 %%-----------------> Calculate forced solution <-------------------
+
 f=1000;
 w=2*pi*f;
 Zc=1/(j*w*C);
 Gc=1/Zc;
 Vs=exp(-pi/2*j);
-
 
 H=[1,0,0,0,0,0,0; ...
    G1,-G1-G2-G3,G2,G3,0,0,0; ...
@@ -159,8 +150,8 @@ printf('$V_1$ = %fe^{%fj}\n$V_2$ = %fe^{%fj}\n$V_3$ = %fe^{%fj}\n$V_4$ = %fe^{%f
 abs(V6_a),angle(V6_a),abs(V7),angle(V7),abs(V8),angle(V8));
 printf('op_END\n');
 
-%%-----------------> Calculate total solution <-------------------
 
+%%-----------------> Calculate total solution <-------------------
 
 Gain=abs(V6_a);
 Phase=angle(V6_a);
@@ -174,24 +165,24 @@ vs=sin(w*t);
 tb=-5e-3:1e-6:0;
 
 V6_b=ones(1,length(tb))*V6_b;
+Vs=values(10,3);
 Vs=ones(1,length(tb))*Vs;
 
-
 tot_sol = figure ();
-plot (t*1000, v6, "g");  
+plot (t*1000, v6, "b");  
 hold on;
-plot (t*1000, vs, "b");
+plot (t*1000, vs, "r");
 hold on;
-plot (tb*1000, V6_b, "g"); 
+plot (tb*1000, V6_b, "b"); 
 %hold on;
-%plot (0, V6_0, "g"); 
+%plot (0, V6_0, "r"); 
 hold on;
-plot (tb*1000, Vs, "b");
+plot (tb*1000, Vs, "r");
 xlabel ("t [ms]");
 ylabel ("Voltage [V]");
 legend("v6","vs");
+title ("Total Solution");
 print (tot_sol, "tot_sol.eps", "-depsc");
-
 
 
 %%-----------------> Frequency Response <-------------------
@@ -220,14 +211,7 @@ V=inv(H)*d;
 V6(i)=V(5);
 V8(i)=V(7);
 
-%disp(i);
 end
-
-plot(f,V6);
-
-disp(length(f))
-disp(length(V6))
-disp(length(Vs))
 
 Vs=ones(1,length(f))*Vs;
 
@@ -247,18 +231,22 @@ hold on;
 plot (log10(f), 20*log10(magnc), "y");
 hold on;
 plot (log10(f), 20*log10(magn6), "b");
-xlabel ("log_10(f) [Hz]");
+xlabel ("log_{10}(f) [Hz]");
 ylabel ("Magnitude v_s(f), v_c(f), v_6(f) [dB]");
+legend("v_s(f)","v_c(f)","v_6(f)", 'location', 'southwest');
+title ("Frequency Response - Magnitude");
 print (freq_db, "freq_db.eps", "-depsc");
 
-phase_ang = figure ()
+phase_ang = figure ();
 plot (log10(f), phases*180/pi, "r"); 
 hold on;
 plot (log10(f), phasec*180/pi, "y");
 hold on;
 plot (log10(f), phase6*180/pi, "b");
-xlabel ("log_10(f) [Hz]");
+xlabel ("log_{10}(f) [Hz]");
 ylabel ("Phase v_s(f), v_c(f), v_6(f) [degrees]");
+legend("v_s(f)","v_c(f)","v_6(f)", 'location', 'southwest');
+title ("Frequency Response - Phase");
 print (phase_ang, "phase_ang.eps", "-depsc");
 
 
