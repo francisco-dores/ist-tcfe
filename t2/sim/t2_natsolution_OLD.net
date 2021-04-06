@@ -8,7 +8,32 @@ Simulation - Natural Solution
 * forces current values to be saved
 .options savecurrents
 
-.include ../mat/ngspice_3.cir
+* Passive Elements - Resistors
+R1 1 2 1.02597459645kOhm
+R2 3 2 2.02178008702kOhm
+R3 2 5 3.03144887426kOhm
+R4 5 0 4.13109833342kOhm
+R5 5 6 3.09601431108kOhm
+R6 0 4 2.01920057699kOhm
+R7 7 8 1.02918842978kOhm
+
+* supply voltage
+Vs 1 0 0V
+
+* add a voltage source with value 0V to sence de control current
+Vo 4 7 0V
+
+* current-controlled dependent voltage source
+Hvd 5 8 Vo 8.0919603219kOhm
+
+* voltage-controlled dependent current source
+Gib 6 3 2 5 7.28538907285mS
+
+* capacitor
+C 6 8 1.011814928uF
+
+
+.ic v(6)=8.618561e+00 v(8)=-5.32907e-15
 
 .control
 
