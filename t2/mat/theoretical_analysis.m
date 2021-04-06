@@ -28,7 +28,6 @@ G5=1/R5;
 G6=1/R6;
 G7=1/R7;
 
-
 %%-----------------> NODE METHOD to calculate voltages t<0 <-------------------
 
 H=[1,0,0,0,0,0,0; ...
@@ -274,11 +273,11 @@ fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR
 fclose(file);
 
 file=fopen("ngspice_3.cir","w");
-fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 0\nVo 4 7 0\nC 6 8 %fu\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.END\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), valores(11,3), valores(13,3), valores(12,3));
+fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 0\nVo 4 7 0\nC 6 8 %fu\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.END\n.ic v(6)=%f v(8)=%f\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), valores(11,3), valores(13,3), valores(12,3), V61, V81);
 fclose(file);
 
 file=fopen("ngspice_4.cir","w");
-fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 0.0 ac 1.0 sin(0 1 1k)\nVo 4 7 0\nC 6 8 %fu\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.ic v(6)=%fe+00 v(8)=%fe-15\n.END\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), valores(11,3), valores(13,3), valores(12,3), V61, V81);
+fprintf(file,".OP\nR1 1 2 %fk\nR2 3 2 %fk\nR3 2 5 %fk\nR4 5 0 %fk\nR5 5 6 %fk\nR6 0 4 %fk\nR7 7 8  %fk\nVs 1 0 0.0 ac 1.0 sin(0 1 1k)\nVo 4 7 0\nC 6 8 %fu\nHvd 5 8 Vo %fk\nGib 6 3 2 5 %fm\n.ic v(6)=%f v(8)=%f\n.END\n", valores(3,4), valores(4,3), valores(5,3), valores(6,3), valores(7,3), valores(8,3), valores(9,3), valores(11,3), valores(13,3), valores(12,3), V61, V81);
 fclose(file);
 
 
