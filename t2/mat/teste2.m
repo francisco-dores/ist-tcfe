@@ -112,7 +112,7 @@ Vx=V6_0-V8;
 
 wn=-1/(Req*C);
 
-v6_n=V6_0*exp(wn*t);
+v6_n=Vx*exp(wn*t);
 
 nat_sol = figure ();
 plot (t*1000, v6_n, "g"); 
@@ -158,8 +158,6 @@ printf('op_END\n');
 %%-----------------> Calculate total solution <-------------------
 
 
-v6_n=V6_0*exp(wn*t);
-
 Gain=abs(V6_a);
 Phase=angle(V6_a);
 
@@ -181,8 +179,8 @@ hold on;
 plot (t*1000, vs, "b");
 hold on;
 plot (tb*1000, V6_b, "g"); 
-hold on;
-plot (0, V6_0, "g"); 
+%hold on;
+%plot (0, V6_0, "g"); 
 hold on;
 plot (tb*1000, Vs, "b");
 xlabel ("t [ms]");
