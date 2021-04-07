@@ -6,7 +6,7 @@ theoretically, in terms of its time and frequency responses.
 
 \subsection{Node Analysis for t<0}
 
-In this section the circuit is analysed for t<0, according to the Figure~\ref{fig:nodes}, using the Node Method.\par
+In this section the circuit is analysed for t<0, according to the Figure~\ref{fig:nodes}, using the Node Method. Since the voltage source has a constant value $v_s(t)=V_s, t<0$, and assuming the circuit is stabilized, one can conclude that the the voltage in the capacitor is constant, therefore, the current that passes through it is $i_c=\dv{v_c}{t}=0$, and the capacitor can be replaced by an open circuit.\par
 
 \begin{figure}[H] \centering
   \includegraphics[width=0.7\linewidth]{MeshMethod.pdf}
@@ -79,7 +79,7 @@ The results obtained show the behaviour of the circuit before $V_s$ is oscilatin
 \subsection{Node Analysis for $V_s$=0}
 
 Throughout this section, it is computed the equivalent resistance, $R_{eq}$, from
-the capacitor terminals. To achieve that, we make $V_{s}=0$ and replace the capacitor
+the capacitor terminals. To achieve that, we make $v_{s}=0$ and replace the capacitor
 with the voltage source $V_{x}=V_{6}-V_{8}$, where $V_6$ and $V_8$ are the voltages
 in nodes 6 and 8, respectively.\par
 The matricial form of the system solved is shown below:\par
@@ -152,7 +152,7 @@ voltage $V_x$ over the current $I_x$.
     {\bf Name} & {\bf Value} \\ \hline
     \input{../mat/r_eq}
   \end{tabular}
-  \caption{Equivalent resistance, voltage $V_x$ and current $I_x$, when $V_s$=0}
+  \caption{Equivalent resistance, voltage $V_x$ and current $I_x$, when $v_s$=0}
   \label{tab:req}
 \end{table}
 
