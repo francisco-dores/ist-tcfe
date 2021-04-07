@@ -206,7 +206,7 @@ where $R$ is the equivalent resistance computed in Section \ref{subsec:t=0}.
 In this section we obtain the forced solution, $v_{6f}$, for $f=1kHz$.
 To achieve the wanted result we use a phasor voltage source, $v_{s}=1$, wich as the complex value of $v_{s}=e^{(-(\pi/2)*j)}$.
 It is also needed to replace the capacitor, $C$ with its impedance, $Z_C$, wich is given by: $Z_{C}= 1/(j*\omega*C)$, where $\omega=2*\pi*f$ is the angular frequency.
-In order to facilitate writing the equations we use $G_C$ as %\frac{1}{Z_C}%
+In order to facilitate writing the equations we use $G_C$ as $\frac{1}{Z_C}$.
 This procedure allow us to solve the circuit using the Node Method, by solving the following system
 
 $$
@@ -280,37 +280,50 @@ The outcome is displayed in the next plot:
 To finish the analysis on this circuit we study its frequency response for frequency range 0.1Hz to 1MHz. To do that we represent bellow the plots of both the magnitude and the phase of $V_{c}(f)=V_{6}(f)-V_{8}(f)$, $V_{s}(f)$ and $V_{6}(f)$.
 To find this quantities we just solve the system presented in Section \ref{subsec:forced_solution} in loop, determining the transfer functions for each of the frequency values.
 \par The tranfer function of each quantity is given by:
-\begin{equation}
-  T6=\frac{V6}{Vs}
-  Tc=\frac{(V6-V8)}{Vs}
-  Ts=\frac{Vs}{Vs}
-\end{equation}
+$$
+\begin{cases}
+  H_{6}=\frac{\bar{v_{6}}}{\bar{v_{s}}}\\
+  H_{C}=\frac{(\bar{v_{6}}-\bar{v_{8}})}{\bar{v_{s}}}\\
+  H_{s}=\frac{\bar{v_{s}}}{\bar{v_{s}}}
+\end{cases}
+$$
 
 To do the plot we need to create a logharitmicaly spaced vector of frequencies. In doing so we end up with a vector of magnitudes and a vector of phases for each of the node voltages. With this procedure coming up with the plots consists on ploting each one of the vector's magnitude and phase against frequency.
 
 So the magnitude is obtained by:
-\begin{equation}
-  Magnitude v_{6} = abs(T_{6})
-  Magnitude v_{C} = abs(T_{C}) 
-  Magnitude v_{s} = abs(T_{s})  
-\end{equation}
-
+$$
+\begin{cases}
+  \text{Magnitude}\: \bar{v_{6}} = abs(H_{6})\\
+  \text{Magnitude}\: \bar{v_{C}} = abs(H_{C})\\
+  \text{Magnitude}\: \bar{v_{s}} = abs(H_{s})  
+\end{cases}
+$$
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{freq_db.eps}
 \caption{Magnitude of the frequency response of $v_s(f)$, $v_c(f)$ and $v_6(f)$}
 \label{fig:magnitude_theo}
 \end{figure}
 
+Analysing the plot above one understands easely why $\bar{v_s}$'s magnitude is zero. Its magnitude is 1, but since the plots are represented on a logarithmic scale is value in that scale is 0.
+Looking for $\bar{v_C}$'s magnitude one realizes that the highest the frequency the lowest the magnitude. When the frequency tends to infinity, it eventualy tends to zero, because the capacitor can not keep up its charging an discharging rithym with the rate of frequency oscilation.
+%FALTA O V6!?!?!?
+
 Phase can be computed from the formulas bellow:
-\begin{equation}
-  Phase v_{6} = angle(T_{6})
-  Phase v_{C} = angle(T_{C})
-  Phase v_{s} = angle(T_{s})
-\end{equation}
+$$
+\begin{cases}
+  \text{Phase}\: \bar{v_{6}} = angle(H_{6})\\
+  \text{Phase}\: \bar{v_{C}} = angle(H_{C})\\
+  \text{Phase}\: \bar{v_{s}} = angle(H_{s})
+\end{cases}
+$$
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{phase_ang.eps}
 \caption{Magnitude of the frequency response of $v_s(f)$, $v_c(f)$ and $v_6(f)$}
 \label{fig:phase_theo}
 \end{figure}
+
+From this plot one observes that the phase of  $\bar{v_s}$ is constant and equal to zero since it is the input source, and therefore, all other phases depend on its.
+The capacitor's phase it's initialy zero degrees and tends to -90 degrees as the frequency tends to infinity. This is justified by the value of its impedance wich as a phase of exactly -90 degrees. The phase varies continuously since the capacitor tries to keep up with the variation of $\omega$.
+%FALTA V6 !?!?!?!?!'
 
