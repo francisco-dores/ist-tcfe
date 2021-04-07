@@ -7,7 +7,7 @@ theoretically, in terms of its time and frequency responses.
 \subsection{Operating Point for t<0}
 \label{subsec:tb0}
 
-In this section the circuit is analysed for t<0, according to the Figure~\ref{fig:nodes}, using the Node Method. Since the voltage source has a constant value $v_s(t)=V_s, t<0$, and assuming the circuit is stabilized, one can conclude that the the voltage in the capacitor is constant, therefore, the current that passes through it is $i_c=\dv{v_c}{t}=0$, and the capacitor can be replaced by an open circuit.\par
+In this section the circuit is analysed for t<0, according to the Figure~\ref{fig:NodeMethod}, using the Node Method. Since the voltage source has a constant value $v_s(t)=V_s, t<0$, and assuming the circuit is stabilized, one can conclude that the the voltage in the capacitor is constant, therefore, the current that passes through it is $i_c=\frac{dv_c}{dt}=0$, and the capacitor can be replaced by an open circuit.\par
 
 \begin{figure}[H] \centering
   \includegraphics[width=0.7\linewidth]{NodeMethod.pdf}
@@ -52,7 +52,6 @@ The nodal voltages and the branch currents found by Octave to the system above
 are displayed in Table~\ref{tab:volt1} and Table~\ref{tab:curr1}, respectively.\par
 
 \begin{minipage}
-\centering
 \begin{table} [b]
   \begin{tabular}{|l|r|}
     \hline    
@@ -162,7 +161,7 @@ voltage $V_x$ over the current $I_x$.
 
 
 \subsection{Natural Solution}
-\label{subsec:natural solution}
+\label{subsec:nat}
 
 In this section the Thévenin Equivalent circuit is solved.
 The circuit consists of a single V-R-C loop where a current $I_{x}$ circulates. The
@@ -207,7 +206,7 @@ where $R$ is the equivalent resistance computed in Section \ref{vs=0}.
 
 
 \subsection{Forced Solution}
-\label{subsec:forced solution}
+\label{subsec:forced_solution}
 
 In this section we obtain the forced solution, $v_{6f}$, for $f=1kHz$.
 To achieve the wanted result we use a phasor voltage source, $v_{s}=1$, wich as the complex value of $v_{s}=exp(-pi/2*j)$.
@@ -260,7 +259,7 @@ that give us the complex amplitudes in each node:
 
 
 \subsection{Total Solution}
-\label{subsec:total solution}
+\label{subsec:total_solution}
 
 Finally, in order to obtain the total solution we set $v_{s}=sin(w*t)$ and solve the linear differencial equation \ref{eq:kvl2} whose solution is a superposition of the natural solution $v_{6n}$ and the forced solution $v_{6f}$:
 
@@ -280,7 +279,7 @@ The outcome is displayed in the next plot:
 
 
 \subsection{Frequency Response}
-\label{subsec:frequency response}
+\label{subsec:frequency_response}
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{freq_db.eps}
