@@ -4,14 +4,15 @@
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
 theoretically, in terms of its time and frequency responses.
 
-\subsection{Node Analysis for t<0}
+\subsection{Operating Point for t<0}
+\label{subsec:tb0}
 
 In this section the circuit is analysed for t<0, according to the Figure~\ref{fig:nodes}, using the Node Method. Since the voltage source has a constant value $v_s(t)=V_s, t<0$, and assuming the circuit is stabilized, one can conclude that the the voltage in the capacitor is constant, therefore, the current that passes through it is $i_c=\dv{v_c}{t}=0$, and the capacitor can be replaced by an open circuit.\par
 
 \begin{figure}[H] \centering
-  \includegraphics[width=0.7\linewidth]{MeshMethod.pdf}
+  \includegraphics[width=0.7\linewidth]{NodeMethod.pdf}
   \caption{Mesh Currents Identification}
-  \label{fig:MeshMethod}
+  \label{fig:NodeMethod}
 \end{figure}
 
 The system solved is shown below:\par
@@ -77,12 +78,13 @@ are displayed in Table~\ref{tab:volt1} and Table~\ref{tab:curr1}, respectively.\
 The results obtained show the behaviour of the circuit before $V_s$ is oscilating.
 
 \subsection{Node Analysis for $V_s$=0}
-\label{vs=0}
+\label{subsec:vs=0}
 
-Throughout this section, it is computed the equivalent resistance, $R_{eq}$, from
+Throughout this section, it is computed the equivalent resistance, $R_{eq}$, as seen from
 the capacitor terminals. To achieve that, we make $v_{s}=0$ and replace the capacitor
 with the voltage source $V_{x}=V_{6}-V_{8}$, where $V_6$ and $V_8$ are the voltages
 in nodes 6 and 8, respectively.\par
+The goal of this step is to determine the initail conditions of the circuit and ensure the continuity of the voltage. The reasons to do it are further developed in Section \ref{subsec:t0}.
 The matricial form of the system solved is shown below:\par
 
 $$
@@ -160,6 +162,8 @@ voltage $V_x$ over the current $I_x$.
 
 
 \subsection{Natural Solution}
+\label{subsec:natural solution}
+
 In this section the Thévenin Equivalent circuit is solved.
 The circuit consists of a single V-R-C loop where a current $I_{x}$ circulates. The
 voltage source $v_s$ drives its input, and the output voltage $v_x$ is taken from
@@ -185,14 +189,6 @@ Hence, Equation~(\ref{eq:kvl}) can be rewritten as
   \label{eq:kvl2}
 \end{equation}
 
-Equation~(\ref{eq:kvl2}) is a linear differencial equation whose solution is a
-superposition of a natural solution $v_{6n}$ and a forced solution $v_{6f}$:
-
-\begin{equation}
-  v_6(t) = v_{6n}(t) + v_{6f}(t).
-  \label{eq:v6_sol}
-\end{equation}
-
 To find the natural solution we set $v_{s}=0$.
 As learned in the theory classes the natural solution is of the form
 \begin{equation}
@@ -211,5 +207,69 @@ where $R$ is the equivalent resistance computed in Section \ref{vs=0}.
 
 
 \subsection{Forced Solution}
-\label{Forced Solution}
-In this section we obtain the forced solution, $v_{6f}$, for $f=1kHz$
+\label{subsec:forced solution}
+
+In this section we obtain the forced solution, $v_{6f}$, for $f=1kHz$.
+To achieve the wanted result we use a phasor voltage source, $v_{s}=1$, wich as the complex value of $v_{s}=exp(-pi/2*j)$.
+It is also needed to replace the capacitor, $C$ with its impedance, $Z_C$, wich is given by: $Z_{C}= 1/(j*\omega*C)$, where $\omega=2*\pi*f$ is the angular frequency.
+In order to facilitate writing the equations we use $G_C$ as %\frac{1}{Z_C}%
+This procedure allow us to solve the circuit using the Node Method, by solving the following system
+
+$$
+\begin{bmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  G_{1} & -G_{1}-G_{2}-G_{3} & G_{2} & G_{3} & 0 & 0 & 0 \\
+  0 & G_{2}+K_{b} & -G_{2} & -K_{b} & 0 & 0 & 0 \\
+  0 & G_{3} & 0 & -G_{3}-G_{4}-G_{5} & G_{5}+G_{C} & G_{7} & -G_{C} -G_{7} \\
+  0 & -K_{b} & 0 & K_{b}+G_{5} & -G_{5}-G_{C} & 0 & G_{C} \\
+  0 & 0 & 0 & 0 & 0 & -G_{6}-G_{7} & G_{7} \\
+  0 & 0 & 0 & 1 & 0 & K_{d}*G_{6} & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+  V_{1}\\
+  V_{2}\\
+  V_{3}\\
+  V_{5}\\
+  V_{6}\\
+  V_{7}\\
+  V_{8}
+\end{bmatrix}
+\begin{bmatrix}
+  V_{s}\\
+  0\\
+  0\\
+  0\\
+  0\\
+  0\\
+  0
+\end{bmatrix}
+$$,
+that give us the complex amplitudes in each node:
+
+\begin{table} [H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/v6f}
+  \end{tabular}
+  \caption{Complex Amplitudes in each node}
+  \label{tab:volt3}
+\end{table}
+
+
+
+\subsection{Total Solution}
+\label{subsec:total solution}
+
+Finally, in order to obtain the total solution we solve the linear differencial equation \ref{eq:kvl2} whose solution is a superposition of the natural solution $v_{6n}$ and the forced solution $v_{6f}$:
+
+\begin{equation}
+  v_6(t) = v_{6n}(t) + v_{6f}(t).
+  \label{eq:v6_sol}
+\end{equation}
+
+
+
+
