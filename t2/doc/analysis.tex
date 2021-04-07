@@ -189,7 +189,7 @@ As learned in the theory classes the natural solution is of the form
   v_{6n}(t) = v_{6_0}e^{-\frac{t}{RC}},
   \label{eq:vo_nat}
 \end{equation}
-where $R$ is the equivalent resistance computed in Section \ref{subsec:t=0}. 
+where $R$ is the equivalent resistance computed in Section \ref{subsec:t=0}, and $\tau=RC$ it's the time constant of the natural solution. 
 
 
 \begin{figure}[H] \centering
@@ -204,7 +204,7 @@ where $R$ is the equivalent resistance computed in Section \ref{subsec:t=0}.
 \label{subsec:forced_solution}
 
 In this section we obtain the forced solution, $v_{6f}$, for $f=1kHz$.
-To achieve the wanted result we use a phasor voltage source, $v_{s}=1$, wich as the complex value of $v_{s}=e^{(-(\pi/2)*j)}$.
+To achieve the wanted result we use a phasor voltage source, $v_{s}=1$, wich as the complex value of $\bar{v_{s}}=e^{(-(\pi/2)*j)}$.
 It is also needed to replace the capacitor, $C$ with its impedance, $Z_C$, wich is given by: $Z_{C}= 1/(j*\omega*C)$, where $\omega=2*\pi*f$ is the angular frequency.
 In order to facilitate writing the equations we use $G_C$ as $\frac{1}{Z_C}$.
 This procedure allow us to solve the circuit using the Node Method, by solving the following system
@@ -287,6 +287,7 @@ $$
   H_{s}=\frac{\bar{v_{s}}}{\bar{v_{s}}}
 \end{cases}
 $$
+
 
 To do the plot we need to create a logharitmicaly spaced vector of frequencies. In doing so we end up with a vector of magnitudes and a vector of phases for each of the node voltages. With this procedure coming up with the plots consists on ploting each one of the vector's magnitude and phase against frequency.
 
