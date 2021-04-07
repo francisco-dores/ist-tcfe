@@ -1,0 +1,19 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Theoretical Analysis}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Operating Point for t$<$0}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Node Analysis for $t=0$ and $v_{s}=0$}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Natural Solution}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Forced Solution}{8}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Total Solution}{9}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Frequency Response}{10}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Simulation Analysis}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Operating Point Analysis for t$<$0}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Analysis for t=0}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Analysis for t$>$0 - Natural Solution}{13}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Analysis for t$>$0 - Total Solution}{14}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Frequency Response}{15}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Comparison between Octave and Ngspice results}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Analysis for t$<$0}{16}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Analysis for t=0}{17}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Conclusion}{18}{section.5}%
