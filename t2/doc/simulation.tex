@@ -1,10 +1,11 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\subsection{Operating Point Analysis for t<0}
+\subsection{Operating Point Analysis for t$<$0}
 
 \par Table~\ref{tab:op_tb0} shows the simulated operating point results for the circuit
-under analysis, when t<0.
+under analysis, when t$<$0.
+
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -20,6 +21,7 @@ under analysis, when t<0.
 
 \par  As we can see, the simulation results are similar to the ones we obtained in the section \ref{sec:analysis}, concerning both the numerical values and the directions. As expected, the current through the capacitor is $i_c=0$.
 
+\newpage
 \subsection{Analysis for t=0}
 \label{subsec:t0}  
 
@@ -40,137 +42,51 @@ under analysis,  when t=0.
 \end{table}
 
 
-When t=0, the voltage $v_s$ drops to the value $v_s=0$, resulting in a discontinuity. However, because $i_c=\dv{v_c}{t}$, the voltage in the capacitor must be continuous for $t=0⁻, t=0, t=0⁺$, otherwise, the current $i_c$ would be infinite. Taking this into account, we replaced the capacitor with a voltage source $V_x=V_6(0⁻)-V_8(0⁻)$ that ensures this continuity. Note that, as whe can see in the table, the values of $V_6$ and $V_8$ in the nodes suffered a discontinuity in order to maintain $v_c$. 
+When t=0, the voltage $v_s$ drops to the value $v_s=0$, resulting in a discontinuity. However, because $i_c=\frac{dv_c}{dt}$, the voltage in the capacitor must be continuous for $t=0-, t=0, t=0+$, otherwise, the current $i_c$ would be infinite. Taking this into account, we replaced the capacitor with a voltage source $V_x=V_6(0-)-V_8(0-)$ that ensures this continuity. Note that, as whe can see in the table, the values of $V_6$ and $V_8$ in the nodes suffered a discontinuity in order to maintain $v_c$. 
 
 The values obtained in simulation for t=0 are also similar to the ones we get from theoretical analysis in subsection \ref{subsec:t=0}.
 
-\subsection{Analysis for t>0 - Natural Solution}
+\newpage
+\subsection{Analysis for t$>$0 - Natural Solution}
 
-\par Figure~\ref{fig:trans_nat} shows the plot of the natural solution for $v_6$, when t>0.
+\par Figure~\ref{fig:trans_nat} shows the plot of the natural solution for $v_6$, when t$>$0.
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{trans_nat.pdf}
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{trans_nat.pdf}
 \caption{Natural solution}
 \label{fig:trans_nat}
 \end{figure}
 
 To simulate the natural solution, we imposed the boundary conditions for continuity obtained in last section, $V_6$ and $V_8$, with the voltage source $v_s=0$. As we can see, the plot is similar to the one obtained in subsection \ref{subsec:nat}, showing a negative exponential.
 
-\subsection{Analysis for t>0 - Total Solution}
+\newpage
+\subsection{Analysis for t$>$0 - Total Solution}
 
-\par Figure~\ref{fig:trans_nat} shows the plot of the total (natural+forced) solution for $v_6$ and $v_s$, when t>0. Here we defined $v_s(t)=sin(2\pift)$ as the voltage source. The plot is similar to the one obtained in subsection \ref{subsec:total_solution}.
+\par Figure~\ref{fig:trans_nat} shows the plot of the total (natural+forced) solution for $v_6$ and $v_s$, when t>0. Here we defined $v_s(t)=sin(2*\pi*f*t)$ as the voltage source. The plot is similar to the one obtained in subsection \ref{subsec:total_solution}.
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{trans_tot.pdf}
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{trans_tot.pdf}
 \caption{Total solution of the voltage source and the capacitor}
 \label{fig:trans_tot}
 \end{figure}
 
+\newpage
 \subsection{Frequency Response}
 
-\par In this section we simulated the frequency response of $v_s$, $v_6$ and $v_c=v_6-v_8$ from frequency $0.1 Hz$ to $1 MHz$. The plot \ref{fig:magnitude} shows the magnitude response while plot \ref{fig:phase} shows the phase response. The plots are similar to the ones obtained in subsection \ref{subsec:frequency_response}
+\par In this section we simulated the frequency response of $v_s$, $v_6$ and $v_c=v_6-v_8$ from frequency $0.1 Hz$ to $1 MHz$. The plot \ref{fig:magnitude} shows the magnitude response while plot \ref{fig:phase} shows the phase response. The plots are similar to the ones obtained in subsection \ref{subsec:frequency_response}\par
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{db.pdf}
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.55\linewidth]{freq_db.pdf}
 \caption{Magnitude in frequency response}
 \label{fig:magnitude}
 \end{figure}
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{ph.pdf}
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.55\linewidth]{freq_ph.pdf}
 \caption{Phase in frequency response}
 \label{fig:phase}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
-Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis. Compared to the theoretical analysis results, one notices the
-following differences: describe and explain the differences.
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/op_tab}
-  \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
-  \label{tab:op}
-\end{table}
-
-\lipsum[1-1]
-
-
-\subsection{Transient Analysis}
-
-Figure~\ref{fig:trans} shows the simulated transient analysis results for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{trans.pdf}
-\caption{Transient output voltage}
-\label{fig:trans}
-\end{figure}
-
-\lipsum[1-1]
-
-
-
-\subsection{Frequency Analysis}
-
-\subsubsection{Magnitude Response}
-
-Figure~\ref{fig:acm} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{acm.pdf}
-\caption{Magnitude response}
-\label{fig:acm}
-\end{figure}
-
-\lipsum[1-1]
-
-\subsubsection{Phase Response}
-
-Figure~\ref{fig:acp} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{acp.pdf}
-\caption{Phase response}
-\label{fig:acp}
-\end{figure}
-
-\lipsum[1-1]
-
-\subsubsection{Input Impedance}
-
-Figure~\ref{fig:zim} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
-
-\begin{figure}[h] \centering
-\includegraphics[width=0.6\linewidth]{zim.pdf}
-\caption{Input impedance}
-\label{fig:zim}
-\end{figure}
-
-\lipsum[1-1]
 
 
 

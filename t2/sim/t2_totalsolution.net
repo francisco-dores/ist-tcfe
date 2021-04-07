@@ -43,11 +43,11 @@ echo "********************************************"
 
 ac dec 100 0.1 1MEG
 
-hardcopy db.ps db(v(1)) db(v(6)) db(v(6)-v(8))
-echo b_FIG
+hardcopy freq_db.ps db(v(1)) db(v(6)) db(v(6)-v(8))
+echo freq_db_FIG
 
-hardcopy ph.ps ph(v(1))*180/pi ph(v(6))*180/pi ph(v(6)-v(8))*180/pi
-echo ph_FIG
+hardcopy freq_ph.ps ph(v(1))*180/pi ph(v(6))*180/pi ph(v(6)-v(8))*180/pi
+echo freq_ph_FIG
 
 quit
 .endc

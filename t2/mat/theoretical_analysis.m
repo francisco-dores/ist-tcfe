@@ -206,14 +206,14 @@ printf('op_END\n');
 
 
 tab=fopen("v6f.tex", "w");
-fprintf(tab, "$V_1$ & %fe^{%fj} \\\\ \\hline \n", abs(V1),angle(V1));
-fprintf(tab, "$V_2$ & %fe^{%fj}\\\\ \\hline \n", abs(V2),angle(V2));
-fprintf(tab, "$V_3$ & %fe^{%fj} \\\\ \\hline \n", abs(V3),angle(V3));
-fprintf(tab, "$V_4$ & %fe^{%fj} \\\\ \\hline \n", abs(V4),angle(V4));
-fprintf(tab, "$V_5$ & %fe^{%fj} \\\\ \\hline \n", abs(V5),angle(V5));
-fprintf(tab, "$V_6$ & %fe^{%fj} \\\\ \\hline \n", abs(V6_a),angle(V6_a));
-fprintf(tab, "$V_7$ & %fe^{%fj} \\\\ \\hline \n", abs(V7),angle(V7));
-fprintf(tab, "$V_8$ & %fe^{%fj} \\\\ \\hline \n", abs(V8),angle(V8));
+fprintf(tab, "$V_1$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V1),angle(V1));
+fprintf(tab, "$V_2$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V2),angle(V2));
+fprintf(tab, "$V_3$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V3),angle(V3));
+fprintf(tab, "$V_4$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V4),angle(V4));
+fprintf(tab, "$V_5$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V5),angle(V5));
+fprintf(tab, "$V_6$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V6_a),angle(V6_a));
+fprintf(tab, "$V_7$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V7),angle(V7));
+fprintf(tab, "$V_8$ & $%fe^{%fj}$ \\\\ \\hline \n", abs(V8),angle(V8));
 fclose(tab);
 
 %%-----------------> Calculate total solution <-------------------

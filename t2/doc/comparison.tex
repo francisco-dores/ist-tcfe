@@ -1,65 +1,57 @@
 \section{Comparison between Octave and Ngspice results}
 \label{sec:comparison}
 
-\subsection{Analysis for t<0}
+\subsection{Analysis for t$<$0}
 
 \par Tables \ref{tab:op_tb0} and \ref{tab:curr1} show the nodal voltages and the branch
 currents, found by Octave, and Table \ref{tab:op_tb0} show the simulated operating point
-results, by Ngspice, both for the circuit under analysis, when t<0.
+results, by Ngspice, both for the circuit under analysis, when t$<$0.
 
-\begin{minipage}
-  \begin{tabular}{ccc}
-    \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{../mat/volt_tb0}
-    \caption{Nodal voltages, expressed in Volts, when t<0}
-    \label{tab:volt1}
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Name} & {\bf Value [V]} \\ \hline
+      \input{../mat/volt_tb0}
   \end{tabular}
-\end{minipage}
-\begin{minipage}
-  \begin{tabular}{ccc}
+\quad
+  \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Ampere [A]} \\ \hline
     \input{../mat/curr_tb0}
-    \caption{Currents, expressed in Ampere, when t<0}
-    \label{tab:curr1}
   \end{tabular}
-\end{minipage}
-\begin{minipage}
-  \begin{tabular}{ccc}
+\quad
+  \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../sim/tb0_tab}
-    \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
-    \label{tab:op_tb0}
   \end{tabular}
-\end{minipage}
+  \caption{Results for the Circuit at $t<0$}
+\end{table}
 
+\newpage
 \subsection{Analysis for t=0}
 
 \par Tables \ref{tab:volt2} and \ref{tab:op_vs0} show the nodal voltages and the branch
 currents, found by Octave, and the simulated operating point results, by Ngspice, both 
 for the circuit under analysis, when $V_s$=0, respectively.
 
-\begin{minipage}
-  \begin{tabular}{ccc}
-    \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{../mat/volt_vs0}
-    \caption{Nodal voltages, expressed in Volts, when $V_s$=0}
-    \label{tab:volt2}
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Name} & {\bf Value [V]} \\ \hline
+      \input{../mat/volt_vs0}
   \end{tabular}
-\end{minipage}
-\begin{minipage}
-  \begin{tabular}{ccc}
+\quad
+  \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../sim/vs0_tab}
-    \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
-    \label{tab:op_vs0}
   \end{tabular}
-\end{minipage}
+  \caption{Results for the Circuit at $t=0$}
+\end{table}
+
+
+
+

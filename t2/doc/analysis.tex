@@ -4,10 +4,10 @@
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
 theoretically, in terms of its time and frequency responses.
 
-\subsection{Operating Point for t<0}
+\subsection{Operating Point for t$<$0}
 \label{subsec:tb0}
 
-In this section the circuit is analysed for t<0, according to the Figure~\ref{fig:NodeMethod}, using the Node Method. Since the voltage source has a constant value $v_s(t)=V_s, t<0$, and assuming the circuit is stabilized, one can conclude that the the voltage in the capacitor is constant, therefore, the current that passes through it is $i_c=\frac{dv_c}{dt}=0$, and the capacitor can be replaced by an open circuit.\par
+In this section the circuit is analysed for t$<$0, according to the Figure~\ref{fig:NodeMethod}, using the Node Method. Since the voltage source has a constant value $v_s(t)=V_s, t<0$, and assuming the circuit is stabilized, one can conclude that the the voltage in the capacitor is constant, therefore, the current that passes through it is $i_c=\frac{dv_c}{dt}=0$, and the capacitor can be replaced by an open circuit.\par
 
 \begin{figure}[H] \centering
   \includegraphics[width=0.7\linewidth]{NodeMethod.pdf}
@@ -49,33 +49,28 @@ $$
 $$
 
 The nodal voltages and the branch currents found by Octave to the system above
-are displayed in Table~\ref{tab:volt1} and Table~\ref{tab:curr1}, respectively.\par
+are displayed in Table~\ref{tab:tb0}, respectively.\par
 
-\begin{minipage}
-\begin{table} [b]
+\begin{table}[htb!]
+  \centering
   \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{../mat/volt_tb0}
+      \hline    
+      {\bf Name} & {\bf Value [V]} \\ \hline
+      \input{../mat/volt_tb0}
   \end{tabular}
-  \caption{Nodal voltages, expressed in Volts, when t<0}
-  \label{tab:volt1}
-\end{table}
-\end{minipage}
-\begin{minipage}
-\begin{table} [b]
+\quad
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Ampere [A]} \\ \hline
     \input{../mat/curr_tb0}
   \end{tabular}
-  \caption{Currents, expressed in Ampere, when t<0}
-  \label{tab:curr1}
+  \caption{Results for the Circuit at $t<0$}
+  \label{tab:tb0}
 \end{table}
-\end{minipage}
 
 The results obtained show the behaviour of the circuit before $V_s$ is oscilating.
 
+\newpage
 \subsection{Node Analysis for $t=0$ and $v_{s}=0$}
 \label{subsec:t=0}
 
@@ -159,7 +154,7 @@ voltage $V_x$ over the current $I_x$.
 \end{table}
 
 
-
+\newpage
 \subsection{Natural Solution}
 \label{subsec:nat}
 
@@ -198,13 +193,13 @@ where $R$ is the equivalent resistance computed in Section \ref{vs=0}.
 
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.8\linewidth]{nat_sol.eps}
-\caption{Natural Solution - v_6}
-\label{fig:natural solution}
+  \includegraphics[width=0.8\linewidth]{nat_sol.eps}
+  \caption{Natural Solution - $v_6$}
+  \label{fig:natural solution}
 \end{figure}
 
 
-
+\newpage
 \subsection{Forced Solution}
 \label{subsec:forced_solution}
 
@@ -244,6 +239,7 @@ $$
   0
 \end{bmatrix}
 $$
+
 that give us the complex amplitudes in each node:
 \begin{table} [H]
   \centering
@@ -257,7 +253,7 @@ that give us the complex amplitudes in each node:
 \end{table}
 
 
-
+\newpage
 \subsection{Total Solution}
 \label{subsec:total_solution}
 
@@ -272,12 +268,12 @@ The outcome is displayed in the next plot:
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{tot_sol.eps}
-\caption{Total solution - v_6}
+\caption{Total solution - $v_6$}
 \label{fig:total solution}
 \end{figure}
 
 
-
+\newpage
 \subsection{Frequency Response}
 \label{subsec:frequency_response}
 
