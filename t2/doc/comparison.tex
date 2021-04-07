@@ -3,9 +3,9 @@
 
 \subsection{Analysis for t$<$0}
 
-\par Tables \ref{tab:op_tb0} and \ref{tab:curr1} show the nodal voltages and the branch
-currents, found by Octave, and Table \ref{tab:op_tb0} show the simulated operating point
-results, by Ngspice, both for the circuit under analysis, when t$<$0.
+\par Table \ref{tab:tb0_all} shows, on the left and center, the nodal voltages and the
+branch currents, found by Octave, and, on the right, the simulated operating point results,
+by Ngspice, all for the circuit under analysis, when t$<$0.
 
 \begin{table}[htb!]
   \centering
@@ -26,15 +26,16 @@ results, by Ngspice, both for the circuit under analysis, when t$<$0.
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../sim/tb0_tab}
   \end{tabular}
-  \caption{Results for the Circuit at $t<0$}
+  \caption{Results for the Circuit at $t<0$. A variable followed by [i] or [current] is of type {\em current} and expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:tb0_all}
 \end{table}
 
 \newpage
 \subsection{Analysis for t=0}
 
-\par Tables \ref{tab:volt2} and \ref{tab:op_vs0} show the nodal voltages and the branch
-currents, found by Octave, and the simulated operating point results, by Ngspice, both 
-for the circuit under analysis, when $V_s$=0, respectively.
+\par Table \ref{tab:t0_all} shows, on the left, the nodal voltages and the branch
+currents, found by Octave, and, on the right, the simulated operating point results,
+by Ngspice, both for the circuit under analysis, when $V_s$=0, respectively.
 
 \begin{table}[htb!]
   \centering
@@ -49,7 +50,8 @@ for the circuit under analysis, when $V_s$=0, respectively.
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../sim/vs0_tab}
   \end{tabular}
-  \caption{Results for the Circuit at $t=0$}
+  \caption{Results for the Circuit at $t=0$. A variable followed by [i] or [current] is of type {\em current} and expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:t0_all}
 \end{table}
 
 
