@@ -77,6 +77,7 @@ are displayed in Table~\ref{tab:volt1} and Table~\ref{tab:curr1}, respectively.\
 The results obtained show the behaviour of the circuit before $V_s$ is oscilating.
 
 \subsection{Node Analysis for $V_s$=0}
+\label{vs=0}
 
 Throughout this section, it is computed the equivalent resistance, $R_{eq}$, from
 the capacitor terminals. To achieve that, we make $V_{s}=0$ and replace the capacitor
@@ -158,67 +159,54 @@ voltage $V_x$ over the current $I_x$.
 
 
 
-
-
-
-
-
-The circuit consists of a single V-R-C loop where a current $i(t)$ circulates. The
-voltage source $v_I(t)$ drives its input, and the output voltage $v_O(t)$ is taken from
+\subsection{Natural Solution}
+In this section the Thévenin Equivalent circuit is solved.
+The circuit consists of a single V-R-C loop where a current $I_{x}$ circulates. The
+voltage source $v_s$ drives its input, and the output voltage $v_x$ is taken from
 the capacitor terminals. Applying the Kirchhoff Voltage Law (KVL), a single
 equation for the single loop in the circuit can be written as
 
 \begin{equation}
-  Ri(t) + v_O(t) = v_I(t).
+  Ri_{x} + v_{x} = v_{s}.
   \label{eq:kvl}
 \end{equation}
 
-Because $v_O$ is the voltage between capacitor C's plates, it is related to the
-current $i$ by
+Since $v_{x}=v_{6}-v_{8}$, assuming voltage $v_8$ as the ground, one obtains that $v_{x}=v_{6}$.
+
+Because $v_{x}=v_{6}$ is the voltage between capacitor C's plates, it is related to the
+current $i_x$ by
 \begin{equation}
-  i(t) = C\frac{dv_O}{dt}.
+  i_{x} = C\frac{dv_6}{dt}.
 \end{equation}
 
 Hence, Equation~(\ref{eq:kvl}) can be rewritten as
 \begin{equation}
-  RC\frac{dv_O}{dt} + v_O(t) = v_I.
+  RC\frac{dv_6}{dt} + v_6 = v_s.
   \label{eq:kvl2}
 \end{equation}
 
 Equation~(\ref{eq:kvl2}) is a linear differencial equation whose solution is a
-superposition of a natural solution $v_{On}$ and a forced solution $v_{Of}$:
+superposition of a natural solution $v_{6n}$ and a forced solution $v_{6f}$:
 
 \begin{equation}
-  v_O(t) = v_{On}(t) + v_{Of}(t).
-  \label{eq:vo_sol}
+  v_6(t) = v_{6n}(t) + v_{6f}(t).
+  \label{eq:v6_sol}
 \end{equation}
 
+To find the natural solution we set $v_{s}=0$.
 As learned in the theory classes the natural solution is of the form
 \begin{equation}
-  v_{On}(t) = Ae^{-\frac{t}{RC}},
+  v_{6n}(t) = v_{6_0}e^{-\frac{t}{RC}},
   \label{eq:vo_nat}
 \end{equation}
-where $A$ is an integration constant.
-
-The forced solution is of the form given in Equation~(\ref{eq:vo_for}) and is
-illustrated in Figure~\ref{fig:forced}.
-
-\begin{equation}
-  V_{Of}(t) = |\bar{V}_{Of}| cos(\omega t + \angle \bar{V}_{Of}),
-  \label{eq:vo_for}
-\end{equation}
-
-\lipsum[1-1]
+where $R$ is the equivalent resistance computed in Section \ref{vs=0}. 
 
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{forced.eps}
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{nat_sol.eps}
 \caption{Forced sinusoidal response.}
-\label{fig:forced}
+\label{fig:natural solution}
 \end{figure}
 
-\section{Frequency response}
-
-\lipsum[1-1]
 
 
