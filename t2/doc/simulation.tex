@@ -1,22 +1,72 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\subsection{Operating Point Analysis fot t<0}
+\subsection{Operating Point Analysis for t<0}
 
 \par Table~\ref{tab:op_tb0} shows the simulated operating point results for the circuit
-under analysis.
+under analysis, when t<0.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/op_tab}
+    \input{../sim/tb0_tab}
   \end{tabular}
   \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
     and expressed in Ampere; other variables are of type {\it voltage} and expressed in
     Volt.}
   \label{tab:op_tb0}
 \end{table}
+
+\subsection{Analysis for t>0 - Natural Solution}
+
+\par Table~\ref{tab:op_vs0} shows the simulated operating point results for the circuit
+under analysis,  when t>0.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/vs0_tab}
+  \end{tabular}
+  \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:op_vs0}
+\end{table}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{trans_nat.pdf}
+\caption{Natural solution}
+\label{fig:trans_nat}
+\end{figure}
+
+\subsection{Analysis for t>0 - Total Solution}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{trans_tot.pdf}
+\caption{Total solution of the voltage source and the capacitor}
+\label{fig:trans_tot}
+\end{figure}
+
+\subsection{Frequency Response}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{db.pdf}
+\caption{Magnitude in frequency response}
+\label{fig:magnitude}
+\end{figure}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.6\linewidth]{ph.pdf}
+\caption{Phase in frequency response}
+\label{fig:phase}
+\end{figure}
+
+
+
+
 
 
 
