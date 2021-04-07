@@ -11,7 +11,7 @@ In this section the circuit is analysed for t<0, according to the Figure~\ref{fi
 
 \begin{figure}[H] \centering
   \includegraphics[width=0.7\linewidth]{NodeMethod.pdf}
-  \caption{Mesh Currents Identification}
+  \caption{Currents Direction Identification}
   \label{fig:NodeMethod}
 \end{figure}
 
@@ -77,8 +77,8 @@ are displayed in Table~\ref{tab:volt1} and Table~\ref{tab:curr1}, respectively.\
 
 The results obtained show the behaviour of the circuit before $V_s$ is oscilating.
 
-\subsection{Node Analysis for $V_s$=0}
-\label{subsec:vs=0}
+\subsection{Node Analysis for $t=0$ and $v_{s}=0$}
+\label{subsec:t=0}
 
 Throughout this section, it is computed the equivalent resistance, $R_{eq}$, as seen from
 the capacitor terminals. To achieve that, we make $v_{s}=0$ and replace the capacitor
@@ -200,7 +200,7 @@ where $R$ is the equivalent resistance computed in Section \ref{vs=0}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{nat_sol.eps}
-\caption{Forced sinusoidal response.}
+\caption{Natural Solution - v_6}
 \label{fig:natural solution}
 \end{figure}
 
@@ -244,9 +244,8 @@ $$
   0\\
   0
 \end{bmatrix}
-$$,
+$$
 that give us the complex amplitudes in each node:
-
 \begin{table} [H]
   \centering
   \begin{tabular}{|l|r|}
@@ -263,13 +262,25 @@ that give us the complex amplitudes in each node:
 \subsection{Total Solution}
 \label{subsec:total solution}
 
-Finally, in order to obtain the total solution we solve the linear differencial equation \ref{eq:kvl2} whose solution is a superposition of the natural solution $v_{6n}$ and the forced solution $v_{6f}$:
+Finally, in order to obtain the total solution we set $v_{s}=sin(w*t)$ and solve the linear differencial equation \ref{eq:kvl2} whose solution is a superposition of the natural solution $v_{6n}$ and the forced solution $v_{6f}$:
 
 \begin{equation}
   v_6(t) = v_{6n}(t) + v_{6f}(t).
   \label{eq:v6_sol}
 \end{equation}
 
+The outcome is displayed in the next plot:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{tot_sol.eps}
+\caption{Total solution - v_6}
+\label{fig:total solution}
+\end{figure}
+
+
+
+\subsection{Frequency Response}
+\label{subsec:frequency response}
 
 
 
