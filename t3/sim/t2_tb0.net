@@ -1,0 +1,26 @@
+Simulation t<0
+
+*
+* NGSPICE simulation script
+* BJT amp with feedback
+*
+
+* forces current values to be saved
+.options savecurrents
+
+.include ../mat/ngspice_tb0.cir
+
+.op
+.end
+
+.control
+op
+
+echo "op_TAB"
+print all
+echo "op_END"
+
+quit
+.endc
+
+.end

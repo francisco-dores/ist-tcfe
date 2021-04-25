@@ -1,0 +1,59 @@
+\section{Comparison between Octave and Ngspice results}
+\label{sec:comparison}
+
+\subsection{Analysis for t$<$0}
+
+\par Table \ref{tab:tb0_all} shows, on the left and center, the nodal voltages and the
+branch currents, found by Octave, and, on the right, the simulated operating point results,
+by Ngspice, all for the circuit under analysis, when t$<$0.
+
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Name} & {\bf Value [V]} \\ \hline
+      \input{../mat/volt_tb0}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Ampere [A]} \\ \hline
+    \input{../mat/curr_tb0}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/tb0_tab}
+  \end{tabular}
+  \caption{Results for the Circuit at $t<0$. A variable followed by [i] or [current] is of type {\em current} and expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:tb0_all}
+\end{table}
+
+\newpage
+\subsection{Analysis for t=0}
+
+\par Table \ref{tab:t0_all} shows, on the left, the nodal voltages and the branch
+currents, found by Octave, and, on the right, the simulated operating point results,
+by Ngspice, both for the circuit under analysis, when $V_s$=0, respectively.
+
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Name} & {\bf Value [V]} \\ \hline
+      \input{../mat/volt_vs0}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/vs0_tab}
+  \end{tabular}
+  \caption{Results for the Circuit at $t=0$. A variable followed by [i] or [current] is of type {\em current} and expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:t0_all}
+\end{table}
+
+
+
+

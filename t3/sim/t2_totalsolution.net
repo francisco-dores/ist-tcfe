@@ -1,0 +1,55 @@
+Simulation - Total Response
+
+*
+* NGSPICE simulation script
+* BJT amp with feedback
+*
+
+* forces current values to be saved
+.options savecurrents
+
+.include ../mat/ngspice_tot.cir
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 20e-3
+
+hardcopy trans_tot.ps v(1) v(6)
+echo trans_tot_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+
+ac dec 100 0.1 1MEG
+
+hardcopy freq_db.ps db(v(1)) db(v(6)) db(v(6)-v(8))
+echo freq_db_FIG
+
+hardcopy freq_ph.ps ph(v(1))*180/pi ph(v(6))*180/pi ph(v(6)-v(8))*180/pi
+echo freq_ph_FIG
+
+quit
+.endc
+
+.end
