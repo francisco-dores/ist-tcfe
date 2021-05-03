@@ -11,7 +11,7 @@ AS=230;
 vS=AS*cos(w*t);
 
 %------------------Transformer-------------------------
-AA=12;
+AA=30;
 vA=AA*cos(w*t);
 n_transformer=AS/AA;
 
@@ -29,7 +29,8 @@ wB=w*2;
 tOFF=1/wB*atan(1/(wB*R1*C));
 
 
-v_ripple=AA*(1-exp(-TB/(R1*C)));
+%v_ripple=AA*(1-exp(-TB/(R1*C)));
+
 j=1;
 for ciclo=1:10
 	for i=1:length(t)
@@ -51,34 +52,30 @@ for ciclo=1:10
 	end
 end
 
+ripple_env=max(vC)-min(vC);
+
 plot(t*1000, vB)
 hold on
 plot(t*1000,vC)
-title("Output voltage v_o(t)")
+title("Envelpe detector")
 xlabel ("t[ms]")
 legend("rectified","envelope")
 print ("venvlope.eps", "-depsc")
+hold off
 
 
 %--------------Voltage regulator----------------------
 
 %Incremental analysis
 %vC = VC + vc
-VON=0.7;
-R2=3000;
-
+%VON=0.7;
+R2=1000;
+%num_diodes=round(12/VON);
+num_diodes=17;
 IS=1e-14;
 VT=25e-3;
 eta=1;
-
 VC= sum(vC)/length(vC);
-rd=eta*VT/IS/exp(VC/eta/VT);
-
-num_diodes=round(12/VON);
-
-VO=num_diodes*VON;
-
-vo=(num_diodes*rd/(R2+num_diodes*rd))*v_ripple;
 
 f=@(VO) -VC+IS*exp(VO/num_diodes/eta/VT)*R2+VO;
 h=0.001;
@@ -92,10 +89,38 @@ while err>0.0001
 	err=VO(i+1)-VO(i);
 	i=i+1;
 end
+%disp(VO(end));
+VON=VO(end)/num_diodes
 
-disp(VO(end));
+rd=eta*VT/(IS*exp(VON/(eta*VT)))
 
 
+for i=1:length(vC)
+vo(i)=(num_diodes*rd/(R2+num_diodes*rd))*(vC(i)-VC);
+end
+
+
+VO=num_diodes*VON; %valor do método Newton-Rhapson
+vO=VO+vo;
+
+plot(t*1000, vO)
+hold on
+plot(t*1000,vC)
+title("")
+xlabel ("t[ms]")
+legend("output voltage","envelope")
+print ("vregulator.eps", "-depsc")
+hold off
+
+plot(t*1000,vO-12)
+title("Deviation")
+xlabel ("t[ms]")
+legend("vO-12")
+print ("vdeviation.eps", "-depsc")
+
+
+ripple_out= max(vO)-min(vO);
+DC_out=sum(vO)/length(vO);
 
 
 
