@@ -11,7 +11,7 @@ AS=230;
 vS=AS*cos(w*t);
 
 %------------------Transformer-------------------------
-AA=30;
+AA=21.7;
 vA=AA*cos(w*t);
 n_transformer=AS/AA;
 
@@ -92,7 +92,7 @@ end
 %disp(VO(end));
 VON=VO(end)/num_diodes
 
-rd=eta*VT/(IS*exp(VON/(eta*VT)))
+rd=eta*VT/(IS*exp(VON/(eta*VT))); %ver bem isto
 
 
 for i=1:length(vC)
@@ -119,8 +119,8 @@ legend("vO-12")
 print ("vdeviation.eps", "-depsc")
 
 
-ripple_out= max(vO)-min(vO);
-DC_out=sum(vO)/length(vO);
+ripple_out= max(vO)-min(vO)
+DC_out=sum(vO)/length(vO)
 
 
 
