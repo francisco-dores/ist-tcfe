@@ -1,0 +1,40 @@
+
+Circuit: simulation 10 periods
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+********************************************
+Transient analysis
+********************************************
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+1                                  2.66174e-18
+2                                  2.66174e-18
+4                                 -2.37919e-27
+5                                 -2.38112e-27
+3                                  5.41829e-18
+vs#branch                                    0
+
+
+No. of Data Rows : 1001
+op_TAB
+mean(v(5)) = 1.289189e+01
+maximum(v(5))-minimum(v(5)) = 1.479584e-01
+mean(v(5))/17 = 7.583464e-01
+Error: no such function as i.
+op_END
+
+The file "ende.ps" may be printed on a postscript printer.
+ende_FIG
+
+The file "deviation.ps" may be printed on a postscript printer.
+deviation_FIG
+ngspice-31 done
