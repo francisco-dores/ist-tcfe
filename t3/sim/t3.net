@@ -66,13 +66,20 @@ echo  "Transient analysis"
 echo "********************************************"
 tran 1e-4 125.5m 25.5m
 
-echo "op_TAB"
-print mean(v(5))
+echo "op1_TAB"
+print maximum(v(4))-minimum(v(4))
+print mean(v(4))
+echo "op1_END"
+
+echo "op2_TAB"
 print maximum(v(5))-minimum(v(5))
+print mean(v(5))
 print mean(v(5))/17
-*print mean(v(5))/((mean(v(4))-mean(v(5)))/1000)/17
+echo "op2_END"
+
+echo "op3_TAB"
 print 1/(((950300)/1000+(920e-6)/1e-6+(22)*0.1)*(maximum(v(5))-minimum(v(5))+abs(mean(v(5))-12)+10e-6))
-echo "op_END"
+echo "op3_END"
 
 hardcopy ende.ps {v(4)} {v(5)}
 echo ende_FIG

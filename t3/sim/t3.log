@@ -1,0 +1,46 @@
+
+Circuit: simulation 10 periods
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+********************************************
+Transient analysis
+********************************************
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+1                                   7.0961e-15
+2                                   7.0961e-15
+4                                 -5.43117e-20
+5                                 -5.43117e-20
+3                                  1.41916e-14
+vs#branch                                    0
+
+
+No. of Data Rows : 1001
+op1_TAB
+maximum(v(4))-minimum(v(4)) = 7.852210e-02
+mean(v(4)) = 2.276490e+02
+op1_END
+op2_TAB
+maximum(v(5))-minimum(v(5)) = 1.597796e-04
+mean(v(5)) = 1.199992e+01
+mean(v(5))/17 = 7.058779e-01
+op2_END
+op3_TAB
+1/(((950300)/1000+(920e-6)/1e-6+(22)*0.1)*(maximum(v(5))-minimum(v(5))+abs(mean(v(5))-12)+10e-6)) = 2.178736e+00
+op3_END
+
+The file "ende.ps" may be printed on a postscript printer.
+ende_FIG
+
+The file "deviation.ps" may be printed on a postscript printer.
+deviation_FIG
+ngspice-31 done
