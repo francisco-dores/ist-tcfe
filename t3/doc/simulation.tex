@@ -1,33 +1,23 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-\subsection{Operating Point Analysis for t$<$0}
+\subsection{AC/DC Converter Simulation}
+\label{subsec:circuit_simulation}
+\par In this section we simulate an AC/DC COnverter for 10 periods. It is our goal to understand how the values of each component affects the precision and the quality of the output voltage. This circuit transforms a variable voltage into a voltage with a DC component as closest as one can get to the pretended value, reducing, at the same time, the oscilation around that value. In order to do it we used the values indicated in the begginig of Section \ref{sec:analysis}.
 
-\par Table~\ref{tab:op_tb0} shows the simulated operating point results for the circuit
-under analysis, when t$<$0.
+\par  \textbf{Important note:} Beyond modelling and analysing the circuit provided, one of the goals of this laboratory assignment is to maximize the merit, which is computed according to the following formula:
+\begin{equation}
+M = \frac{1}{\text{cost}*[\text{ripple}(v_0)+\text{average}(v_{0}-12)+10^{-6}]}
+\end{equation}
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../sim/tb0_tab}
-  \end{tabular}
-  \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
-  \label{tab:op_tb0}
-\end{table}
-
-\par  As we can see, the simulation results are similar to the ones we obtained in the section \ref{sec:analysis}, concerning both the numerical values and the directions. As expected, the current through the capacitor is $i_c=0$.
-
-\newpage
-\subsection{Analysis for t=0}
-\label{subsec:t0}  
+Therefore, it was our intention to obtain the best value for this parameter,using each of the variables in order to maximize it, wich means that we have not tried to improve each of those separately, but as a all. 
 
 
-\par Table~\ref{tab:op_vs0} shows the simulated operating point results for the circuit
-under analysis,  when t=0.
+\subsection{Output Voltage Level and Ripple}
+\label{subsec:out_voltage}
+In order to measure the output voltage level, we have used Ngspice's \textit{average} function to determine its mean value. Beyond that it was from our interest to determine the ripple on the voltage. To do it, we have used Ngspice's \textit{max} and \textit{min} functions, which have allowed us to compute the amplitude of the oscilation. The results obtained are shown in the table bellow:
+
+
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -38,55 +28,69 @@ under analysis,  when t=0.
   \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
     and expressed in Ampere; other variables are of type {\it voltage} and expressed in
     Volt.}
-  \label{tab:op_vs0}
+  \label{tab:out_voltage}
 \end{table}
 
 
-When t=0, the voltage $v_s$ drops to the value $v_s=0$, resulting in a discontinuity. However, because $i_c=\frac{dv_c}{dt}$, the voltage in the capacitor must be continuous for $t=0-, t=0, t=0+$, otherwise, the current $i_c$ would be infinite. Taking this into account, we replaced the capacitor with a voltage source $V_x=V_6(0-)-V_8(0-)$ that ensures this continuity. Note that, as whe can see in the table, the values of $V_6$ and $V_8$ in the nodes suffered a discontinuity in order to maintain $v_c$. 
-
-The values obtained in simulation for t=0 are also similar to the ones we get from theoretical analysis in subsection \ref{subsec:t=0}.
 
 \newpage
-\subsection{Analysis for t$>$0 - Natural Solution}
+\subsection{Envelope Detector and Voltage Regulator - Output Voltages and Ripple}
 
-\par Figure~\ref{fig:trans_nat} shows the plot of the natural solution for $v_6$, when t$>$0.
+\par In this section, it is presented the plots regarding both envelope detector and voltage regulator output voltages and ripple.
+The values for each one of this 'subcircuits' are shown in the following tables:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/vs0_tab}
+  \end{tabular}
+  \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:out_voltage2}
+\end{table}
+
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/vs0_tab}
+  \end{tabular}
+  \caption{Operating point. A variable followed by [i] or [current] is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:out_env}
+\end{table}
+
+Next, we present the plot regarding the results obtained:
 
 \begin{figure}[H] \centering
-\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{trans_nat.pdf}
-\caption{Natural solution}
-\label{fig:trans_nat}
-\end{figure}
-
-To simulate the natural solution, we imposed the boundary conditions for continuity obtained in last section, $V_6$ and $V_8$, with the voltage source $v_s=0$. As we can see, the plot is similar to the one obtained in subsection \ref{subsec:nat}, showing a negative exponential.
-
-\newpage
-\subsection{Analysis for t$>$0 - Total Solution}
-
-\par Figure~\ref{fig:trans_nat} shows the plot of the total (natural+forced) solution for $v_6$ and $v_s$, when t$>$0. Here we defined $v_s(t)=sin(2*\pi*f*t)$ as the voltage source. The plot is similar to the one obtained in subsection \ref{subsec:total_solution}.
-
-\begin{figure}[H] \centering
-\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{trans_tot.pdf}
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{ende.pdf}
 \caption{Total solution of the voltage source and the capacitor}
-\label{fig:trans_tot}
+\label{fig:env+vore}
 \end{figure}
 
-\newpage
-\subsection{Frequency Response}
 
-\par In this section we simulated the frequency response of $v_s$, $v_6$ and $v_c=v_6-v_8$ from frequency $0.1 Hz$ to $1 MHz$. The plot \ref{fig:magnitude} shows the magnitude response while plot \ref{fig:phase} shows the phase response. The plots are similar to the ones obtained in subsection \ref{subsec:frequency_response}\par
+As one can conclude from the plot analysis, the ripple suffers a significant reduction from the envelope detector to the the voltage regulator. This last circuit has the same output voltage as the ac/dc converter as a all. That is why table \ref{tab:out_voltage2} is equal to table \ref{tab:out_voltage} in Subsection \ref{subsec:circuit_simulation}.
+
+
+
+\subsection{Final Result}
+
+\par As mentioned in Subsection \ref{subsec:circuit_simulation} our goal is to obtain a voltage as stable as possible as well as closest as possible to 12V. Therefore, in this subsection we present a plot where the difference beetwen the output voltage and the pretended result is shown.
 
 \begin{figure}[H] \centering
-\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.55\linewidth]{freq_db.pdf}
-\caption{Magnitude in frequency response}
-\label{fig:magnitude}
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{deviation.pdf}
+\caption{Total solution of the voltage source and the capacitor}
+\label{fig:vo-12}
 \end{figure}
 
-\begin{figure}[H] \centering
-\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.55\linewidth]{freq_ph.pdf}
-\caption{Phase in frequency response}
-\label{fig:phase}
-\end{figure}
 
+As one can see, we were able to complete this laboratory objective, since we ended up with a voltage which as a DC component really close to 12V and with a minimum AC component.
 
 
 
