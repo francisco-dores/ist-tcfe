@@ -11,7 +11,7 @@ AS=230;
 vS=AS*cos(w*t);
 
 %------------------Transformer-------------------------
-AA=21.7;
+AA=50;
 vA=AA*cos(w*t);
 n_transformer=AS/AA;
 
@@ -20,7 +20,7 @@ vB = abs(vA);
 
 %------------------Envelope detector------------------- 
 R1=1000;
-C=1e-3;
+C=0.1e-3;
 
 TB=T/2;
 wB=w*2;
@@ -69,7 +69,7 @@ hold off
 %Incremental analysis
 %vC = VC + vc
 %VON=0.7;
-R2=1000;
+R2=10000;
 %num_diodes=round(12/VON);
 num_diodes=17;
 IS=1e-14;

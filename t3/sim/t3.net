@@ -9,11 +9,11 @@ Simulation 10 periods
 .options savecurrents
 
 * input voltage source
-vS 1 2 0 sin(0 21.7 50)
+vS 1 2 0 sin(0 50 50)
 
 Re 4 0 1k
-C 4 0 1m
-Rv 4 5 1k
+C 4 0 0.1m
+Rv 4 5 10k
 
 
 D1 0 1 Default
