@@ -118,14 +118,22 @@ xlabel ("t[ms]")
 legend("vO-12")
 print ("vdeviation.eps", "-depsc")
 
-
 ripple_out= max(vO)-min(vO)
 DC_out=sum(vO)/length(vO)
 
+tab=fopen("envelope.tex", "w");
+fprintf(tab, "Ripple_envelope & $%fe^{%fj}$ \\\\ \\hline \n", ripple_env);
+fprintf(tab, "Average_envelope & $%fe^{%fj}$ \\\\ \\hline \n", VC);
+fclose(tab);
 
+tab=fopen("regulator.tex", "w");
+fprintf(tab, "Ripple_regulator & $%fe^{%fj}$ \\\\ \\hline \n", ripple_out);
+fprintf(tab, "Average_regulator & $%fe^{%fj}$ \\\\ \\hline \n", DC_out);
+fprintf(tab, "V_ON & $%fe^{%fj}$ \\\\ \\hline \n", VON);
+fclose(tab);
 
+M=1/(((R1+R2)/1000+C/1e6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
 
-
-
-
-
+tab=fopen("cost.tex", "w");
+fprintf(tab, "Merit & $%fe^{%fj}$ \\\\ \\hline \n", M);
+fclose(tab);
