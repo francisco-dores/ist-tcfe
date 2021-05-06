@@ -132,6 +132,10 @@ fprintf(tab, "Average_regulator & $%fe^{%fj}$ \\\\ \\hline \n", DC_out);
 fprintf(tab, "V_ON & $%fe^{%fj}$ \\\\ \\hline \n", VON);
 fclose(tab);
 
+tab=fopen("V_ON.tex", "w");
+fprintf(tab, "V_ON & $%fe^{%fj}$ \\\\ \\hline \n", VON);
+fclose(tab);
+
 M=1/(((R1+R2)/1000+C/1e6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
 
 tab=fopen("cost.tex", "w");
