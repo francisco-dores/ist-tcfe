@@ -15,7 +15,7 @@ In order to do it we used the values indicated in the begginig of Section \ref{s
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{|l|r|}
+  \begin{tabular}{ | m{11cm} | m{3cm}| } 
     \hline    
     {\bf Merit} & {\bf Value} \\ \hline
     \input{../sim/op4_tab}
@@ -28,7 +28,7 @@ In order to do it we used the values indicated in the begginig of Section \ref{s
 
 \subsection{Output Voltage Level and Ripple}
 \label{subsec:out_voltage}
-In order to measure the output voltage level, we have used Ngspice's \textit{average} function to determine its mean value. Beyond that it was from our interest to determine the ripple on the voltage. To do it, we have used Ngspice's \textit{max} and \textit{min} functions, which have allowed us to compute the amplitude of the oscilation. Beyond this, we also computed the V_{ON} value used by Ngspice's diode model. The results obtained are shown in the tables bellow:
+In order to measure the output voltage level, we have used Ngspice's \textit{average} function to determine its mean value. Beyond that it was from our interest to determine the ripple on the voltage. To do it, we have used Ngspice's \textit{max} and \textit{min} functions, which have allowed us to compute the amplitude of the oscilation. Beyond this, we also computed the $V_{ON}$ value used by Ngspice's diode model. The results obtained are shown in the tables bellow:
 
 
 \begin{table}[H]
@@ -47,10 +47,10 @@ In order to measure the output voltage level, we have used Ngspice's \textit{ave
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf V_{ON}} & {\bf Value [V]} \\ \hline
+    {\bf $V_{ON}$} & {\bf Value [V]} \\ \hline
     \input{../sim/op3_tab}
   \end{tabular}
-  \caption{V_{ON} in Volts[V]}
+  \caption{$V_{ON}$ in Volts[V]}
   \label{tab:v_on}
 \end{table}
 
