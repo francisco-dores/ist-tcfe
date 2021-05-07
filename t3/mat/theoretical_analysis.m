@@ -7,11 +7,11 @@ T=1/f;
 
 t=linspace(0, 10*T/2, 4000);
 
-AS=230.1;
+AS=230;
 vS=AS*cos(w*t);
 
 %------------------Transformer-------------------------
-AA=50;
+AA=230.1;
 vA=AA*cos(w*t);
 n_transformer=AS/AA;
 
@@ -22,6 +22,7 @@ vB = abs(vA);
 R1=920e3;
 C=920e-6;
 R2=30.3e3;
+
 
 TB=T/2;
 wB=w*2;
@@ -123,7 +124,7 @@ print ("vdeviation.eps", "-depsc")
 ripple_out= max(vO)-min(vO)
 DC_out=sum(vO)/length(vO)
 
-M=1/(((R1+R2)/1000+C/1e6)*(ripple_out+abs(DC_out-12)+10e-6))
+M=1/(((R1+R2)/1000+C/1e6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
 
 
 

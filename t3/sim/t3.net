@@ -10,13 +10,11 @@ Simulation 10 periods
 
 * input voltage source
 
+vS 1 2 0 sin(0 230.1 50)
 
-vS 1 2 0 sin(0 230 50)
-
-
-Re 4 0 15k
-C 4 0 50u 
-Rv 4 5 30k
+Re 4 0 920k
+C 4 0 920u
+Rv 4 5 30.3k
 
 
 D1 0 1 Default
@@ -74,7 +72,10 @@ print mean(v(5))
 print maximum(v(5))-minimum(v(5))
 print mean(v(5))/17
 *print mean(v(5))/((mean(v(4))-mean(v(5)))/1000)/17
-print 1/(((35000)/1000+(50e-6)/1e-6+(22)*0.1)*(maximum(v(5))-minimum(v(5)))+abs(mean(v(5))-12)+10e-6)
+
+print 1/(((950300)/1000+(920e-6)/1e-6+(22)*0.1)*(maximum(v(5))-minimum(v(5)
++abs(mean(v(5))-12)+10e-6))
+
 echo "op_END"
 
 hardcopy ende.ps {v(4)} {v(5)}
