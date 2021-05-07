@@ -61,7 +61,7 @@ hold on
 plot(t*1000,vC)
 title("Envelpe detector")
 xlabel ("t[ms]")
-legend("rectified","envelope")
+legend("Rectified v_3","Envelope v_4")
 print ("venvlope.eps", "-depsc")
 hold off
 
@@ -108,11 +108,21 @@ vO=VO+vo;
 plot(t*1000, vO)
 hold on
 plot(t*1000,vC)
-title("")
+hold on
+plot(t*1000,vB)
+title("v_3 + v_4 + v_O")
 xlabel ("t[ms]")
-legend("output voltage","envelope")
+legend("Output voltage v_O ","Envelope v_4", "Rectified voltage v_3")
 print ("vregulator.eps", "-depsc")
 hold off
+
+plot(t*1000, vO)
+title("Colde up to v_O")
+xlabel ("t[ms]")
+legend("Output voltage v_O")
+print ("voutput.eps", "-depsc")
+hold off
+
 
 plot(t*1000,vO-12)
 title("Deviation")
@@ -120,11 +130,26 @@ xlabel ("t[ms]")
 legend("vO-12")
 print ("vdeviation.eps", "-depsc")
 
-
 ripple_out= max(vO)-min(vO)
 DC_out=sum(vO)/length(vO)
 
+
+tab=fopen("envelope.tex", "w");
+fprintf(tab, "$Ripple_{envelope}$ & $%f$ \\\\ \\hline \n", ripple_env);
+fprintf(tab, "$Average_{envelope}$ & $%f$ \\\\ \\hline \n", VC);
+fclose(tab);
+
+tab=fopen("regulator.tex", "w");
+fprintf(tab, "$Ripple_{regulator}$ & $%f$ \\\\ \\hline \n", ripple_out);
+fprintf(tab, "$Average_{regulator}$ & $%f$ \\\\ \\hline \n", DC_out);
+fclose(tab);
+
+tab=fopen("V_ON.tex", "w");
+fprintf(tab, "$V_{ON}$ & $%f$ \\\\ \\hline \n", VON);
+fclose(tab);
+
 M=1/(((R1+R2)/1000+C/1e6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
 
-
-
+tab=fopen("cost.tex", "w");
+fprintf(tab, "Merit & $%f$ \\\\ \\hline \n", M);
+fclose(tab);

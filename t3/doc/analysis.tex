@@ -13,7 +13,7 @@ M=\frac{Sum of the resistors}{1000}+\frac{Capacity}{10^{-6}}+Num_diodes*0.1
   \label{eq:cost}
 \end{equation}
  
-\par To maximize it we should obtain small deviations from V_O (small riplle) and obtain a V_O closer to $12V$, wich is the output voltage required. At the same time, we must reduce the cost of the circuit, by reducing the number of components and their values. 
+\par To maximize it we should obtain small deviations from V_O (small riplle) and obtain a V_O closer to $12V$, wich is the output voltage required. At the same time, we must reduce the cost of the circuit, by reducing the number of components and their values. We concluded that the following values were the ones that maximize this function: $C=920\miuF , R_e=920k\Omega , R_v=3.3k\Omega$.
  
 \subsection{Transformer and full wave bridge rectifier}
 \label{subsec:full_wave_rectifier}
@@ -53,11 +53,50 @@ v_3(T_{ON})=230.1cos(2*\omega*T_{OFF})*e^{-\frac{T_{ON}-T_{OFF}}{R_e*C}
 
 \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Ampere [A]} \\ \hline
-    \input{../mat/curr_tb0}
+    {\bf Name} & {\bf Value (V)} \\ \hline
+    \input{../mat/envelope.tex}
   \end{tabular}
-  \caption{Results for the Circuit at $t<0$}
-  \label{tab:tb0}
+  \caption{Output DC voltage and ripple for the envelope detector.}
+  \label{tab:env}
 \end{table} 
+
+The next plot shows the rectified voltage, $v_3$, and the envelope output voltage covering the peaks, $v_4$. 
+
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{venvlope.eps}
+\caption{Rectified and envelope voltages in function of time.}
+\label{fig:env}
+\end{figure}
+
+\subsection{Voltage regulator}
+\label{subsec:reg}
+
+\par The next stage is the voltage regulator, composed by 17 diodes and a resistor $R_v$. The diodes impose a DC output voltage, $V_O$, close to 12V, that was our goal to maximize the merit equation \ref{eq:cost}. By using a large resistor, we apply a voltage division in incremental terms. Therefore, one can reduce the AC component of the output voltage, $v_4$, and his ripple. We did an operating point and incremental analysis on this part of the circuit, assuming that the AC component of $v_4$ is already small.
+
+\par To compute the operating point, we circulate the mesh composed by the diodes and the resistor $R_v$ and obtained the following equation (using only the DC component of the voltages):
+
+\begin{equation}
+ -V_4+IS*Id*R2+V_O=0
+  \label{eq:reg_mesh}
+\end{equation}
+ 
+ \par Where $Id$ is the DC component of the current that passe throuth the diodes, giver by:
+ 
+ \begin{equation}
+ I_d=I_S*e^{\frac{V_O}{17*\eta*V_T}
+  \label{eq:Id}
+\end{equation}
+ 
+ \par $I_S$, $\eta$ and $V_T$ are constants for the diode model used. Solving this implicit equation with Newton-Raphson methods one can obtain the DC output $V_O$, which we want to be close to 12V.  
+ 
+ \par For the incremental analysis, we computed the incremental resistor of the 17 diodes:
+ 
+ \begin{equation}
+ r_d=\frac{\eta*V_T}{I_S*e^{\fracc{V_{ON}}{\eta*V_T}}
+  \label{eq:rd}
+\end{equation}
+
+\par Where $V_{ON}$ is the threshold voltage to achieve the active region of an ideal diode model, wich we can estimate as $V_{ON}=\frac{V_O}{17}$. Using this method, instead of chosing a fixed $V_{ON}$, one can reproduce with less error the DC output given by the simulation.
+
 
 
