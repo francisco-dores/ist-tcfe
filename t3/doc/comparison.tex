@@ -26,7 +26,7 @@ simulation results, by Ngspice, all for the circuit under analysis.
 \par By analysing the result from both the theoretical and simulated models is possible
 to observe differences in values. These discrepancies are, in its majority, due to the
 non-linearity of the diodes. Due to this complexity, we are forced to use a simplistic
-model in our calculations, through Octave, while Ngspice uses a more complete model for
+model in our calculations (the ideal model of the diode), through Octave, while Ngspice uses a more complete model for
 the analysis of this circuit. With this, discrepencies in values are expected.
 
 \par Beyond the envelope detector, it can also be compared the ripple voltage and the
@@ -52,5 +52,5 @@ Table \ref{tab:regulator}.
 \end{table}
 
 \par Similarly to the envelope detector, discrepancies can also be found on the ripple and
-average output voltages of the voltage regulator, by reasons metioned above.\par
+average output voltages of the voltage regulator, by reasons metioned above. The ripple value for the theoretical analysis is much smaller than the one obtained in ngspice, however, the DC value is closer to 12V in the ngspice calculations. The differences in the ripple are expected since we are using a simple incremental analysis to calculate the AC component.
 

@@ -148,7 +148,7 @@ tab=fopen("V_ON.tex", "w");
 fprintf(tab, "$V_{ON}$ & $%f$ \\\\ \\hline \n", VON);
 fclose(tab);
 
-M=1/(((R1+R2)/1000+C/1e6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
+M=1/(((R1+R2)/1000+C/1e-6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
 
 tab=fopen("cost.tex", "w");
 fprintf(tab, "Merit & $%f$ \\\\ \\hline \n", M);
