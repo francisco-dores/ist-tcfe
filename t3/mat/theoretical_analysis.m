@@ -11,7 +11,7 @@ AS=230;
 vS=AS*cos(w*t);
 
 %------------------Transformer-------------------------
-AA=22.5;
+AA=230.1;
 vA=AA*cos(w*t);
 n_transformer=AS/AA;
 
@@ -19,8 +19,10 @@ n_transformer=AS/AA;
 vB = abs(vA);
 
 %------------------Envelope detector------------------- 
-R1=1000000;
-C=100e-6;
+R1=920e3;
+C=920e-6;
+R2=30.3e3;
+
 
 TB=T/2;
 wB=w*2;
@@ -59,7 +61,7 @@ hold on
 plot(t*1000,vC)
 title("Envelpe detector")
 xlabel ("t[ms]")
-legend("rectified","envelope")
+legend("Rectified v_3","Envelope v_4")
 print ("venvlope.eps", "-depsc")
 hold off
 
@@ -69,7 +71,7 @@ hold off
 %Incremental analysis
 %vC = VC + vc
 %VON=0.7;
-R2=1000;
+%R2=10000;
 %num_diodes=round(12/VON);
 num_diodes=17;
 IS=1e-14;
@@ -106,11 +108,21 @@ vO=VO+vo;
 plot(t*1000, vO)
 hold on
 plot(t*1000,vC)
-title("")
+hold on
+plot(t*1000,vB)
+title("v_3 + v_4 + v_O")
 xlabel ("t[ms]")
-legend("output voltage","envelope")
+legend("Output voltage v_O ","Envelope v_4", "Rectified voltage v_3")
 print ("vregulator.eps", "-depsc")
 hold off
+
+plot(t*1000, vO)
+title("Colde up to v_O")
+xlabel ("t[ms]")
+legend("Output voltage v_O")
+print ("voutput.eps", "-depsc")
+hold off
+
 
 plot(t*1000,vO-12)
 title("Deviation")
@@ -120,6 +132,7 @@ print ("vdeviation.eps", "-depsc")
 
 ripple_out= max(vO)-min(vO)
 DC_out=sum(vO)/length(vO)
+
 
 tab=fopen("envelope.tex", "w");
 fprintf(tab, "$Ripple_{envelope}$ & $%f$ \\\\ \\hline \n", ripple_env);
@@ -135,7 +148,7 @@ tab=fopen("V_ON.tex", "w");
 fprintf(tab, "$V_{ON}$ & $%f$ \\\\ \\hline \n", VON);
 fclose(tab);
 
-M=1/(((R1+R2)/1000+C/1e6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
+M=1/(((R1+R2)/1000+C/1e-6+(num_diodes+5)*0.1)*(ripple_out+abs(DC_out-12)+10e-6))
 
 tab=fopen("cost.tex", "w");
 fprintf(tab, "Merit & $%f$ \\\\ \\hline \n", M);

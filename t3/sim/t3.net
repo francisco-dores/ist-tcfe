@@ -9,6 +9,7 @@ Simulation 10 periods
 .options savecurrents
 
 * input voltage source
+
 vS 1 2 0 sin(0 230.1 50)
 
 Re 4 0 920k
@@ -83,6 +84,7 @@ echo "op3_END"
 echo "op4_TAB"
 print 1/(((950300)/1000+(920e-6)/1e-6+(22)*0.1)*(maximum(v(5))-minimum(v(5))+abs(mean(v(5))-12)+10e-6))
 echo "op4_END"
+
 
 hardcopy ende.ps {v(4)} {v(5)}
 echo ende_FIG
