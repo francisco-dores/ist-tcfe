@@ -1,0 +1,9 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Simulation Analysis}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}AC/DC Converter Simulation}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Output Voltage Level and Ripple}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Envelope Detector and Voltage Regulator - Output Voltages and Ripple}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Final Result}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Comparison between Octave and Ngspice results}{7}{section.3}%
+\contentsline {section}{\numberline {4}Conclusion}{8}{section.4}%
