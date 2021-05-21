@@ -67,10 +67,8 @@ meas AC low WHEN vdb(out) = ref
 meas AC up WHEN vdb(out) = ref CROSS=LAST
 
 let bandwidth=up-low
-let cost=2102.5
+let cost=((101300)/1e3)+((2e-3)/1e-6)+((2)*0.1)
 let merit=((gain*bandwidth)/(cost*low))
-
-print value(RL)
 
 echo "op1_TAB"
 print bandwidth
