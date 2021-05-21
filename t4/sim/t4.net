@@ -39,26 +39,26 @@ RL out 0 8
 
 .control
 
-=======
 op
-
-print all
-
 
 * time analysis
 tran 1e-5 1e-2
-plot v(coll)
+
+*plot v(coll)
 hardcopy vo1.ps vdb(coll)
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(coll)
-plot vp(coll)
-hardcopy vo1f.ps vdb(coll)
 
-plot vdb(out)
-plot vp(out)
+*plot vdb(coll)
+hardcopy vo1f.ps vdb(coll)
+*plot vp(coll)
+hardcopy vo1f2.ps vp(coll)
+
+*plot vdb(out)
 hardcopy vo2f.ps vdb(out)
+*plot vp(out)
+hardcopy vo2f2.ps vp(out)
 
 meas AC gain MAX vdb(out)
 let ref=gain-3
@@ -70,19 +70,18 @@ let bandwidth=up-low
 let cost=2102.5
 let merit=((gain*bandwidth)/(cost*low))
 
+print value(RL)
+
 echo "op1_TAB"
 print bandwidth
 print merit
 echo "op1_END"
 
 *input impedance in kohm
+*plot input impedance
+hardcopy inputimpedance.ps abs(v(in2)[40]/vin#branch[40]/(-1000))
 
-*print all
-
-plot abs(v(in2)[40]/vin#branch[40]/(-1000))
-print v(in2)[40]/vin#branch[40]/(-1000)
-
-len Zi=v(in2)[40]/(v(in)[40]-v(in2)[40])/100*1000
+let Zi=v(in2)[40]/vin#branch[40]/(-1000)
 
 
 echo "op2_TAB"

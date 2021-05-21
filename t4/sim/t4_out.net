@@ -47,6 +47,10 @@ echo "output_TAB"
 print v(out)[40]/i(VL)[40]
 echo "output_END"
 
+
+*plot output impedance
+hardcopy outputimpedance.ps abs(v(out)[40]/i(VL)[40])
+
 quit
 .endc
 
