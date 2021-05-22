@@ -99,11 +99,20 @@ let cost=cost_r+cost_c+cost_t
 
 let merit=((gain*bandwidth)/(cost*low))
 
-echo "op1_TAB"
-print bandwidth
+echo "merit_TAB"
 print merit
 print cost
-echo "op1_END"
+echo "merit_END"
+
+echo "gain_TAB"
+print gain
+echo "gain_END"
+
+echo "results_TAB"
+print low
+print up
+print bandwidth
+echo "results_END"
 
 *input impedance in kohm
 *plot input impedance
@@ -111,10 +120,9 @@ hardcopy inputimpedance.ps abs(v(in2)[40]/vin#branch[40]/(-1000))
 
 let Zi=v(in2)[40]/vin#branch[40]/(-1000)
 
-
-echo "op2_TAB"
+echo "inputZ_TAB"
 print Zi
-echo "op2_END"
+echo "inputZ_END"
 
 quit
 .endc 
