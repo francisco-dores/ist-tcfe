@@ -82,8 +82,10 @@ hardcopy vo2f.ps vdb(out)
 *plot vp(out)
 hardcopy vo2f2.ps vp(out)
 
-meas AC gain MAX vdb(out)
-let ref=gain-3
+
+meas AC gain MAX v(out)
+meas AC gaindb MAX vdb(out)
+let ref=gaindb-3
 
 meas AC low WHEN vdb(out) = ref
 meas AC up WHEN vdb(out) = ref CROSS=LAST
@@ -107,6 +109,13 @@ echo "merit_END"
 echo "gain_TAB"
 print gain
 echo "gain_END"
+
+
+echo "verification_TAB"
+print (vdb(coll)[40]-vdb(emit)[40])-(vdb(base)[40]-vdb(emit)[40])
+print vdb(emit2)[40]-(vdb(emit2)[40]-vdb(coll)[40])
+echo "verification_END"
+
 
 echo "results_TAB"
 print low
