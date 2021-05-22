@@ -1,6 +1,74 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
+\subsection{Audio Amplifier Simulation}
+\label{subsec:amp_simulation}
+\par In this section we simulate an audio amplifier through the NGspice tool. Our goal is to understand.....
+
+\par  \textbf{Important note:} Beyond modelling and analysing the circuit provided, one of the goals of this laboratory assignment is to maximize the merit, which is computed according to the following formula:
+\begin{equation}
+M = \frac{1}{\text{cost}*[\text{ripple}(v_0)+\text{average}(v_{0}-12)+10^{-6}]}
+\end{equation}
+
+Therefore, it was our intention to obtain the best value for this parameter,using each of the variables in order to maximize it, wich means that we have not tried to improve each of those separately, but as a all.
+In order to do it we used the values indicated in the begginig of Section \ref{sec:analysis} which resulted in the merit value bellow:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ | m{11cm} | m{3cm}| } 
+    \hline    
+    {\bf Merit} & {\bf Value} \\ \hline
+    \input{../sim/merit_tab}
+  \end{tabular}
+  \caption{Merit Calculation}
+  \label{tab:merit}
+\end{table}
+
+\subsection{Output}
+\label{output_simulation}
+\par In order to measure the output voltage gain, we used Ngspice's \textit{measure} function to determine its maximum value. Furthermore, the same function was used to achieve the value of the lower and upper 3db cut off frequencies, which allowed the calculation of the bandwidth, which is the difference of the two variables previosuly mentioned. The results obtained are shown in the tables bellow:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Output Voltage Gain} & {\bf Value [V]} \\ \hline
+    \input{../sim/gain_tab}
+  \end{tabular}
+  \caption{Output Voltage Gain in Volts[V]}
+  \label{tab:gain}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value [dB]} \\ \hline
+    \input{../sim/results_tab}
+  \end{tabular}
+  \caption{Lower and Upper 3dB cut off frequencies and bandwidth in Decibles[dB]}
+  \label{tab:freq}
+\end{table}
+
+Next, we present the plot regarding the results obtained:
+
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{ende.pdf}
+\caption{Total solution of the voltage source and the capacitor}
+\label{fig:env+vore}
+\end{figure}
+
+\newpage
+\subsection{Input impedances}
+
+
+
+
+
+
+
+
+
 \subsection{AC/DC Converter Simulation}
 \label{subsec:circuit_simulation}
 \par In this section we simulate an AC/DC COnverter for 10 periods. It is our goal to understand how the values of each component affects the precision and the quality of the output voltage. This circuit transforms a variable voltage into a voltage with a DC component as closest as one can get to the pretended value, reducing, at the same time, the oscilation around that value.
@@ -23,6 +91,7 @@ In order to do it we used the values indicated in the begginig of Section \ref{s
   \caption{Merit Calculation}
   \label{tab:merit}
 \end{table}
+
 
 
 
@@ -109,6 +178,5 @@ As one can conclude from the plot analysis, the ripple suffers a significant red
 
 
 As one can see, we were able to complete this laboratory objective, since we ended up with a voltage which as a DC component really close to 12V and with a minimum AC component.
-
 
 
