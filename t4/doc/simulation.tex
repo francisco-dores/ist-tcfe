@@ -11,7 +11,8 @@ M = \frac{\text{voltageGain}*\text{bandwidth}}{\text{cost}*\text{lowerCutoffFreq
 \end{equation}
 
 Therefore, it was our intention to obtain the best value for this parameter,using each of the variables in order to maximize it, wich means that we have not tried to improve each of those separately, but as a all.
-In order to do it we used the values indicated in the begginig of Section \ref{sec:analysis} which resulted in the merit value bellow:
+In order to do it we used the values indicated the following values of the components: $R_{B1}=79k\Omega$, $R_{B2}=9.2k\Omega$, $R_{C1}=2.4k\Omega$, $R_{E1}=150\Omega$, $R_{E2}=320\Omega$, $C_{i}=5uF$, $C_{b}=270uF$ and $C_{o}=120uF$.   
+  
 
 \begin{table}[H]
   \centering
@@ -57,6 +58,7 @@ In this subsection, the same function as in the subsection \ref{output_gain} (\t
   \caption{Lower and Upper Cut off Frequencies and Bandwidth, in Hz}
   \label{tab:frequency_response}
 \end{table}
+
 
 
 In order to compare and understand the evolution of the circuit from the gain stage to the output stage we firtly show the magnitude and the the phase plots in the collector node (the output of the gain stage) and then the same quantities regarding the output stage:
