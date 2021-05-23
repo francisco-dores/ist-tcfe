@@ -3,10 +3,10 @@
 VT=25e-3
 BFN=178.7
 VAFN=69.7
-RE1=100
-RC1=1000
-RB1=80000
-RB2=20000
+RE1=150
+RC1=2400
+RB1=79000
+RB2=9200
 VBEON=0.7
 VCC=12
 RS=100
@@ -28,31 +28,31 @@ ro1=VAFN/IC1
 
 RSB=RB*RS/(RB+RS)
 
-AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
-AVI_DB = 20*log10(abs(AV1))
-AV1simple = RB/(RB+RS) * gm1*RC1/(1+gm1*RE1)
-AVIsimple_DB = 20*log10(abs(AV1simple))
+%AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
+%AVI_DB = 20*log10(abs(AV1))
+%AV1simple = RB/(RB+RS) * gm1*RC1/(1+gm1*RE1)
+%AVIsimple_DB = 20*log10(abs(AV1simple))
 
 RE1=0
 AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
 AVI_DB = 20*log10(abs(AV1))
-AV1simple =  - RSB/RS * gm1*RC1/(1+gm1*RE1)
-AVIsimple_DB = 20*log10(abs(AV1simple))
+%AV1simple =  - RSB/RS * gm1*RC1/(1+gm1*RE1)
+%AVIsimple_DB = 20*log10(abs(AV1simple))
 
-RE1=100
+RE1=150
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 ZX = ro1*((RSB+rpi1)*RE1/(RSB+rpi1+RE1))/(1/(1/ro1+1/(rpi1+RSB)+1/RE1+gm1*rpi1/(rpi1+RSB)))
-ZX = ro1*(   1/RE1+1/(rpi1+RSB)+1/ro1+gm1*rpi1/(rpi1+RSB)  )/(   1/RE1+1/(rpi1+RSB) ) 
+%ZX = ro1*(   1/RE1+1/(rpi1+RSB)+1/ro1+gm1*rpi1/(rpi1+RSB)  )/(   1/RE1+1/(rpi1+RSB) ) 
 ZO1 = 1/(1/ZX+1/RC1)
 
-RE1=0
-ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
-ZO1 = 1/(1/ro1+1/RC1)
+%RE1=0
+%ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
+%ZO1 = 1/(1/ro1+1/RC1)
 
 %ouput stage
 BFP = 227.3
 VAFP = 37.2
-RE2 = 100
+RE2 = 320
 VEBON = 0.7
 VI2 = VO1
 IE2 = (VCC-VEBON-VI2)/RE2
