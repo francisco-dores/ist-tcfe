@@ -66,6 +66,7 @@ op
 * time analysis
 tran 1e-5 1e-2
 
+
 *plot v(coll)
 hardcopy vo1.ps vdb(coll)
 
@@ -103,8 +104,9 @@ let merit=((gain*bandwidth)/(cost*low))
 
 echo "merit_TAB"
 print merit
-print cost
 echo "merit_END"
+
+print cost
 
 echo "gain_TAB"
 print gaindb
