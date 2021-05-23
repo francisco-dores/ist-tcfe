@@ -102,7 +102,7 @@ vo(i)=(num_diodes*rd/(R2+num_diodes*rd))*(vC(i)-VC);
 end
 
 
-VO=num_diodes*VON; %valor do método Newton-Rhapson
+VO=num_diodes*VON; %valor método Newton-Rhapson
 vO=VO+vo;
 
 plot(t*1000, vO)

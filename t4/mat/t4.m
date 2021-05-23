@@ -49,6 +49,23 @@ ZO1 = 1/(1/ZX+1/RC1)
 %ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 %ZO1 = 1/(1/ro1+1/RC1)
 
+
+tab=fopen("op1.tex", "w");
+fprintf(tab, "$v_{CE}$ & $%f$ \\\\ \\hline \n", 20*log10(abs(VCE)));
+fprintf(tab, "$v_{O1}$ & $%f$ \\\\ \\hline \n", 20*log10(abs(VO1)));
+fprintf(tab, "$I_{C1}$ & $%f$ \\\\ \\hline \n", IC1);
+fprintf(tab, "$I_{E1}$ & $%f$ \\\\ \\hline \n", IE1);
+fprintf(tab, "$I_{B1}$ & $%f$ \\\\ \\hline \n", IB1);
+fclose(tab);
+
+tab=fopen("imp_gain1.tex", "w");
+fprintf(tab, "$Z_i_1$ & $%f$ \\\\ \\hline \n", ZI1);
+fprintf(tab, "$Z_o_1$ & $%f$ \\\\ \\hline \n", ZO1);
+fprintf(tab, "$Gain_1$ & $%f$ \\\\ \\hline \n", 20*log10(abs(AV1)));
+fclose(tab);
+
+
+
 %ouput stage
 BFP = 227.3
 VAFP = 37.2
@@ -75,3 +92,23 @@ AV = (gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1
 AV_DB = 20*log10(abs(AV))
 ZI=ZI1
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
+
+
+tab=fopen("op2.tex", "w");
+fprintf(tab, "$v_{O2}$ & $%f$ \\\\ \\hline \n", 20*log10(abs(VO2)));
+fprintf(tab, "$I_{C2}$ & $%f$ \\\\ \\hline \n", IC2);
+fprintf(tab, "$I_{E2}$ & $%f$ \\\\ \\hline \n", IE2);
+fprintf(tab, "$I_{B2}$ & $%f$ \\\\ \\hline \n", IB1);
+fclose(tab);
+
+tab=fopen("imp_gain2.tex", "w");
+fprintf(tab, "$Z_i_2$ & $%f$ \\\\ \\hline \n", ZI2);
+fprintf(tab, "$Z_o_2$ & $%f$ \\\\ \\hline \n", ZO2);
+fprintf(tab, "$Gain_2$ & $%f$ \\\\ \\hline \n", 20*log10(abs(AV2)));
+fclose(tab);
+
+tab=fopen("imp_gaintot.tex", "w");
+fprintf(tab, "$Z_i_Total$ & $%f$ \\\\ \\hline \n", ZI);
+fprintf(tab, "$Z_o__Total$ & $%f$ \\\\ \\hline \n", ZO);
+fprintf(tab, "$Gain_Total$ & $%f$ \\\\ \\hline \n", AV_DB);
+fclose(tab);
