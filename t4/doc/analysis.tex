@@ -25,7 +25,7 @@
 
 %Introduzir imagem do OP1 com thévenin
 \begin{figure}[H] \centering
-\includegraphics[width=0.8 \linewidth]{gain_stage.eps}
+\includegraphics[width=0.8 \linewidth]{gain_stage.pdf}
 \caption{Gain stage circuit simplified to operating point.}
 \label{fig:gain_stage}
 \end{figure}
@@ -33,13 +33,13 @@
 \par First we reduce the bias circuit to a Thévenin's equivalent obtaining the resistor $R_B$ and the equivalent voltage $V_{eq}$:
 
 \begin{equation}
-R_B=R_{B1}||R_{B2}=\frac{R_{B1}R_{B2}}{R_{B1}+R_{B2}
+R_B=R_{B1}||R_{B2}=\frac{R_{B1}R_{B2}}{R_{B1}+R_{B2}}
 \end{equation}
 \begin{equation}
-V_{eq}=\frac{R_{B2}}{R_{B1}+R_{B2}V_{CC}
+V_{eq}=\frac{R_{B2}}{R_{B1}+R_{B2}V_{CC}}
 \end{equation}
 
-\par Then we can write KVL to the left mesh, where $V_{BEON}\approx0.7$:
+\par Then we can write KVL to the left mesh, where $V_{BEON}\approx 0.7$:
 \begin{equation}
 -V_{eq}+R_BI_B+V_{BEON}+R_{E1}I_{E1}=0
 \end{equation}
@@ -91,7 +91,7 @@ V_{CE}=V_{O1}-V_{E1}
 
 %Imagem incr1
 \begin{figure}[H] \centering
-\includegraphics[width=0.8 \linewidth]{incremental1.eps}
+\includegraphics[width=0.8 \linewidth]{incremental1.pdf}
 \caption{Incremental model circuit for gain stage.}
 \label{fig:inc1}
 \end{figure}
@@ -148,7 +148,7 @@ Z_X = r_{o1}*\frac{R_{SB}+\frac{r_{\pi 1}*R_{E1}}{RSB+rpi1+RE1}}{\frac{1}{\frac{
 \label{subsec:op2}
 
  \begin{figure}[H] \centering
-\includegraphics[width=0.8 \linewidth]{output_stage.eps}
+\includegraphics[width=0.8 \linewidth]{output_stage.pdf}
 \caption{Output stage circuit simplified to operating point.}
 \label{fig:output_stage}
 \end{figure}
@@ -189,7 +189,7 @@ V_{O2}=V_{CC}- R_{E2}I_{E2}
  
  %imagem inc2
  \begin{figure}[H] \centering
-\includegraphics[width=0.8 \linewidth]{incremental2.eps}
+\includegraphics[width=0.8 \linewidth]{incremental2.pdf}
 \caption{Incremental model circuit for output stage.}
 \label{fig:incremental2}
 \end{figure}

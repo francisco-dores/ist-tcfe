@@ -1,0 +1,28 @@
+\section{Comparison between Octave and Ngspice results}
+\label{sec:comparison}
+
+\par Table \ref{tab:results_compar} shows, on the left, the values for the gain, input and
+output impedances, found with Octave, and, on the right, using the Ngspice simulation tool.
+
+\begin{table}[htb!]
+  \centering
+  \begin{tabular}{|l|r|}
+      \hline    
+      {\bf Name} & {\bf Value [V]} \\ \hline
+      \input{../mat/imp_gaintot}
+  \end{tabular}
+\quad
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../sim/gain_tab}
+    \input{../sim/results_tab}
+    \input{../sim/inputZ_tab}
+    \input{../sim/outputZ_tab}
+  \end{tabular}
+  \caption{Results for the gain, input and output impedances.}
+  \label{tab:results_compar}
+\end{table}
+
+\par In Section~\ref{sec:analysis} it's highlighted some of the reasons for the discrepancies
+percieved on the results shown above.

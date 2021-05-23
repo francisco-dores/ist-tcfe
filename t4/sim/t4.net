@@ -69,19 +69,24 @@ tran 1e-5 1e-2
 
 *plot v(coll)
 hardcopy vo1.ps vdb(coll)
+echo vo1_FIG
 
 * frequency analysis
 ac dec 10 10 100MEG
 
 *plot vdb(coll)
 hardcopy vcolldb.ps vdb(coll)
+echo vcolldb_FIG
 *plot vp(coll)
 hardcopy vcollp.ps vp(coll)
+echo vcollp_FIG
 
 *plot vdb(out)
 hardcopy voutdb.ps vdb(out)
+echo voutdb_FIG
 *plot vp(out)
 hardcopy voutp.ps vp(out)
+echo voutp_FIG
 
 let gain = abs(v(out)[40])/abs(v(in2)[40])
 let gaindb = 20*log10(abs(gain))
@@ -102,6 +107,7 @@ let merit=((gain*bandwidth)/(cost*low))
 
 echo "merit_TAB"
 echo "Merit = $&merit"
+echo "Cost = $&cost MU"
 echo "merit_END"
 
 echo "gain_TAB"
@@ -116,18 +122,18 @@ let Vcebe=Vce-Vbe
 let Veceb=Vec-Veb
 
 echo "FAR_TAB"
-echo "V_CE-V_BE = $&Vcebe"
-echo "V_EC-V_EB = $&Veceb"
+echo "VCE-VBE = $&Vcebe"
+echo "VEC-VEB = $&Veceb"
 echo "FAR_END"
 
 let Vdb_col=vdb(coll)[40]
 let Vdb_out=vdb(out)[40]
 
 echo "resultscompar_TAB"
-echo "V_CE = $&Vce"
-echo "V_BE = $&Vbe"
-echo "V_o1 = $&Vdb_col"
-echo "V_o2 = $&Vdb_out"
+echo "VCE = $&Vce"
+echo "VBE = $&Vbe"
+echo "Vo1 = $&Vdb_col"
+echo "Vo2 = $&Vdb_out"
 echo "resultscompar_END"
 
 echo "results_TAB"
@@ -143,19 +149,19 @@ echo "results_END"
 let Zi=abs(v(in2)[40]/vin#branch[40])
 
 echo "inputZ_TAB"
-echo "Z_i = $&Zi"
+echo "ZI = $&Zi"
 echo "inputZ_END"
 
 echo "valores_TAB"
-echo "R_S = $&RS_value"
-echo "R_{B1} = $&RB1_value"
-echo "R_{B2} = $&RB2_value"
-echo "R_{C1} = $&RC1_value"
-echo "R_{E1} = $&RE1_value"
-echo "R_L = $&RL_value"
-echo "C_i = $&Ci_value"
-echo "C_b = $&Cb_value"
-echo "C_o = $&Co_value"
+echo "RS = $&RS_value"
+echo "RB1 = $&RB1_value"
+echo "RB2 = $&RB2_value"
+echo "RC1 = $&RC1_value"
+echo "RE1 = $&RE1_value"
+echo "RL = $&RL_value"
+echo "Ci = $&Ci_value"
+echo "Cb = $&Cb_value"
+echo "Co = $&Co_value"
 echo "valores_END"
 
 quit

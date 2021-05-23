@@ -59,9 +59,9 @@ fprintf(tab, "$I_{B1}$ & $%f$ \\\\ \\hline \n", IB1);
 fclose(tab);
 
 tab=fopen("imp_gain1.tex", "w");
-fprintf(tab, "$Z_i_1$ & $%f$ \\\\ \\hline \n", ZI1);
-fprintf(tab, "$Z_o_1$ & $%f$ \\\\ \\hline \n", ZO1);
-fprintf(tab, "$Gain_1$ & $%f$ \\\\ \\hline \n", 20*log10(abs(AV1)));
+fprintf(tab, "$Z_{I1}$ & $%f$ \\\\ \\hline \n", ZI1);
+fprintf(tab, "$Z_{O1}$ & $%f$ \\\\ \\hline \n", ZO1);
+fprintf(tab, "$A_{V1}$ & $%f$ \\\\ \\hline \n", 20*log10(abs(AV1)));
 fclose(tab);
 
 
@@ -102,13 +102,13 @@ fprintf(tab, "$I_{B2}$ & $%f$ \\\\ \\hline \n", IB1);
 fclose(tab);
 
 tab=fopen("imp_gain2.tex", "w");
-fprintf(tab, "$Z_i_2$ & $%f$ \\\\ \\hline \n", ZI2);
-fprintf(tab, "$Z_o_2$ & $%f$ \\\\ \\hline \n", ZO2);
-fprintf(tab, "$Gain_2$ & $%f$ \\\\ \\hline \n", 20*log10(abs(AV2)));
+fprintf(tab, "$Z_{I2}$ & $%f$ \\\\ \\hline \n", ZI2);
+fprintf(tab, "$Z_{O2}$ & $%f$ \\\\ \\hline \n", ZO2);
+fprintf(tab, "$A_{V2}$ & $%f$ \\\\ \\hline \n", 20*log10(abs(AV2)));
 fclose(tab);
 
 tab=fopen("imp_gaintot.tex", "w");
-fprintf(tab, "$Z_i_Total$ & $%f$ \\\\ \\hline \n", ZI);
-fprintf(tab, "$Z_o__Total$ & $%f$ \\\\ \\hline \n", ZO);
-fprintf(tab, "$Gain_Total$ & $%f$ \\\\ \\hline \n", AV_DB);
+fprintf(tab, "$Z_I$ & $%f$ \\\\ \\hline \n", ZI);
+fprintf(tab, "$Z_O$ & $%f$ \\\\ \\hline \n", ZO);
+fprintf(tab, "$A_V$ & $%f$ \\\\ \\hline \n", AV_DB);
 fclose(tab);
