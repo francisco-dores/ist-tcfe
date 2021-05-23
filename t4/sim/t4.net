@@ -1,15 +1,15 @@
 .options savecurrents
 
 .param RS_value=100
-.param RB1_value=80k
-.param RB2_value=20k
-.param RC1_value=1k
-.param RE1_value=100
-.param RE2_value=100
+.param RB1_value=79k
+.param RB2_value=9.2k
+.param RC1_value=2.4k
+.param RE1_value=150
+.param RE2_value=320
 .param RL_value=8
-.param Ci_value=1m
-.param Cb_value=1m
-.param Co_value=1u
+.param Ci_value=5u
+.param Cb_value=270u
+.param Co_value=120u
 
 .csparam RS_value={RS_value}
 .csparam RB1_value={RB1_value}
