@@ -27,7 +27,7 @@ In order to do it we used the values indicated the following values of the compo
 
 \subsection{Output Voltage Gain}
 \label{output_gain}
-\par In order to measure the output voltage gain, we used Ngspice's \textit{measure} function to determine the maximum value of the output voltage. By definition the gain is the magnitude coefficient between the output voltage and the input voltage. In this particular case, the input voltage has a magnitude of 1V, wich means that we can reduce the calculation of the gain phase and magnitude to the output voltage.
+\par In order to compute the output voltage gain, we used Ngspice's \textit{abs} function to determine the the magnitude coefficient between the output voltage (v(out)) and the input voltage (v(in2)).
 
  In the following table, we present the maximum magnitude of the gain (v(out)), in decibels:
  
@@ -46,7 +46,7 @@ In order to do it we used the values indicated the following values of the compo
 
 \subsection{Frequency response}
 \label{frequency_response}
-In this subsection, the same function as in the subsection \ref{output_gain} (\textit{measure}) was used to compute the value of the lower and upper 3db cut off frequencies, which allowed the calculation of the bandwidth, which is the difference of the two variables previosuly mentioned. The results obtained are shown in the table bellow:
+In this subsection, we use the Ngspice's \textit{measure} function to compute the value of the lower and upper 3db cut off frequencies, which allowed the calculation of the bandwidth, which is the difference of the two variables previosuly mentioned. Beyond this, it is also presented the Bandwidth wich is the difference between the lower and upper cut off frequencies. The results obtained are shown in the table bellow:
 
 \begin{table}[H]
   \centering
@@ -59,16 +59,15 @@ In this subsection, the same function as in the subsection \ref{output_gain} (\t
   \label{tab:frequency_response}
 \end{table}
 
-
-
-In order to compare and understand the evolution of the circuit from the gain stage to the output stage we firtly show the magnitude and the the phase plots in the collector node (the output of the gain stage) and then the same quantities regarding the output stage:\par
+In order to compare and understand the evolution of the circuit from the gain stage to the output stage we firstly show the magnitude and the the phase plots in the collector node (the output of the gain stage) and then the same quantities regarding the output stage:
 
 \begin{figure}[H] \centering
 \includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{vcolldb.pdf}
 \caption{v(coll) magnitude, in dB}
 \label{fig:voutdb}
 \end{figure}
-
+ 
+ 
 \begin{figure}[H] \centering
 \includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{vcollp.pdf}
 \caption{v(coll) phase, in rad}
@@ -94,7 +93,9 @@ In order to compare and understand the evolution of the circuit from the gain st
 
 \subsection{Impedances}
 \label{impedances}
-Finally, in this subsection the input impedance and the output impedance are presented. We can verify from them values that we achieved the goal of having a high input impedance and a low output impedance, wich allow to obtain a better amplifier:
+Finally, in this subsection the input impedance and the output impedance are presented.
+Both input and output impedances are given by the coefficient between the voltage and the current in the input and output branches, respectively
+We can verify from the values that the goal of having a higher input impedance and a lower output impedance was achieved, wich allowed us to obtain a better amplifier:
 
 
 \begin{table}[H]
