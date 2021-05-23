@@ -83,9 +83,9 @@ hardcopy voutdb.ps vdb(out)
 *plot vp(out)
 hardcopy voutp.ps vp(out)
 
+let gain = abs(v(out)[40])/abs(v(in2)[40])
+let gaindb = 20*log10(abs(gain))
 
-meas AC gain MAX v(out)
-meas AC gaindb MAX vdb(out)
 let ref=gaindb-3
 
 meas AC low WHEN vdb(out) = ref
@@ -140,7 +140,7 @@ echo "results_END"
 *plot input impedance
 *hardcopy inputimpedance.ps abs(v(in2)[40]/vin#branch[40]/(-1000))
 
-let Zi=v(in2)[40]/vin#branch[40]/(-1000)
+let Zi=abs(v(in2)[40]/vin#branch[40])
 
 echo "inputZ_TAB"
 echo "Z_i = $&Zi"

@@ -63,7 +63,7 @@ op
 
 ac dec 10 10 100MEG
 
-let Zo=v(out)[40]/i(VL)[40]
+let Zo=abs(v(out)[40]/i(VL)[40])
 
 echo "outputZ_TAB"
 echo "Z_o = $&Zo"
