@@ -3,11 +3,11 @@
 
 \subsection{Audio Amplifier Simulation}
 \label{subsec:amp_simulation}
-\par In this section we simulate an audio amplifier through the NGspice tool. Our goal is to understand.....
+\par In this section we simulate an audio amplifier through the NGspice tool. Our goal is to simulate the audio amplifier using two different kinds of transistors (NPN and PNP). It is our objetive to measure the output voltage gain in the passband and the lower and upper 3dB cut off frequencies, as well as the input and output impedances.
 
 \par  \textbf{Important note:} Beyond modelling and analysing the circuit provided, one of the goals of this laboratory assignment is to maximize the merit, which is computed according to the following formula:
 \begin{equation}
-M = \frac{1}{\text{cost}*[\text{ripple}(v_0)+\text{average}(v_{0}-12)+10^{-6}]}
+M = \frac{\text{voltageGain}*\text{bandwidth}}{\text{cost}*\text{lowerCutoffFreq}}
 \end{equation}
 
 Therefore, it was our intention to obtain the best value for this parameter,using each of the variables in order to maximize it, wich means that we have not tried to improve each of those separately, but as a all.
@@ -24,9 +24,36 @@ In order to do it we used the values indicated in the begginig of Section \ref{s
   \label{tab:merit}
 \end{table}
 
-\subsection{Output}
-\label{output_simulation}
-\par In order to measure the output voltage gain, we used Ngspice's \textit{measure} function to determine its maximum value. Furthermore, the same function was used to achieve the value of the lower and upper 3db cut off frequencies, which allowed the calculation of the bandwidth, which is the difference of the two variables previosuly mentioned. The results obtained are shown in the tables bellow:
+\subsection{Output Voltage Gain}
+\label{output_gain}
+\par In order to measure the output voltage gain, we used Ngspice's \textit{measure} function to determine its maximum value.
+ The magnitude, in decibels, and the phase of the gain are represented in the plots bellow:
+
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{ende.pdf}
+\caption{Total solution of the voltage source and the capacitor}
+\label{fig:env+vore}
+\end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{ende.pdf}
+\caption{Total solution of the voltage source and the capacitor}
+\label{fig:env+vore}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Output Voltage Gain} & {\bf Value [V]} \\ \hline
+    \input{../sim/gain_tab}
+  \end{tabular}
+  \caption{Output Voltage Gain in Volts[V]}
+  \label{tab:gain}
+\end{table}
+
+
+Furthermore, the same function was used to achieve the value of the lower and upper 3db cut off frequencies, which allowed the calculation of the bandwidth, which is the difference of the two variables previosuly mentioned. The results obtained are shown in the tables bellow:
 
 \begin{table}[H]
   \centering

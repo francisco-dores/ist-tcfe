@@ -63,13 +63,14 @@ op
 
 ac dec 10 10 100MEG
 
-echo "output_TAB"
-print v(out)[40]/i(VL)[40]
-echo "output_END"
+let Zo=v(out)[40]/i(VL)[40]
 
+echo "outputZ_TAB"
+print Zo
+echo "outputZ_END"
 
 *plot output impedance
-hardcopy outputimpedance.ps abs(v(out)[40]/i(VL)[40])
+*hardcopy outputimpedance.ps abs(v(out)[40]/i(VL)[40])
 
 quit
 .endc
