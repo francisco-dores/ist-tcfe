@@ -93,8 +93,6 @@ meas AC up WHEN vdb(out) = ref CROSS=LAST
 
 let bandwidth=up-low
 
-let cost=((101300)/1e3)+((2e-3)/1e-6)+((2)*0.1)
-
 let cost_r=(RS_value+RB1_value+RB2_value+RC1_value+RE1_value+RE2_value+RL_value)/1000
 let cost_c=(Ci_value+Cb_value+Co_value)*1000000
 let cost_t=2
