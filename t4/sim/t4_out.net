@@ -66,7 +66,7 @@ ac dec 10 10 100MEG
 let Zo=v(out)[40]/i(VL)[40]
 
 echo "outputZ_TAB"
-print Zo
+echo "Z_o = $&Zo"
 echo "outputZ_END"
 
 *plot output impedance

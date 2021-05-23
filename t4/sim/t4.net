@@ -101,26 +101,39 @@ let cost=cost_r+cost_c+cost_t
 let merit=((gain*bandwidth)/(cost*low))
 
 echo "merit_TAB"
-print merit
+echo "Merit = $&merit"
 echo "merit_END"
 
-print cost
-
 echo "gain_TAB"
-print gaindb
+echo "Output Voltage Gain = $&gaindb"
 echo "gain_END"
 
+let Vce=(vdb(coll)[40]-vdb(emit)[40])
+let Vbe=(vdb(base)[40]-vdb(emit)[40])
+let Vec=vdb(emit2)[40]
+let Veb=(vdb(emit2)[40]-vdb(coll)[40])
+let Vcebe=Vce-Vbe
+let Veceb=Vec-Veb
 
+echo "FAR_TAB"
+echo "V_CE-V_BE = $&Vcebe"
+echo "V_EC-V_EB = $&Veceb"
+echo "FAR_END"
 
-print (vdb(coll)[40]-vdb(emit)[40])-(vdb(base)[40]-vdb(emit)[40])
-print vdb(emit2)[40]-(vdb(emit2)[40]-vdb(coll)[40])
+let Vdb_col=vdb(coll)[40]
+let Vdb_out=vdb(out)[40]
 
-
+echo "resultscompar_TAB"
+echo "V_CE = $&Vce"
+echo "V_BE = $&Vbe"
+echo "V_o1 = $&Vdb_col"
+echo "V_o2 = $&Vdb_out"
+echo "resultscompar_END"
 
 echo "results_TAB"
-print low
-print up
-print bandwidth
+echo "Low CO Freq = $&low"
+echo "Up CO Freq = $&up"
+echo "Bandwidth = $&bandwidth"
 echo "results_END"
 
 *input impedance in kohm
@@ -130,8 +143,20 @@ echo "results_END"
 let Zi=v(in2)[40]/vin#branch[40]/(-1000)
 
 echo "inputZ_TAB"
-print Zi
+echo "Z_i = $&Zi"
 echo "inputZ_END"
+
+echo "valores_TAB"
+echo "R_S = $&RS_value"
+echo "R_{B1} = $&RB1_value"
+echo "R_{B2} = $&RB2_value"
+echo "R_{C1} = $&RC1_value"
+echo "R_{E1} = $&RE1_value"
+echo "R_L = $&RL_value"
+echo "C_i = $&Ci_value"
+echo "C_b = $&Cb_value"
+echo "C_o = $&Co_value"
+echo "valores_END"
 
 quit
 .endc 
