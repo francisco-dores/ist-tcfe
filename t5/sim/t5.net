@@ -90,8 +90,9 @@ hardcopy vp.ps vp(out)
 echo vp_FIG
 
 
-*let gain = abs(v(out)[40])/abs(v(in)[40])
-*let gaindb = 20*log10(abs(gain))
+*let gaindb = vdb(out)-vdb(in)
+*meas ac gain MAX gaindb
+*let gain_a = 10^(gain/20)
 *let gain_dev = abs(gaindb-40)
 
 *let ref=gaindb-3
@@ -108,10 +109,9 @@ echo vp_FIG
 *let cost_c_opam=(8.661E-12+30.00E-12)*1000000
 *let cost_r_opam=(100.0E3+5.305E3+5.305E3+1.836E3+1.836E3+13.19E6+50+100+18.16E3)/1000
 *let cost_q_opam=2*0.1
-*let cost_r=(RS_value+RB1_value+RB2_value+RC1_value+RE1_value+RE2_value+RL_value)/1000
-*let cost_c=(Ci_value+Cb_value+Co_value)*1000000
-*let cost_t=2
-*let cost=cost_r_opam+cost_c_opam+cost_t
+*let cost_d_opam=5*0.1
+*let cost_rest=
+*let cost=cost_r_opam+cost_c_opam+cost_q_opam+cost_d_opam+cost_rest
 
 * merit
 *let merit=(1/(cost*gain_dev*cent_freq_dev))
@@ -128,7 +128,8 @@ echo vp_FIG
 *echo "merit_END"
 
 *echo "gain_TAB"
-*echo "Output Voltage Gain = $&gaindb"
+*echo "Output Voltage Gain dB = $&gain"
+*echo "Output Voltage Gain = $&gain_a"
 *echo "Central Freq = $&cent_freq"
 *echo "Low CO Freq = $&low"
 *echo "Up CO Freq = $&up"
