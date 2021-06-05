@@ -61,8 +61,8 @@ R2 inv_in out 1000
 C1 in r1 1u
 C2 inv_in out 220n
 
-* load
-RL out 0 8
+* test voltage source
+VL out 0 0 ac 1.0 sin(0 10m 1k)
 
 .op
 .end

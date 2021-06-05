@@ -92,19 +92,26 @@ echo vp_FIG
 
 *let gain = abs(v(out)[40])/abs(v(in)[40])
 *let gaindb = 20*log10(abs(gain))
+*let gain_dev = abs(gaindb-40)
 
 *let ref=gaindb-3
 
 *meas AC low WHEN vdb(out) = ref
 *meas AC up WHEN vdb(out) = ref CROSS=LAST
 
+*let cent_freq = sqrt(low*up)
+*let cent_freq_dev = abs(cent_freq-100)
+
 *let bandwidth=up-low
 
 * cost
+*let cost_c_opam=(8.661E-12+30.00E-12)*1000000
+*let cost_r_opam=(100.0E3+5.305E3+5.305E3+1.836E3+1.836E3+13.19E6+50+100+18.16E3)/1000
+*let cost_q_opam=2*0.1
 *let cost_r=(RS_value+RB1_value+RB2_value+RC1_value+RE1_value+RE2_value+RL_value)/1000
 *let cost_c=(Ci_value+Cb_value+Co_value)*1000000
 *let cost_t=2
-*let cost=cost_r+cost_c+cost_t
+*let cost=cost_r_opam+cost_c_opam+cost_t
 
 * merit
 *let merit=(1/(cost*gain_dev*cent_freq_dev))
