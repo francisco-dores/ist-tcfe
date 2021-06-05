@@ -72,7 +72,16 @@ echo "outputZ_END"
 *plot output impedance
 *hardcopy outputimpedance.ps abs(v(out)[40]/i(VL)[40])
 
+
 quit
 .endc
+
+plot abs(v(in2)/vin#branch/(-1000))
+print v(in2)[40]/vin#branch[40]/(-1000)
+
+*need a different setup to measure output impedance
+
+.endc 
+
 
 .end
