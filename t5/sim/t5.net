@@ -53,16 +53,16 @@ Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
-X1 0 inv_in vcc vee out uA741
+X1 0 inv_in vcc vee n3 uA741
 
-R1 r1 inv_in 1000
-R2 inv_in out 1000
+C1 in inv_in 220n
+R1 inv_in 0 0.5k
 
-C1 in r1 220n
-C2 inv_in out 220n
+R3 n2 n3 10k
+R4 n2 0 5k
 
-* load
-RL out 0 8
+R2 n3 out 1k
+C2 out 0 110n
 
 .op
 .end
@@ -85,48 +85,65 @@ ac dec 10 10 100MEG
 plot vdb(out)
 hardcopy vdb.ps vdb(out)
 echo vdb_FIG
+
 plot vp(out)
 hardcopy vp.ps vp(out)
 echo vp_FIG
 
 
-let gain = abs(v(out)[20])/abs(v(in)[20])
-print gain
-let gaindb = vdb(out)-vdb(in)
+*let gain = abs(v(out)[20])/abs(v(in)[20])
+*print gain
+*let gaindb = vdb(out)-vdb(in)
 *meas AC gain MAX gaindb
 *meas AC gain_mil WHEN
-let gain_1 = gaindb[20]
-let gain_11 = gain[20]
-print gain_1
-let gain_2 = gaindb[100]
-print gain_2
-meas AC freq_1 WHEN gaindb = gain_1
-meas AC freq_11 WHEN gain = gain_11
-meas AC freq_2 WHEN gaindb = gain_2
-print freq_1
-print freq_2
-*let gain_dev = abs(gain-40)
+*let gain_1 = gaindb[20]
+*let gain_11 = gain[20]
+*print gain_1
+*let gain_2 = gaindb[100]
+*print gain_2
+*meas AC freq_1 WHEN gaindb = gain_1
+*meas AC freq_11 WHEN gain = gain_11
+*meas AC freq_2 WHEN gaindb = gain_2
+*print freq_1
+*print freq_2
+*let gain_dev_db = abs(gain-40)
+*let gain_dev=10^(gain_dev_db/20)
 
-*let ref=gaindb-3
 
-*meas AC low WHEN vdb(out) = ref
-*meas AC up WHEN vdb(out) = ref CROSS=LAST
+let gain = abs(v(out)[20])/abs(v(in)[20])
+let gaindb = 20*log10(abs(gain))
+print gaindb
+let gain_dev_db = abs(gaindb-40)
+let gain_dev_lin=gain-100
+print gain_dev_db
 
-*let cent_freq = sqrt(low*up)
-*let cent_freq_dev = abs(cent_freq-100)
+let ref=gaindb-3
+
+meas AC low WHEN vdb(out) = ref
+meas AC up WHEN vdb(out) = ref CROSS=LAST
+
+let cent_freq = sqrt(low*up)
+let cent_freq_dev = abs(cent_freq-1000)
+print cent_freq_dev
+
+print cent_freq_dev*gain_dev_db
 
 *let bandwidth=up-low
 
 * cost
-*let cost_c_opam=(8.661E-12+30.00E-12)*1000000
-*let cost_r_opam=(100.0E3+5.305E3+5.305E3+1.836E3+1.836E3+13.19E6+50+100+18.16E3)/1000
-*let cost_q_opam=2*0.1
-*let cost_d_opam=5*0.1
-*let cost_rest=
-*let cost=cost_r_opam+cost_c_opam+cost_q_opam+cost_d_opam+cost_rest
+let cost_c_opam=(8.661E-12+30.00E-12)*1000000
+let cost_r_opam=(100.0E3+5.305E3+5.305E3+1.836E3+1.836E3+13.19E6+50+100+18.16E3)/1000
+let cost_q_opam=2*0.1
+let cost_d_opam=5*0.1
+let cost_opam=cost_c_opam+cost_r_opam+cost_d_opam+cost_q_opam
+let cost_r=(3*1+3*10)/1000
+let cost_c=(0.220*3)*1000000
+let cost=cost_opam+cost_r+cost_c
+print cost
 
 * merit
-*let merit=(1/(cost*gain_dev*cent_freq_dev))
+let merit=(1/(cost*gain_dev_lin*cent_freq_dev+1e-6))
+print merit
 
 * input impedance
 *let Zi=abs(v(in)[20]/vin#branch[20])
@@ -162,7 +179,6 @@ print freq_2
 *print v(in)[40]/R1[i]/1000
 
 
-quit
 .endc 
 
 .end
