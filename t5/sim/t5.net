@@ -99,24 +99,6 @@ hardcopy vp.ps vp(out)
 echo vp_FIG
 
 
-*let gain = abs(v(out)[20])/abs(v(in)[20])
-*print gain
-*let gaindb = vdb(out)-vdb(in)
-*meas AC gain MAX gaindb
-*meas AC gain_mil WHEN
-*let gain_1 = gaindb[20]
-*let gain_11 = gain[20]
-*print gain_1
-*let gain_2 = gaindb[100]
-*print gain_2
-*meas AC freq_1 WHEN gaindb = gain_1
-*meas AC freq_11 WHEN gain = gain_11
-*meas AC freq_2 WHEN gaindb = gain_2
-*print freq_1
-*print freq_2
-*let gain_dev_db = abs(gain-40)
-*let gain_dev=10^(gain_dev_db/20)
-
 * gain
 let gain = abs(v(out)[20])/abs(v(in)[20])
 let gaindb = 20*log10(abs(gain))
