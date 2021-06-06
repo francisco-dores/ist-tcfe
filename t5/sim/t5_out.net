@@ -55,11 +55,21 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
 X1 0 inv_in vcc vee out uA741
 
-R1 r1 inv_in 1000
-R2 inv_in out 1000
+C1 in inv_in 220n
 
-C1 in r1 1u
-C2 inv_in out 220n
+* R1 = 2 resistências de 1k em paralelo
+R1 inv_in 0 0.5k
+
+* R3 = 3 resistências de 100k em série
+R3 n2 n3 300k
+
+* R4 = 2 resistências de 10k em paralelo
+R4 n2 0 5k
+
+R2 n3 out 1k
+
+* C2 = 2 condensadores de 220n em série
+C2 out 0 110n
 
 * test voltage source
 VL out 0 0 ac 1.0 sin(0 10m 1k)
@@ -73,7 +83,8 @@ print all
 
 ac dec 10 10 100MEG
 
-let Zo=abs(v(out)[40]/i(VL)[40])
+*input impedance in kohm
+let Zo=abs(v(out)[20]/vout#branch[20]/1000)
 
 echo "outputZ_TAB"
 echo "ZO = $&Zo"

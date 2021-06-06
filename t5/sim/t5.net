@@ -56,12 +56,19 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 X1 0 inv_in vcc vee n3 uA741
 
 C1 in inv_in 220n
+
+* R1 = 2 resistências de 1k em paralelo
 R1 inv_in 0 0.5k
 
-R3 n2 n3 10k
+* R3 = 3 resistências de 100k em série
+R3 n2 n3 300k
+
+* R4 = 2 resistências de 10k em paralelo
 R4 n2 0 5k
 
 R2 n3 out 1k
+
+* C2 = 2 condensadores de 220n em série
 C2 out 0 110n
 
 .op
@@ -109,7 +116,7 @@ echo vp_FIG
 *let gain_dev_db = abs(gain-40)
 *let gain_dev=10^(gain_dev_db/20)
 
-
+* gain
 let gain = abs(v(out)[20])/abs(v(in)[20])
 let gaindb = 20*log10(abs(gain))
 print gaindb
@@ -122,13 +129,14 @@ let ref=gaindb-3
 meas AC low WHEN vdb(out) = ref
 meas AC up WHEN vdb(out) = ref CROSS=LAST
 
+* central freq deviation
 let cent_freq = sqrt(low*up)
 let cent_freq_dev = abs(cent_freq-1000)
-print cent_freq_dev
+*print cent_freq_dev
+*print cent_freq_dev*gain_dev_db
 
-print cent_freq_dev*gain_dev_db
-
-*let bandwidth=up-low
+* bandwidtth
+let bandwidth=up-low
 
 * cost
 let cost_c_opam=(8.661E-12+30.00E-12)*1000000
@@ -136,13 +144,13 @@ let cost_r_opam=(100.0E3+5.305E3+5.305E3+1.836E3+1.836E3+13.19E6+50+100+18.16E3)
 let cost_q_opam=2*0.1
 let cost_d_opam=5*0.1
 let cost_opam=cost_c_opam+cost_r_opam+cost_d_opam+cost_q_opam
-let cost_r=(3*1+3*10)/1000
+let cost_r=(3*1+2*10+3*100)/1000
 let cost_c=(0.220*3)*1000000
 let cost=cost_opam+cost_r+cost_c
 print cost
 
 * merit
-let merit=(1/(cost*gain_dev_lin*cent_freq_dev+1e-6))
+let merit=(1/(cost*(gain_dev_lin*cent_freq_dev+1e-6)))
 print merit
 
 * input impedance
@@ -151,33 +159,29 @@ print merit
 
 * tables (print)
 
-*echo "merit_TAB"
-*echo "Merit = $&merit"
-*echo "Cost = $&cost MU"
-*echo "merit_END"
+echo "merit_TAB"
+echo "Merit = $&merit"
+echo "Cost = $&cost MU"
+echo "merit_END"
 
-*echo "gain_TAB"
-*echo "Output Voltage Gain dB = $&gain"
-*echo "Central Freq = $&cent_freq"
-*echo "Low CO Freq = $&low"
-*echo "Up CO Freq = $&up"
-*echo "Gain Deviation = $&gain_dev"
-*echo "Central Freq Deviation =$&cent_freq_dev"
-*echo "Bandwidth = $&bandwidth"
-*echo "gain_END"
+echo "gain_TAB"
+echo "Output Voltage Gain dB = $&gain"
+echo "Central Freq = $&cent_freq"
+echo "Low CO Freq = $&low"
+echo "Up CO Freq = $&up"
+echo "Gain Deviation = $&gain_dev_lin"
+echo "Gain Deviation dB = $&gain_dev_db"
+echo "Central Freq Deviation =$&cent_freq_dev"
+echo "Bandwidth = $&bandwidth"
+echo "gain_END"
 
 *input impedance in kohm
-*plot input impedance
-*hardcopy inputimpedance.ps abs(v(in2)[40]/vin#branch[40]/(-1000))
+let Zi = abs(v(in)[20]/vin#branch[20]/(1000))
+*print Zi
 
 *echo "inputZ_TAB"
 *echo "ZI = $&Zi"
 *echo "inputZ_END"
-
-
-*input impedance in kohm
-*print v(in)[40]/R1[i]/1000
-
 
 .endc 
 
