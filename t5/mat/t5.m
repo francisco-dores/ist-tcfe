@@ -1,4 +1,4 @@
-R1 = 500;
+R1 = 1000;
 R2 = 1e3;
 R3 = 300e3;
 R4 = 5e3;
@@ -12,6 +12,12 @@ f_high = 1/(2*pi*C2*R2);
 %CENTRAL FREQUENCY
 
 f_c=sqrt(f_low*f_high)
+
+tab=fopen("freq.tex", "w");
+fprintf(tab, "$f_L$ & $%f$ \\\\ \\hline \n", f_low);
+fprintf(tab, "$f_H$ & $%f$ \\\\ \\hline \n", f_high);
+fprintf(tab, "$f_0$ & $%f$ \\\\ \\hline \n", f_c);
+fclose(tab);
 
 
 %CENTRAL FREQUENCY DEVIATION
@@ -87,6 +93,12 @@ xlabel ("log_{10}(f) [Hz]");
 ylabel ("Gain - Phase [deg]");
 title ("Gain - Phase");
 print (freq_p, "freq_p.eps", "-depsc");
+
+
+tab=fopen("imped.tex", "w");
+fprintf(tab, "$Z_I$ & $%f$ \\\\ \\hline \n", ZI);
+fprintf(tab, "$Z_O$ & $%f$ \\\\ \\hline \n", ZO);
+fclose(tab);
 
 
 
