@@ -55,6 +55,14 @@ The cost of these components can be computed according to the values provided in
   \label{tab:gain}
 \end{table}
 
+\par Beyond the magnitude, one can represent the phase of the output voltage, as shown in the following figure:
+
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{vp.pdf}
+\caption{Output Voltage Phase, in Degrees}
+\label{fig:vp}
+\end{figure}
+
 
 
 \subsection{Frequency Response - Central Frequency}
@@ -73,6 +81,13 @@ The values for these frequencies and the computed bandwidth are presented bellow
   \caption{Lower and Upper Cut off Frequencies, Central Frequency and Bandwidth, in Hz}
   \label{tab:frequencies}
 \end{table}
+
+\par In the following plot, one can observe both the gain described in the previous section as well as the central frequency of the output voltage:
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{vdb.pdf}
+\caption{Output Voltage, in dB}
+\label{fig:vdb}
+\end{figure}
 
 Now, one can compute the central frequency deviation from the specified value of 1kHz ($f_{deviation}=abs[f_c-1000]$):
 
