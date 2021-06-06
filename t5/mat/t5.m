@@ -25,12 +25,12 @@ cfreq_dev = abs(f_c-1000)
 
 %INPUT IMPEDANCE (f=f_c)
 
-%ZI = RI + 1/(2*pi*f_c*CI);
+ZI = R1 + 1/(2*pi*f_c*C1)
 
 
-%OUTPUT IMPEDANCE (f=1kHz)
+%OUTPUT IMPEDANCE (f=f_c)
 
-%ZF = (RF*1/(2*pi*CF))/(RF+1/(2*pi*CF));
+ZO = 1/(2*pi*f_c*C2+1/R2)
 
 
 %GAIN (f=f_c)
@@ -70,9 +70,6 @@ s = j*w;
 T(i) = ((R1*C1*s)/(1+R1*C1*s))*(1+R3/R4)*(1/(1+R2*C2*s));
 Av = abs(T);
 
-%ZI = RI + 1/(j*w*CI);
-%ZF = (RF*1/(j*w*CF))/(RF+1/(j*w*CF)); %QUAL DAS DUAS FÓRMULAS??? ESTA OU...
-%Av (i) = -ZF/ZI; 
 
 end
 

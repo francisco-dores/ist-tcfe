@@ -51,11 +51,11 @@
 
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
+*Vin in 0 0 ac 0 sin(0 0 1k)
 
-X1 0 inv_in vcc vee out uA741
+X1 0 inv_in vcc vee n3 uA741
 
-C1 in inv_in 220n
+C1 0 inv_in 220n
 
 * R1 = 2 resistências de 1k em paralelo
 R1 inv_in 0 0.5k
@@ -84,7 +84,8 @@ print all
 ac dec 10 10 100MEG
 
 *input impedance in kohm
-let Zo=abs(v(out)[20]/vout#branch[20]/1000)
+let Zo=abs(v(out)[20]/i(VL)[20])
+print Zo
 
 echo "outputZ_TAB"
 echo "ZO = $&Zo"

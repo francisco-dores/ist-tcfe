@@ -53,6 +53,7 @@ Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
+
 X1 0 inv_in vcc vee n3 uA741
 
 C1 in inv_in 220n
@@ -153,9 +154,6 @@ print cost
 let merit=(1/(cost*(gain_dev_lin*cent_freq_dev+1e-6)))
 print merit
 
-* input impedance
-*let Zi=abs(v(in)[20]/vin#branch[20])
-
 
 * tables (print)
 
@@ -175,9 +173,9 @@ echo "Central Freq Deviation =$&cent_freq_dev"
 echo "Bandwidth = $&bandwidth"
 echo "gain_END"
 
-*input impedance in kohm
-let Zi = abs(v(in)[20]/vin#branch[20]/(1000))
-*print Zi
+*input impedance
+let Zi = abs(v(in)[20]/vin#branch[20])
+print Zi
 
 *echo "inputZ_TAB"
 *echo "ZI = $&Zi"
