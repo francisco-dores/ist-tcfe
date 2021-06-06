@@ -31,20 +31,31 @@ T(S)=\frac{v_O}{v_I}=\frac{R_1C_1S}{1+R_1C_1S}(1+\frac{R_3}{R_4})\frac{1}{1+R_2C
  \par As was suposed, we obtained a pass-band circuit, and the cut-off frequencies will be calculated in next chapter. This is achieved because, for low frequencies, the capacitors $C_1$ and $C_2$ behaves like open circuits, with high complex impedances, and it behaves like a short circuit for high frequencies. Therefore, $C_1$ will be a open circuit for low frequencies, the voltage that enters in the OP-AMP will be $v_{I1}\approx 0$ and $v_{O}\approx 0$, leaving the gain very low. In the other hand, for high, frequencies $C_2$ it's a short circuit and there will be no voltage drop in the capacitor, so $v_O\approx 0$ again.
  
  \subsection{Central frequency}
- \par From the poles of the transfer function, we obtain the lower and upper cut-off frequencies, respectively, $\omega_L$ and $\omega_H$.
+ \par From the poles of the transfer function, we obtain the lower and upper cut-off frequencies, respectively, $f_L$ and $f_H$.
  \begin{equation}
- \omega_L=\frac{1}{R_1C_1}
+ f_L=\frac{1}{2\pi R_1C_1}
  \end{equation}
  \begin{equation}
- \omega_H=\frac{1}{R_2C_2}
+ f_H=\frac{1}{2\pi R_2C_2}
  \end{equation}
- \par Then, we can compute the central frequency $\omega_0$ as a geometric mean of $\omega_L$ and $\omega_H$.
+ \par Then, we can compute the central frequency $f_0$ as a geometric mean of $f_L$ and $f_H$.
  \begin{equation}
- \omega_0=\sqrt{\omega_L\omega_H} \hspace{10pt} f_{central}=\frac{\omega_0}{2\pi}
+ f_0=\sqrt{f_Lf_H}
  \end{equation}
  
  \par Next table shows the theoretical values for the cut-off and central frequencies.
  %tabela com cutoff
+ \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/freq.tex}
+    \end{tabular}
+     \caption{Cut-off and central frequencies (Hz).}
+    \label{tab:freq}
+  \end{table}
+
  
  
  \subsection{Input and output impedances}
@@ -52,16 +63,27 @@ T(S)=\frac{v_O}{v_I}=\frac{R_1C_1S}{1+R_1C_1S}(1+\frac{R_3}{R_4})\frac{1}{1+R_2C
  \par To compute input impedance $Z_I$, seen from input voltage $v_I$, we substitute $Z_{I1}$ in the image \ref{} from is value $Z_{I1}=\infty$, therefore:
  
  \begin{equation}
- Z_I=Z_1+Z{C1}=R_1+\frac{1}{j\omega_0C_1}
+ Z_I=Z_1+Z{C1}=R_1+\frac{1}{j2\pi f_0C_1}
  \end{equation}
 \par For the output impedance $Z_{O}$, we set $v_I$ to $0$ and $Z_{O1}$ to his value $Z_{O1}=0$.
 \begin{equation}
-Z_O=R_2||C_2=\frac{1}{j\omega_0C_2+\frac{1}{R_2}}
+Z_O=R_2||C_2=\frac{1}{j2\pi f_0C_2+\frac{1}{R_2}}
 \end{equation}
 
 \par The values obtained for the input and output impedances are given in the next table.
 
 %tabela com impedancias
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/imped.tex}
+    \end{tabular}
+     \caption{Input and output impedances.}
+    \label{tab:freq}
+  \end{table}
+
 
 
   
