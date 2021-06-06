@@ -14,9 +14,9 @@ f_high = 1/(2*pi*C2*R2);
 f_c=sqrt(f_low*f_high)
 
 tab=fopen("freq.tex", "w");
-fprintf(tab, "$f_L$ & $%f$ \\\\ \\hline \n", f_low);
-fprintf(tab, "$f_H$ & $%f$ \\\\ \\hline \n", f_high);
-fprintf(tab, "$f_0$ & $%f$ \\\\ \\hline \n", f_c);
+fprintf(tab, "$f_L$ [Hz] & $%f$ \\\\ \\hline \n", f_low);
+fprintf(tab, "$f_H$ [Hz] & $%f$ \\\\ \\hline \n", f_high);
+fprintf(tab, "$f_0$ [Hz] & $%f$ \\\\ \\hline \n", f_c);
 fclose(tab);
 
 
@@ -88,7 +88,7 @@ end
 freq_db = figure ();
 plot (log10(f), 20*log10(Av), "b");
 xlabel ("log_{10}(f) [Hz]");
-ylabel ("Gain - Magnitude [dB]");
+ylabel ("Magnitude [dB]");
 title ("Gain - Magnitude");
 print (freq_db, "freq_db.eps", "-depsc");
 
@@ -100,14 +100,16 @@ title ("Gain - Phase");
 print (freq_p_deg, "freq_p_deg.eps", "-depsc");
 
 tab=fopen("imped.tex", "w");
-fprintf(tab, "$Z_I$ & $%f$ \\\\ \\hline \n", ZI);
-fprintf(tab, "$Z_O$ & $%f$ \\\\ \\hline \n", ZO);
+fprintf(tab, "$Z_I$ [S] & $%f$ \\\\ \\hline \n", ZI);
+fprintf(tab, "$Z_O$ [S] & $%f$ \\\\ \\hline \n", ZO);
 fclose(tab);
 
-tab=fopen("dev.tex", "w");
-fprintf(tab, "$A_v deviation (Db)$ & $%f$ \\\\ \\hline \n", gain_dev_db);
-fprintf(tab, "$f_0 deviation (Hz)$ & $%f$ \\\\ \\hline \n", freq_dev);
+tab=fopen("freq_dev.tex", "w");
+fprintf(tab, "$f_0 deviation$ [Hz] & $%f$ \\\\ \\hline \n", freq_dev);
 fclose(tab);
 
-
+tab=fopen("gain.tex", "w");
+fprintf(tab, "$A_v$ [dB] & $%f$ \\\\ \\hline \n", Av_1_db);
+fprintf(tab, "$A_v deviation$ [dB] & $%f$ \\\\ \\hline \n", gain_dev_db);
+fclose(tab);
 

@@ -88,7 +88,7 @@ let Zo=abs(v(out)[20]/i(VL)[20])
 print Zo
 
 echo "outputZ_TAB"
-echo "ZO = $&Zo"
+echo "ZO [S] = $&Zo"
 echo "outputZ_END"
 
 quit
