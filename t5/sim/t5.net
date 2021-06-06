@@ -121,7 +121,7 @@ let gain = abs(v(out)[20])/abs(v(in)[20])
 let gaindb = 20*log10(abs(gain))
 print gaindb
 let gain_dev_db = abs(gaindb-40)
-let gain_dev_lin=gain-100
+let gain_dev_lin= abs(gain-100)
 print gain_dev_db
 
 let ref=gaindb-3
