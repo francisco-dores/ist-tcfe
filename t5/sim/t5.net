@@ -53,6 +53,7 @@ Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
+
 X1 0 inv_in vcc vee n3 uA741
 
 C1 in inv_in 220n
@@ -98,30 +99,12 @@ hardcopy vp.ps vp(out)
 echo vp_FIG
 
 
-*let gain = abs(v(out)[20])/abs(v(in)[20])
-*print gain
-*let gaindb = vdb(out)-vdb(in)
-*meas AC gain MAX gaindb
-*meas AC gain_mil WHEN
-*let gain_1 = gaindb[20]
-*let gain_11 = gain[20]
-*print gain_1
-*let gain_2 = gaindb[100]
-*print gain_2
-*meas AC freq_1 WHEN gaindb = gain_1
-*meas AC freq_11 WHEN gain = gain_11
-*meas AC freq_2 WHEN gaindb = gain_2
-*print freq_1
-*print freq_2
-*let gain_dev_db = abs(gain-40)
-*let gain_dev=10^(gain_dev_db/20)
-
 * gain
 let gain = abs(v(out)[20])/abs(v(in)[20])
 let gaindb = 20*log10(abs(gain))
 print gaindb
 let gain_dev_db = abs(gaindb-40)
-let gain_dev_lin=gain-100
+let gain_dev_lin= abs(gain-100)
 print gain_dev_db
 
 let ref=gaindb-3
@@ -153,9 +136,6 @@ print cost
 let merit=(1/(cost*(gain_dev_lin*cent_freq_dev+1e-6)))
 print merit
 
-* input impedance
-*let Zi=abs(v(in)[20]/vin#branch[20])
-
 
 * tables (print)
 
@@ -175,9 +155,9 @@ echo "Central Freq Deviation =$&cent_freq_dev"
 echo "Bandwidth = $&bandwidth"
 echo "gain_END"
 
-*input impedance in kohm
-let Zi = abs(v(in)[20]/vin#branch[20]/(1000))
-*print Zi
+*input impedance
+let Zi = abs(v(in)[20]/vin#branch[20])
+print Zi
 
 *echo "inputZ_TAB"
 *echo "ZI = $&Zi"
