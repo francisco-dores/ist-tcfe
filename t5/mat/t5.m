@@ -69,7 +69,7 @@ s = j*w;
 
 T(i) = ((R1*C1*s)/(1+R1*C1*s))*(1+R3/R4)*(1/(1+R2*C2*s));
 Av = abs(T);
-
+phase_Av = angle(T)*180/pi;
 
 end
 
@@ -77,9 +77,16 @@ end
 freq_db = figure ();
 plot (log10(f), 20*log10(Av), "b");
 xlabel ("log_{10}(f) [Hz]");
-ylabel ("Gain [dB]");
-title ("Frequency Response - Gain");
+ylabel ("Gain - Magnitude [dB]");
+title ("Gain - Magnitude");
 print (freq_db, "freq_db.eps", "-depsc");
+
+freq_p = figure ();
+plot (log10(f), phase_Av, "r");
+xlabel ("log_{10}(f) [Hz]");
+ylabel ("Gain - Phase [deg]");
+title ("Gain - Phase");
+print (freq_p, "freq_p.eps", "-depsc");
 
 
 

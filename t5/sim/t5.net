@@ -131,6 +131,7 @@ let cost_r=(3*1+2*10+3*100)/1000
 let cost_c=(0.220*3)*1000000
 let cost=cost_opam+cost_r+cost_c
 print cost
+print cost_opam
 
 * merit
 let merit=(1/(cost*(gain_dev_lin*cent_freq_dev+1e-6)))
@@ -139,29 +140,43 @@ print merit
 
 * tables (print)
 
+echo "cost_TAB"
+echo "Cost OP-AMP = $&cost_opam MU"
+echo "Cost Resistors = $&cost_r MU"
+echo "Cost Capacitors = $&cost_c MU"
+echo "TOTAL Cost = $&cost MU"
+echo "cost_END"
+
 echo "merit_TAB"
 echo "Merit = $&merit"
-echo "Cost = $&cost MU"
 echo "merit_END"
 
 echo "gain_TAB"
-echo "Output Voltage Gain dB = $&gain"
-echo "Central Freq = $&cent_freq"
-echo "Low CO Freq = $&low"
-echo "Up CO Freq = $&up"
+echo "Output Voltage Gain [Linear] = $&gain"
+echo "Output Voltage Gain [dB] = $&gaindb"
 echo "Gain Deviation = $&gain_dev_lin"
 echo "Gain Deviation dB = $&gain_dev_db"
-echo "Central Freq Deviation =$&cent_freq_dev"
-echo "Bandwidth = $&bandwidth"
 echo "gain_END"
+
+echo "freq_TAB"
+echo "Low CO Freq = $&low"
+echo "Up CO Freq = $&up"
+echo "Central Freq = $&cent_freq"
+echo "Bandwidth = $&bandwidth"
+echo "freq_END"
+
+echo "freq_dev_TAB"
+echo "Central Freq Deviation =$&cent_freq_dev"
+echo "freq_dev_END"
+
 
 *input impedance
 let Zi = abs(v(in)[20]/vin#branch[20])
 print Zi
 
-*echo "inputZ_TAB"
-*echo "ZI = $&Zi"
-*echo "inputZ_END"
+echo "inputZ_TAB"
+echo "ZI = $&Zi"
+echo "inputZ_END"
 
 .endc 
 
