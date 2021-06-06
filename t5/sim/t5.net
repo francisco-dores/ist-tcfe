@@ -58,7 +58,7 @@ X1 0 inv_in vcc vee n3 uA741
 C1 in inv_in 220n
 
 * R1 = 2 resistências de 1k em paralelo
-R1 inv_in 0 0.5k
+R1 inv_in 0 500
 
 * R3 = 3 resistências de 100k em série
 R3 n2 n3 300k
