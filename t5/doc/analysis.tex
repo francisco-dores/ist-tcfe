@@ -28,7 +28,7 @@ T(S)=\frac{v_O}{v_I}=\frac{R_1C_1S}{1+R_1C_1S}(1+\frac{R_3}{R_4})\frac{1}{1+R_2C
  Now, one can compute gain and phase from absolute value and phase of $T(S)$ and plot the frequency response for logarithmic vector of $\omega$:
  %plots gain e fase
  
- \par As was suposed, we obtained a pass-band circuit, and the cut-off frequencies will be calculated in next chapter.
+ \par As was suposed, we obtained a pass-band circuit, and the cut-off frequencies will be calculated in next chapter. This is achieved because, for low frequencies, the capacitors $C_1$ and $C_2$ behaves like open circuits, with high complex impedances, and it behaves like a short circuit for high frequencies. Therefore, $C_1$ will be a open circuit for low frequencies, the voltage that enters in the OP-AMP will be $v_{I1}\approx 0$ and $v_{O}\approx 0$, leaving the gain very low. In the other hand, for high, frequencies $C_2$ it's a short circuit and there will be no voltage drop in the capacitor, so $v_O\approx 0$ again.
  
  \subsection{Central frequency}
  \par From the poles of the transfer function, we obtain the lower and upper cut-off frequencies, respectively, $\omega_L$ and $\omega_H$.
