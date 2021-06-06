@@ -65,6 +65,10 @@ gain_dev = abs(Av_1-100)
 Av_1_db = 20*log10(Av_1)
 gain_dev_db = abs(Av_1_db-40)
 
+%FREQUENCY DEVIATION Hz
+
+freq_dev=1000-f_c;
+
 
 %FREQUENCY RESPONSE
 
@@ -98,6 +102,11 @@ print (freq_p, "freq_p.eps", "-depsc");
 tab=fopen("imped.tex", "w");
 fprintf(tab, "$Z_I$ & $%f$ \\\\ \\hline \n", ZI);
 fprintf(tab, "$Z_O$ & $%f$ \\\\ \\hline \n", ZO);
+fclose(tab);
+
+tab=fopen("dev.tex", "w");
+fprintf(tab, "$A_v deviation (Db)$ & $%f$ \\\\ \\hline \n", gain_dev_db);
+fprintf(tab, "$f_0 deviation (Hz)$ & $%f$ \\\\ \\hline \n", freq_dev);
 fclose(tab);
 
 
