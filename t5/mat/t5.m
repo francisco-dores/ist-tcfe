@@ -80,7 +80,7 @@ s = j*w;
 T(i) = ((R1*C1*s)/(1+R1*C1*s))*(1+R3/R4)*(1/(1+R2*C2*s));
 Av = abs(T);
 phase_Av_deg = angle(T)*180/pi;
-*phase_Av_rad = angle(T);
+%phase_Av_rad = angle(T);
 
 end
 

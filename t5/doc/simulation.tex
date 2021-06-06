@@ -11,7 +11,7 @@ M = \frac{1}{\text{cost}*(\text{Voltage Gain Deviation}+\text{Central Frequency 
 \label{eq:merit}
 \end{equation}
 
-\par Therefore, it was our intention to obtain the best value for this parameter,using each of the variables in order to maximize it, wich means that we have not tried to improve each of those separately, but as a all. This value is presented in Subsection \ref{merit}.
+\par Therefore, it was our intention to obtain the best value for this parameter,using each of the variables in order to maximize it, wich means that we have not tried to improve each of those separately, but as a all. This value is presented in Subsection \ref{subsec:merit}.
 In order to do it we used the values indicated the following values of the components: $R_{1}=1k\Omega$, $R_{2}=1k\Omega$, $R_{31}=100k\Omega$, $R_{32}=100k\Omega$, $R_{33}=100k\Omega$, $R_{41}=10k\Omega$, $R_{42}=10k\Omega$, $C_{1}=220nF$, $C_{21}=220nF$ and $C_{22}=220nF$. 
 
 \par Notice that in order to simplify the circuit the equivalent resistors and capacitors were considered in the simulation.
@@ -136,7 +136,7 @@ Now, one can compute the central frequency deviation from the specified value of
 
 
 \subsection{Merit}
-\label{merit}
+\label{subsec:merit}
 
 \par Recalling the equation \ref{eq:merit} in the Subsection \ref{sec:simulation}, one can notice that the merit depends on three variables computed in previous sections.
 \par The components and the layout explained above led to the following merit value:
@@ -155,3 +155,14 @@ Now, one can compute the central frequency deviation from the specified value of
 \par The cost of the components used in the circuit analysed was presented in Subsection \ref{sec:simulation}.
 \par Regarding the gain deviation, the considered value was the one in linear units.
 \par The central frequency deviation used in the merit formula was the one obtained in Subsection \ref{frequency_response}.
+
+
+
+\subsection{Output Voltage}
+\label{outv}
+In this last Subsection it is presented the plot of the output voltage:
+\begin{figure}[H] \centering
+\includegraphics[clip, trim=1.3cm 1.3cm 0cm 7cm, width=0.6\linewidth]{vo1.pdf}
+\caption{Output Voltage, in Volts}
+\label{fig:vo1}
+\end{figure}
